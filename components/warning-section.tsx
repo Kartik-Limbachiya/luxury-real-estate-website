@@ -2,8 +2,10 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { AlertTriangle, Home, CreditCard, ShoppingCart, FileText } from "lucide-react"
+import { useLanguage } from "@/components/language-provider"
 
 export function WarningSection() {
+  const { language } = useLanguage()
   const warnings = [
     {
       icon: Home,
@@ -37,14 +39,17 @@ export function WarningSection() {
 
   return (
     <section className="py-12 bg-gradient-to-br from-red-50 to-orange-50">
-      <div className="max-w-7xl mx-auto px-4 md:px-8">
+      <div className="w-full px-6 md:px-10">
         <div className="text-center mb-8">
           <div className="flex items-center justify-center gap-2 mb-4">
             <AlertTriangle className="h-8 w-8 text-red-600" />
-            <h2 className="text-2xl md:text-3xl font-bold text-red-700">Important Policies</h2>
+            <h2 className="text-2xl md:text-3xl font-bold text-red-700">
+              {language === "en" ? "Important Policies" : "महत्वपूर्ण नीतियाँ"}
+            </h2>
           </div>
-          <p className="text-red-600 font-medium">कृपया निम्नलिखित नीतियों को ध्यान से पढ़ें</p>
-          <p className="text-sm text-red-500 mt-1">Please read the following policies carefully</p>
+          <p className="text-red-600 font-medium">
+            {language === "en" ? "Please read the following policies carefully" : "कृपया निम्नलिखित नीतियों को ध्यान से पढ़ें"}
+          </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -69,7 +74,9 @@ export function WarningSection() {
         <div className="mt-8 text-center">
           <div className="bg-red-100 border border-red-300 rounded-lg p-4 max-w-2xl mx-auto">
             <p className="text-red-800 font-semibold text-sm">
-              ⚠️ These policies are strictly enforced for the safety and security of all residents
+              {language === "en"
+                ? "⚠️ These policies are strictly enforced for the safety and security of all residents"
+                : "⚠️ सभी निवासियों की सुरक्षा और हित के लिए ये नीतियाँ सख्ती से लागू की जाती हैं"}
             </p>
           </div>
         </div>

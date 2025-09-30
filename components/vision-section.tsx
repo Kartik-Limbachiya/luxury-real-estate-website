@@ -3,14 +3,16 @@
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Eye, Target, Users, Building, Award, MapPin, Heart, Lightbulb, Shield } from "lucide-react"
+import { useLanguage } from "@/components/language-provider"
 
 export function VisionSection() {
+  const { language } = useLanguage()
   return (
     <section
       id="vision"
-      className="min-h-screen bg-gradient-to-br from-background via-muted/30 to-background p-8 flex items-center"
+      className="bg-gradient-to-br from-background via-muted/30 to-background py-16 px-8"
     >
-      <div className="max-w-7xl mx-auto">
+      <div className="w-full">
         <div className="text-center space-y-12">
           {/* Header */}
           <div className="space-y-6 luxury-fade-up">
@@ -18,22 +20,23 @@ export function VisionSection() {
               <div className="p-4 bg-gradient-to-br from-primary to-secondary rounded-full shadow-lg premium-hover">
                 <Eye className="h-8 w-8 text-white" />
               </div>
-              <Badge variant="secondary" className="text-base px-4 py-2 bg-primary/10 text-primary border-primary/20">
-                Our Vision
-              </Badge>
+            <Badge variant="secondary" className="text-base px-4 py-2 bg-primary/10 text-primary border-primary/20">
+              {language === "en" ? "Our Vision" : "हमारा दृष्टिकोण"}
+            </Badge>
             </div>
-            <h2 className="font-serif text-5xl md:text-6xl font-bold gradient-text leading-tight">हमारा दृष्टिकोण</h2>
+            <h2 className="font-serif text-5xl md:text-6xl font-bold gradient-text leading-tight">
+              {language === "en" ? "Our Vision" : "हमारा दृष्टिकोण"}
+            </h2>
           </div>
 
           {/* Main Vision Statement */}
           <Card className="max-w-4xl mx-auto glass-card shadow-xl premium-slide-left">
             <CardContent className="p-12">
               <blockquote className="text-3xl md:text-4xl font-bold text-foreground leading-relaxed text-center">
-                "विश्व के एक भी जैन को खुद का घर और नौकरी-धंधा के बिना नहीं रहना चाहिए।"
+                {language === "en"
+                  ? "No Jain in the world should live without their own home and livelihood."
+                  : "विश्व के एक भी जैन को खुद का घर और नौकरी-धंधा के बिना नहीं रहना चाहिए।"}
               </blockquote>
-              <p className="text-xl text-muted-foreground mt-6 text-center font-medium">
-                "No Jain in the world should live without their own home and livelihood."
-              </p>
             </CardContent>
           </Card>
 
@@ -79,12 +82,13 @@ export function VisionSection() {
 }
 
 export function MissionSection() {
+  const { language } = useLanguage()
   return (
     <section
       id="mission"
-      className="min-h-screen bg-gradient-to-br from-muted/20 via-background to-muted/30 p-8 flex items-center"
+      className="bg-gradient-to-br from-muted/20 via-background to-muted/30 py-16 px-8"
     >
-      <div className="max-w-7xl mx-auto">
+      <div className="w-full">
         <div className="text-center space-y-12">
           {/* Header */}
           <div className="space-y-6 luxury-fade-up">
@@ -96,23 +100,22 @@ export function MissionSection() {
                 variant="secondary"
                 className="text-base px-4 py-2 bg-secondary/10 text-secondary border-secondary/20"
               >
-                Our Mission
+                {language === "en" ? "Our Mission" : "हमारा मिशन"}
               </Badge>
             </div>
-            <h2 className="font-serif text-5xl md:text-6xl font-bold gradient-text leading-tight">हमारा मिशन</h2>
+            <h2 className="font-serif text-5xl md:text-6xl font-bold gradient-text leading-tight">
+              {language === "en" ? "Our Mission" : "हमारा मिशन"}
+            </h2>
           </div>
 
           {/* Mission Statement */}
           <Card className="max-w-5xl mx-auto glass-card shadow-xl premium-slide-right">
             <CardContent className="p-12">
               <blockquote className="text-2xl md:text-3xl font-bold text-foreground leading-relaxed text-center mb-6">
-                "800 SEWAS इन्फ्रास्ट्रक्चर प्राइवेट लिमिटेड — पिछले 6 सालों से भारत के गाँव-गाँव में जैनों की ज़रूरियात को समझकर उनको पूरा
-                करने का प्रयत्न कर रही है।"
+                {language === "en"
+                  ? "800 SEWAS Infrastructure Private Limited has been striving for the past 6 years to understand and fulfill the needs of Jains in every village of India."
+                  : "800 SEWAS इन्फ्रास्ट्रक्चर प्राइवेट लिमिटेड — पिछले 6 सालों से भारत के गाँव-गाँव में जैनों की ज़रूरियात को समझकर उनको पूरा करने का प्रयत्न कर रही है।"}
               </blockquote>
-              <p className="text-lg text-muted-foreground text-center font-medium">
-                "800 SEWAS Infrastructure Private Limited has been striving for the past 6 years to understand and
-                fulfill the needs of Jains in every village of India."
-              </p>
             </CardContent>
           </Card>
 
@@ -175,12 +178,13 @@ export function MissionSection() {
 }
 
 export function AboutUsSection() {
+  const { language } = useLanguage()
   return (
     <section
       id="about-us"
-      className="min-h-screen bg-gradient-to-br from-background via-muted/20 to-background p-8 flex items-center"
+      className="bg-gradient-to-br from-background via-muted/20 to-background py-16 px-8"
     >
-      <div className="max-w-7xl mx-auto">
+      <div className="w-full">
         <div className="text-center space-y-12">
           {/* Header */}
           <div className="space-y-6 luxury-fade-up">
@@ -189,7 +193,7 @@ export function AboutUsSection() {
                 <Award className="h-8 w-8 text-white" />
               </div>
               <Badge variant="secondary" className="text-base px-4 py-2 bg-accent/10 text-accent border-accent/20">
-                About Us
+                {language === "en" ? "About Us" : "हमारे बारे में"}
               </Badge>
             </div>
             <h2 className="font-serif text-5xl md:text-6xl font-bold gradient-text">
@@ -204,23 +208,24 @@ export function AboutUsSection() {
           {/* Main Content */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
             {/* Company Story */}
-            <Card className="text-left glass-card shadow-xl premium-slide-left">
+              <Card className="text-left glass-card shadow-xl premium-slide-left">
               <CardContent className="p-10 space-y-6">
-                <h3 className="font-serif text-3xl font-bold text-foreground">Our Story</h3>
+                <h3 className="font-serif text-3xl font-bold text-foreground">{language === "en" ? "Our Story" : "हमारी कहानी"}</h3>
                 <div className="space-y-4 text-muted-foreground leading-relaxed">
                   <p>
-                    800 SEWAS Infrastructure Limited was founded with a singular vision: to ensure that no Jain in the
-                    world lives without their own home and sustainable livelihood. For over six years, we have been
-                    working tirelessly across India's villages and cities.
+                    {language === "en"
+                      ? "800 SEWAS Infrastructure Limited was founded with a singular vision: to ensure that no Jain in the world lives without their own home and sustainable livelihood. For over six years, we have been working tirelessly across India's villages and cities."
+                      : "800 SEWAS इंफ्रास्ट्रक्चर लिमिटेड की स्थापना एक लक्ष्य के साथ हुई: विश्व का कोई भी जैन अपने स्वयं के घर और आजीविका के बिना न रहे। पिछले छह वर्षों से, हम भारत के गाँवों और शहरों में निरंतर कार्य कर रहे हैं।"}
                   </p>
                   <p>
-                    Our comprehensive approach encompasses religious infrastructure, residential solutions, commercial
-                    spaces, educational services, medical facilities, and social centers. We specialize in creating
-                    tailored solutions that honor Jain values.
+                    {language === "en"
+                      ? "Our comprehensive approach encompasses religious infrastructure, residential solutions, commercial spaces, educational services, medical facilities, and social centers. We specialize in creating tailored solutions that honor Jain values."
+                      : "हमारा समग्र दृष्टिकोण धार्मिक अवसंरचना, आवासीय समाधान, व्यावसायिक स्थान, शैक्षणिक सेवाएँ, चिकित्सा सुविधाएँ, और सामाजिक केंद्रों को समाहित करता है। हम जैन मूल्यों का सम्मान करने वाले अनुकूलित समाधान बनाते हैं।"}
                   </p>
                   <p>
-                    From establishing Jain temples and upashrays to developing residential complexes with Jain-friendly
-                    amenities, we bridge the gap between tradition and contemporary living.
+                    {language === "en"
+                      ? "From establishing Jain temples and upashrays to developing residential complexes with Jain-friendly amenities, we bridge the gap between tradition and contemporary living."
+                      : "जैन मंदिरों और उपाश्रयों की स्थापना से लेकर जैन-हितैषी सुविधाओं वाले आवासीय परिसरों के विकास तक, हम परंपरा और आधुनिक जीवन के बीच की दूरी को पाटते हैं।"}
                   </p>
                 </div>
               </CardContent>

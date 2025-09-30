@@ -6,11 +6,14 @@ import { Card, CardContent } from "@/components/ui/card"
 import { LocationFilter, type LocationSelection } from "@/components/location-filter"
 import { CategorySelector } from "@/components/category-selector-working"
 import { VisionSection, MissionSection, AboutUsSection } from "@/components/vision-section"
+import { BankingPartnersSection } from "@/components/banking-partners"
+import { ImportantDatesSection } from "@/components/important-dates"
 import { InquiryForm } from "@/components/inquiry-form-working"
 import { EmploymentSection } from "@/components/employment-section-working"
 import { WarningSection } from "@/components/warning-section"
 import { FileText, Users, Building, Heart, TrendingUp } from "lucide-react"
 import Image from "next/image"
+import { useLanguage } from "@/components/language-provider"
 
 function useIsMobile() {
   const [isMobile, setIsMobile] = useState(false)
@@ -36,6 +39,7 @@ function PremiumHeroSection() {
   const videoRef = useRef<HTMLIFrameElement>(null)
   const [videoTime, setVideoTime] = useState(0)
   const isMobile = useIsMobile()
+  const { language, toggle } = useLanguage()
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -83,45 +87,49 @@ function PremiumHeroSection() {
       </div>
 
       {showContent && (
-        <div className="absolute inset-0 flex flex-col items-center justify-center bg-gradient-to-t from-background/95 via-background/50 to-transparent z-10">
-          <div className="text-center space-y-6 animate-fade-in-up px-4 max-w-4xl">
-            {/* Glassmorphism Card */}
-            <div className="glass-card rounded-2xl p-8 space-y-6">
-              <div className="space-y-4">
-                <h1 className="font-black text-5xl sm:text-6xl md:text-8xl gradient-text text-balance">
-                  800 SEWAS City
-                </h1>
-                <p className="text-2xl md:text-3xl font-bold text-primary">THE JAINISM OF UNIVERSE</p>
-                <p className="text-xl md:text-2xl text-secondary font-semibold">सूर्य-पृथ्वी-हवा-पानी-आकाश</p>
-                <p className="text-lg md:text-xl text-black font-medium">Sun-Earth-Water-Air-Sky</p>
-              </div>
-
-              {/* Premium Stats Cards */}
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-8">
-                <div className="glass-card rounded-xl p-4 premium-hover">
-                  <div className="text-3xl font-bold text-primary">800</div>
-                  <div className="text-sm text-black font-medium">Cities</div>
+        <div className="absolute inset-0 flex items-center bg-gradient-to-t from-background/95 via-background/50 to-transparent z-10">
+          <div className="w-full px-6 md:px-12">
+            <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+              <div className="space-y-6 animate-fade-in-up">
+                <div className="flex items-center gap-4">
+                  <Image src="/sewas-logo.png" alt="SEWAS Logo" width={96} height={96} className="h-20 w-20 md:h-24 md:w-24" />
+                  <div>
+                    <h1 className="font-black text-5xl sm:text-6xl md:text-7xl gradient-text text-left">800 SEWAS City</h1>
+                    <p className="text-xl md:text-2xl font-bold text-primary text-left">
+                      {language === "en" ? "THE JAINISM OF UNIVERSE" : "द यूनिवर्स का जैनिज़्म"}
+                    </p>
+                  </div>
                 </div>
-                <div className="glass-card rounded-xl p-4 premium-hover">
-                  <div className="text-3xl font-bold text-primary">29</div>
-                  <div className="text-sm text-black font-medium">States</div>
-                </div>
-                <div className="glass-card rounded-xl p-4 premium-hover">
-                  <div className="text-3xl font-bold text-primary">7</div>
-                  <div className="text-sm text-black font-medium">Union Territories</div>
-                </div>
-              </div>
-
-              <div className="glass-card rounded-xl p-4 mt-4">
-                <p className="text-primary font-semibold text-sm md:text-base">
-                  Project by: 800 SEWAS INFRASTRUCTURE PRIVATE LIMITED
+                <p className="text-base md:text-lg text-black/80 font-medium text-left">
+                  {language === "en" ? "Sun-Earth-Water-Air-Sky" : "सूर्य-पृथ्वी-हवा-पानी-आकाश"}
                 </p>
-                <p className="text-xs md:text-sm mt-1 text-primary font-semibold">CMD: MR. ASHWIN R. SHAH</p>
-              </div>
-            </div>
 
-            {/* Interactive Navigation */}
-            <div className="flex flex-wrap justify-center gap-4 mt-8">
+                <div className="grid grid-cols-3 gap-4 mt-2 max-w-md">
+                  {[{n:800,l: language === "en"?"Cities":"शहर"}, {n:29,l: language === "en"?"States":"राज्य"}, {n:7,l: language === "en"?"UTs":"संघ प्रदेश"}].map((s) => (
+                    <div key={s.l} className="glass-card rounded-xl p-4 premium-hover text-left">
+                      <div className="text-3xl font-bold text-primary">{s.n}</div>
+                      <div className="text-sm text-black font-medium">{s.l}</div>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="flex items-center gap-3">
+                  <Button
+                    size={isMobile ? "default" : "lg"}
+                    className="bg-gradient-to-r from-amber-500 to-orange-600 hover:from-amber-600 hover:to-orange-700 text-white border-0 shadow-lg"
+                    onClick={() => {
+                      const element = document.getElementById("home")
+                      if (element) element.scrollIntoView({ behavior: "smooth" })
+                    }}
+                  >
+                    {language === "en" ? "Get Started" : "शुरू करें"}
+                  </Button>
+                  <Button variant="outline" onClick={toggle} title="Toggle language">
+                    A/अ
+                  </Button>
+                </div>
+
+                <div className="flex flex-wrap gap-3 pt-2">
               {[
                 { name: "Home", icon: Building, target: "home" },
                 { name: "Vision", icon: TrendingUp, target: "vision" },
@@ -148,6 +156,9 @@ function PremiumHeroSection() {
                   {name}
                 </Button>
               ))}
+                </div>
+              </div>
+              <div className="hidden md:block" />
             </div>
           </div>
         </div>
@@ -351,8 +362,8 @@ export function SEWASHomePage() {
 
       <StatisticsSection />
 
-      <section id="home" className="min-h-screen bg-background p-4 md:p-8">
-        <div className="max-w-7xl mx-auto space-y-12">
+      <section id="home" className="bg-background py-16 px-4 md:px-8">
+        <div className="w-full max-w-none space-y-12">
           <div className="text-center space-y-6">
             <h2 className="text-4xl md:text-5xl font-black gradient-text luxury-fade-up">Service Categories</h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed luxury-fade-up stagger-child">
@@ -425,6 +436,14 @@ export function SEWASHomePage() {
             </Card>
           )}
         </div>
+      </section>
+
+      <section className="luxury-fade-up" id="partners">
+        <BankingPartnersSection />
+      </section>
+
+      <section className="luxury-fade-up" id="important-dates">
+        <ImportantDatesSection />
       </section>
 
       <section id="vision" className="image-reveal">

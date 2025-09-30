@@ -3,10 +3,12 @@
 import Link from "next/link"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
+import { useLanguage } from "@/components/language-provider"
 import { useEffect, useState } from "react"
 
 export function PremiumHeader() {
   const [scrolled, setScrolled] = useState(false)
+  const { language, toggle } = useLanguage()
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 16)
@@ -43,6 +45,14 @@ export function PremiumHeader() {
           </nav>
 
           <div className="flex items-center gap-3">
+            <Button
+              variant="outline"
+              className="hidden sm:inline-flex"
+              onClick={toggle}
+              title="Toggle language"
+            >
+              {language === "en" ? "A/अ" : "अ/A"}
+            </Button>
             <Button className="bg-gradient-to-r from-amber-500 to-orange-600 text-white border-0 shadow-lg hover:from-amber-600 hover:to-orange-700">
               Get Started
             </Button>
