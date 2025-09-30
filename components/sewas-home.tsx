@@ -165,20 +165,7 @@ function PremiumHeroSection() {
         </>
       )}
 
-      {/* Company Logo in Corner */}
-      {showContent && (
-        <div className="absolute top-4 left-4 md:top-8 md:left-8">
-          <div className="h-16 md:h-20 w-auto premium-shadow rounded-lg bg-white/95 backdrop-blur-sm p-2 flex items-center">
-            <Image
-              src="/sewas-logo.png"
-              alt="SEWAS Logo"
-              width={100}
-              height={100}
-              className="h-full w-auto object-contain"
-            />
-          </div>
-        </div>
-      )}
+      {/* Header now contains the logo; removing duplicate corner logo for cleaner hero */}
     </section>
   )
 }

@@ -3,6 +3,9 @@ import type { Metadata } from "next"
 import { Playfair_Display, Source_Sans_3 } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import { Suspense } from "react"
+import { ThemeProvider } from "@/components/theme-provider"
+import PremiumHeader from "@/components/premium-header"
+import LuxuryFooter from "@/components/luxury-footer"
 import "./globals.css"
 
 const playfairDisplay = Playfair_Display({
@@ -47,7 +50,13 @@ export default function RootLayout({
   return (
     <html lang="hi" className={`${playfairDisplay.variable} ${sourceSans.variable}`}>
       <body className="font-sans antialiased">
-        <Suspense fallback={null}>{children}</Suspense>
+        <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false}>
+          <PremiumHeader />
+          <div className="pt-16 md:pt-20">
+            <Suspense fallback={null}>{children}</Suspense>
+          </div>
+          <LuxuryFooter />
+        </ThemeProvider>
         <Analytics />
       </body>
     </html>

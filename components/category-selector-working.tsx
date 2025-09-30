@@ -287,7 +287,15 @@ const TimelineSection = () => (
   </Card>
 )
 
-const ImageSlideshow = ({ images, interval = 3000 }: { images: string[]; interval?: number }) => {
+const ImageSlideshow = ({
+  images,
+  interval = 3000,
+  fit = "contain",
+}: {
+  images: string[]
+  interval?: number
+  fit?: "contain" | "cover"
+}) => {
   const [currentIndex, setCurrentIndex] = useState(0)
 
   useEffect(() => {
@@ -303,11 +311,15 @@ const ImageSlideshow = ({ images, interval = 3000 }: { images: string[]; interva
   if (!images.length) return null
 
   return (
-    <div className="relative w-full h-full">
+    <div className={`relative w-full ${fit === "cover" ? "" : "h-full bg-muted flex items-center justify-center"}`}>
       <img
         src={images[currentIndex] || "/placeholder.svg"}
         alt={`Slide ${currentIndex + 1}`}
-        className="w-full h-full object-cover transition-opacity duration-500"
+        className={
+          fit === "cover"
+            ? "w-full h-auto object-cover transition-opacity duration-500"
+            : "max-w-full max-h-full object-contain transition-opacity duration-500"
+        }
       />
       {images.length > 1 && (
         <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 flex space-x-1">
@@ -519,13 +531,15 @@ export function CategorySelector({ locationSelection, onCategoryChange }: Catego
               onMouseLeave={() => setHoveredCard(null)}
             >
               {/* Image Section */}
-              <div className="relative h-48 overflow-hidden">
-                <img
-                  src={categoryImages[category] || "/placeholder.svg"}
-                  alt={category}
-                  className="w-full h-full object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+              <div className="relative overflow-hidden bg-white">
+                <div className="w-full aspect-[4/3] bg-muted flex items-center justify-center">
+                  <img
+                    src={categoryImages[category] || "/placeholder.svg"}
+                    alt={category}
+                    className="max-w-full max-h-full object-contain transition-transform duration-300 group-hover:scale-105"
+                  />
+                </div>
+                <div className="absolute inset-0 pointer-events-none" />
                 {/* Category Icon in top-right */}
                 <div className="absolute top-4 right-4 w-10 h-10 bg-white/20 backdrop-blur rounded-full flex items-center justify-center">
                   <Icon className="h-5 w-5 text-white" />
@@ -582,16 +596,17 @@ export function CategorySelector({ locationSelection, onCategoryChange }: Catego
                         key={index}
                         className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow"
                       >
-                        <div className="h-48 overflow-hidden">
-                          <img
-                            src={
-                              religiousFeatureImages[feature.text as keyof typeof religiousFeatureImages] ||
-                              "/placeholder.svg" ||
-                              "/placeholder.svg"
-                            }
-                            alt={feature.text}
-                            className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-                          />
+                        <div className="bg-muted flex items-center justify-center">
+                          <div className="w-full aspect-[16/9] flex items-center justify-center">
+                            <img
+                              src={
+                                religiousFeatureImages[feature.text as keyof typeof religiousFeatureImages] ||
+                                "/placeholder.svg"
+                              }
+                              alt={feature.text}
+                              className="max-w-full max-h-full object-contain hover:scale-105 transition-transform duration-300"
+                            />
+                          </div>
                         </div>
                         <div className="p-4">
                           <div className="flex items-center gap-2">
@@ -645,12 +660,14 @@ export function CategorySelector({ locationSelection, onCategoryChange }: Catego
                         key={feature}
                         className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow"
                       >
-                        <div className="h-48 overflow-hidden">
-                          <img
-                            src={image || "/placeholder.svg"}
-                            alt={feature}
-                            className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-                          />
+                        <div className="bg-muted">
+                          <div className="w-full aspect-[16/9] flex items-center justify-center">
+                            <img
+                              src={image || "/placeholder.svg"}
+                              alt={feature}
+                              className="max-w-full max-h-full object-contain hover:scale-105 transition-transform duration-300"
+                            />
+                          </div>
                         </div>
                         <div className="p-4">
                           <span className="font-medium text-black text-sm">{feature}</span>
@@ -666,14 +683,16 @@ export function CategorySelector({ locationSelection, onCategoryChange }: Catego
                       Selected: {categorySelections["Property Type"]}
                     </h6>
                     <div className="bg-white rounded-lg shadow-lg overflow-hidden">
-                      <div className="h-96 overflow-hidden rounded-lg">
-                        <ImageSlideshow
-                          images={
-                            categorySelections["Property Type"]?.includes("2BHK")
-                              ? residentialImages["2BHK"]
-                              : residentialImages["3BHK"]
-                          }
-                        />
+                      <div className="bg-muted">
+                        <div className="w-full aspect-[16/9] rounded-lg overflow-hidden">
+                          <ImageSlideshow
+                            images={
+                              categorySelections["Property Type"]?.includes("2BHK")
+                                ? residentialImages["2BHK"]
+                                : residentialImages["3BHK"]
+                            }
+                          />
+                        </div>
                       </div>
                       <div className="p-4 text-center">
                         <h3 className="font-bold text-lg text-black">{categorySelections["Property Type"]} Layout</h3>
@@ -699,12 +718,14 @@ export function CategorySelector({ locationSelection, onCategoryChange }: Catego
                         key={feature}
                         className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow"
                       >
-                        <div className="h-48 overflow-hidden">
-                          <img
-                            src={image || "/placeholder.svg"}
-                            alt={feature}
-                            className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-                          />
+                        <div className="bg-muted">
+                          <div className="w-full aspect-[16/9] flex items-center justify-center">
+                            <img
+                              src={image || "/placeholder.svg"}
+                              alt={feature}
+                              className="max-w-full max-h-full object-contain hover:scale-105 transition-transform duration-300"
+                            />
+                          </div>
                         </div>
                         <div className="p-4">
                           <span className="font-medium text-black">{feature}</span>
@@ -717,7 +738,7 @@ export function CategorySelector({ locationSelection, onCategoryChange }: Catego
                 <div className="bg-gradient-to-r from-purple-50 to-indigo-50 p-6 rounded-lg">
                   <h6 className="font-bold text-lg mb-4 text-purple-800">Business Centers & Office Spaces:</h6>
                   <div className="bg-white rounded-lg shadow-lg overflow-hidden">
-                    <ImageSlideshow images={commercialImages} />
+                    <ImageSlideshow images={commercialImages} fit="cover" />
                     <div className="p-4 text-center">
                       <h3 className="font-bold text-lg text-black">Premium Commercial Spaces</h3>
                       <p className="text-gray-600 text-sm">
@@ -739,12 +760,14 @@ export function CategorySelector({ locationSelection, onCategoryChange }: Catego
                         key={feature}
                         className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow"
                       >
-                        <div className="h-48 overflow-hidden">
-                          <img
-                            src={image || "/placeholder.svg"}
-                            alt={feature}
-                            className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-                          />
+                        <div className="bg-muted">
+                          <div className="w-full aspect-[16/9] flex items-center justify-center">
+                            <img
+                              src={image || "/placeholder.svg"}
+                              alt={feature}
+                              className="max-w-full max-h-full object-contain hover:scale-105 transition-transform duration-300"
+                            />
+                          </div>
                         </div>
                         <div className="p-4">
                           <span className="font-medium text-black text-sm">{feature}</span>
@@ -766,12 +789,14 @@ export function CategorySelector({ locationSelection, onCategoryChange }: Catego
                         key={feature}
                         className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow"
                       >
-                        <div className="h-48 overflow-hidden">
-                          <img
-                            src={image || "/placeholder.svg"}
-                            alt={feature}
-                            className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-                          />
+                        <div className="bg-muted">
+                          <div className="w-full aspect-[16/9] flex items-center justify-center">
+                            <img
+                              src={image || "/placeholder.svg"}
+                              alt={feature}
+                              className="max-w-full max-h-full object-contain hover:scale-105 transition-transform duration-300"
+                            />
+                          </div>
                         </div>
                         <div className="p-4">
                           <span className="font-medium text-black text-sm">{feature}</span>
@@ -793,12 +818,14 @@ export function CategorySelector({ locationSelection, onCategoryChange }: Catego
                         key={feature}
                         className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow"
                       >
-                        <div className="h-48 overflow-hidden">
-                          <img
-                            src={image || "/placeholder.svg"}
-                            alt={feature}
-                            className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-                          />
+                        <div className="bg-muted">
+                          <div className="w-full aspect-[16/9] flex items-center justify-center">
+                            <img
+                              src={image || "/placeholder.svg"}
+                              alt={feature}
+                              className="max-w-full max-h-full object-contain hover:scale-105 transition-transform duration-300"
+                            />
+                          </div>
                         </div>
                         <div className="p-4">
                           <span className="font-medium text-black text-sm">{feature}</span>

@@ -341,3 +341,21 @@
 .premium-shadow {
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
 }
+
+/* Navigation refinements */
+.nav-link {
+  position: relative;
+}
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  height: 2px;
+  width: 0;
+  background: linear-gradient(90deg, #f59e0b, #d97706);
+  transition: width 300ms ease;
+}
+.nav-link:hover::after {
+  width: 100%;
+}
