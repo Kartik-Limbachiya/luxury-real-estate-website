@@ -21,28 +21,28 @@ export function BankingPartnersSection() {
               <div className="relative overflow-hidden py-4">
                 <div className="bank-marquee-track">
                   {[
-                    { src: "https://upload.wikimedia.org/wikipedia/commons/1/1b/State_Bank_of_India_logo.svg", alt: "SBI" },
-                    { src: "https://upload.wikimedia.org/wikipedia/commons/1/1a/HDFC_Bank_Logo.svg", alt: "HDFC Bank" },
-                    { src: "https://upload.wikimedia.org/wikipedia/commons/1/10/ICICI_Bank_Logo.svg", alt: "ICICI Bank" },
-                    { src: "https://upload.wikimedia.org/wikipedia/commons/0/0d/Axis_Bank_logo.svg", alt: "Axis Bank" },
-                    { src: "https://upload.wikimedia.org/wikipedia/commons/0/0c/Kotak_Mahindra_Bank_logo.svg", alt: "Kotak" },
-                    { src: "https://upload.wikimedia.org/wikipedia/commons/1/1a/IDFC_FIRST_Bank_logo.svg", alt: "IDFC First" },
-                    { src: "https://upload.wikimedia.org/wikipedia/commons/1/1e/PNB_Logo.svg", alt: "PNB" },
-                    { src: "https://upload.wikimedia.org/wikipedia/commons/9/9c/Bank_of_Baroda_logo.svg", alt: "Bank of Baroda" },
-                    { src: "https://upload.wikimedia.org/wikipedia/commons/e/e7/Bajaj_Finserv_logo.svg", alt: "Bajaj Finserv" },
-                    { src: "https://upload.wikimedia.org/wikipedia/commons/3/35/Tata_Capital_Logo.svg", alt: "Tata Capital" },
+                    { src: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSF9MW8JIxEO1Rhanw8IjGjH0dxnT3m_aSs3Q&s", alt: "SBI Bank" },
+                    { src: "https://static.vecteezy.com/system/resources/previews/020/336/362/non_2x/hdfc-logo-hdfc-icon-free-free-vector.jpg", alt: "HDFC Bank" },
+                    { src: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRfdyvJLUwKTJh9aUXnW4uIksBaMjQF0hzyYg&s", alt: "ICICI Bank" },
+                    { src: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTMnRURYSGEeFVNZfFDO6hCVp21PYzUOIpIHA&s", alt: "Axis Bank" },
+                    { src: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS4H04-ddyPX9LLh5TyQjmZIR7H4uKjD0KRtw&s", alt: "Kotak Bank" },
+                    { src: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTUwQNR8ZKZL83cz1ko82uXNwNQntCgKukIyg&s", alt: "IDFC First Bank" },
+                    { src: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRXPQ5fMxJtJCQJcqr4MADTpacd6PaFiuHHaQ&s", alt: "PNB" },
+                    { src: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTeweIf6g-R8PLiGSKnh-ajtH2gin_6ZrUJxg&s", alt: "Bank of Baroda" },
+                    { src: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPOyb2II2EsR0OLYbVQV-klSbT-JjaSD8GzA&s", alt: "Bajaj Finserv" },
+                    { src: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmYL5_M_z-oTfrJlknP8AyXXyssPTC085R8Q&s", alt: "Tata Capital" },
                   ]
                     .concat([
-                      { src: "https://upload.wikimedia.org/wikipedia/commons/1/1b/State_Bank_of_India_logo.svg", alt: "SBI" },
-                      { src: "https://upload.wikimedia.org/wikipedia/commons/1/1a/HDFC_Bank_Logo.svg", alt: "HDFC Bank" },
-                      { src: "https://upload.wikimedia.org/wikipedia/commons/1/10/ICICI_Bank_Logo.svg", alt: "ICICI Bank" },
-                      { src: "https://upload.wikimedia.org/wikipedia/commons/0/0d/Axis_Bank_logo.svg", alt: "Axis Bank" },
-                      { src: "https://upload.wikimedia.org/wikipedia/commons/0/0c/Kotak_Mahindra_Bank_logo.svg", alt: "Kotak" },
-                      { src: "https://upload.wikimedia.org/wikipedia/commons/1/1a/IDFC_FIRST_Bank_logo.svg", alt: "IDFC First" },
-                      { src: "https://upload.wikimedia.org/wikipedia/commons/1/1e/PNB_Logo.svg", alt: "PNB" },
-                      { src: "https://upload.wikimedia.org/wikipedia/commons/9/9c/Bank_of_Baroda_logo.svg", alt: "Bank of Baroda" },
-                      { src: "https://upload.wikimedia.org/wikipedia/commons/e/e7/Bajaj_Finserv_logo.svg", alt: "Bajaj Finserv" },
-                      { src: "https://upload.wikimedia.org/wikipedia/commons/3/35/Tata_Capital_Logo.svg", alt: "Tata Capital" },
+                      { src: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSF9MW8JIxEO1Rhanw8IjGjH0dxnT3m_aSs3Q&s", alt: "SBI Bank" },
+                      { src: "https://static.vecteezy.com/system/resources/previews/020/336/362/non_2x/hdfc-logo-hdfc-icon-free-free-vector.jpg", alt: "HDFC Bank" },
+                      { src: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRfdyvJLUwKTJh9aUXnW4uIksBaMjQF0hzyYg&s", alt: "ICICI Bank" },
+                      { src: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTMnRURYSGEeFVNZfFDO6hCVp21PYzUOIpIHA&s", alt: "Axis Bank" },
+                      { src: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS4H04-ddyPX9LLh5TyQjmZIR7H4uKjD0KRtw&s", alt: "Kotak Bank" },
+                      { src: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTUwQNR8ZKZL83cz1ko82uXNwNQntCgKukIyg&s", alt: "IDFC First Bank" },
+                      { src: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRXPQ5fMxJtJCQJcqr4MADTpacd6PaFiuHHaQ&s", alt: "PNB" },
+                      { src: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTeweIf6g-R8PLiGSKnh-ajtH2gin_6ZrUJxg&s", alt: "Bank of Baroda" },
+                      { src: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPOyb2II2EsR0OLYbVQV-klSbT-JjaSD8GzA&s", alt: "Bajaj Finserv" },
+                      { src: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmYL5_M_z-oTfrJlknP8AyXXyssPTC085R8Q&s", alt: "Tata Capital" },
                     ])
                     .map((p, idx) => (
                       <div key={idx} className="flex items-center justify-center px-3">

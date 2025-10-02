@@ -8,6 +8,7 @@ import { CategorySelector } from "@/components/category-selector-working"
 import { VisionSection, MissionSection, AboutUsSection } from "@/components/vision-section"
 import { BankingPartnersSection } from "@/components/banking-partners"
 import { ImportantDatesSection } from "@/components/important-dates"
+import ComingSoonBanner from "@/components/coming-soon-banner"
 import { InquiryForm } from "@/components/inquiry-form-working"
 import { EmploymentSection } from "@/components/employment-section-working"
 import { WarningSection } from "@/components/warning-section"
@@ -253,13 +254,9 @@ function StatisticsSection() {
         <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8">
           <div className="glass-card rounded-xl p-6 premium-slide-left">
             <div className="flex items-center gap-4 mb-4">
-              <Image
-                src="/community-living-spaces.jpg"
-                alt="Families Served"
-                width={80}
-                height={80}
-                className="rounded-lg object-cover"
-              />
+              <div className="w-20 h-20 bg-gradient-to-br from-amber-500 to-orange-600 rounded-lg flex items-center justify-center">
+                <Users className="h-10 w-10 text-white" />
+              </div>
               <div>
                 <h3 className="text-xl font-bold text-black">60,000+ Families Served</h3>
                 <p className="text-black/80">Across 29 States & 7 Union Territories</p>
@@ -273,13 +270,9 @@ function StatisticsSection() {
 
           <div className="glass-card rounded-xl p-6 premium-slide-right">
             <div className="flex items-center gap-4 mb-4">
-              <Image
-                src="/modern-luxury-building-architecture.jpg"
-                alt="Community Reach"
-                width={80}
-                height={80}
-                className="rounded-lg object-cover"
-              />
+              <div className="w-20 h-20 bg-gradient-to-br from-orange-500 to-amber-600 rounded-lg flex items-center justify-center">
+                <Building className="h-10 w-10 text-white" />
+              </div>
               <div>
                 <h3 className="text-xl font-bold text-black">Pan-India Reach</h3>
                 <p className="text-black/80">800 Cities Connected</p>
@@ -358,6 +351,7 @@ export function SEWASHomePage() {
 
   return (
     <main className="min-h-screen">
+      <ComingSoonBanner />
       <PremiumHeroSection />
 
       <StatisticsSection />

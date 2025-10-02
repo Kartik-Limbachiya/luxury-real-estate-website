@@ -23,12 +23,12 @@ export function ImportantDatesSection() {
                 <div className="text-muted-foreground font-medium">Online Booking Deadline</div>
               </div>
               <div className="glass-card p-6 rounded-xl shadow-lg premium-hover">
-                <div className="text-2xl font-bold text-secondary mb-2">24-30 Months</div>
-                <div className="text-muted-foreground font-medium">Completion per City</div>
+                <div className="text-2xl font-bold text-amber-600 mb-2">24-30 Months</div>
+                <div className="text-amber-800 font-medium">Completion per City</div>
               </div>
               <div className="glass-card p-6 rounded-xl shadow-lg premium-hover">
-                <div className="text-2xl font-bold text-accent mb-2">Dec 31, 2030</div>
-                <div className="text-muted-foreground font-medium">Full Project Completion</div>
+                <div className="text-2xl font-bold text-orange-600 mb-2">Dec 31, 2030</div>
+                <div className="text-orange-800 font-medium">Full Project Completion</div>
               </div>
             </div>
             <p className="text-muted-foreground mt-6 glass-card rounded-lg p-4 font-medium">
