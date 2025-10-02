@@ -137,34 +137,37 @@ function PremiumHeroSection() {
                 </div>
 
                 <div className="flex flex-wrap justify-center sm:justify-start gap-2 sm:gap-3 pt-2">
-              {[
-                { name: "Home", icon: Building, target: "home" },
-                { name: "Vision", icon: TrendingUp, target: "vision" },
-                { name: "Mission", icon: Heart, target: "mission" },
-                { name: "About Us", icon: Users, target: "about-us" },
-              ].map(({ name, icon: Icon, target }) => (
-                <Button
-                  key={name}
-                  size="sm"
-                  className="
-                    relative overflow-hidden transition-all duration-300 ease-out
-                    bg-gradient-to-r from-amber-500 to-orange-600 text-white border-0 shadow-lg 
-                    hover:from-amber-600 hover:to-orange-700 hover:shadow-xl
-                    transform hover:scale-105 hover:-translate-y-1
-                    text-xs sm:text-sm px-2 sm:px-3 py-1 sm:py-2
-                  "
-                  onClick={() => {
-                    const element = document.getElementById(target)
-                    if (element) {
-                      element.scrollIntoView({ behavior: "smooth" })
-                    }
-                  }}
-                >
-                  <Icon className="h-3 w-3 sm:h-4 sm:w-4 mr-1 sm:mr-2" />
-                  <span className="hidden sm:inline">{name}</span>
-                  <span className="sm:hidden">{name.charAt(0)}</span>
-                </Button>
-              ))}
+                    {[ 
+                      { name: "Home", icon: Building, target: "home" },
+                      { name: "Vision", icon: TrendingUp, target: "vision" },
+                      { name: "Mission", icon: Heart, target: "mission" },
+                      { name: "About Us", icon: Users, target: "about-us" },
+                    ].map(({ name, icon: Icon, target }) => (
+                      <Button
+                        key={name}
+                        size="lg"
+                        className="
+                          flex flex-col items-center justify-center min-w-[62px] w-[76px] h-[76px] rounded-xl
+                          bg-gradient-to-r from-amber-500 to-orange-600 text-white border-0 shadow-lg
+                          hover:from-amber-600 hover:to-orange-700 hover:shadow-xl
+                          transform hover:scale-105 hover:-translate-y-1
+                          font-bold
+                          mb-2
+                          sm:mb-0
+                          px-2 py-2
+                        "
+                        style={{ marginRight: '8px', marginBottom: '8px' }}
+                        onClick={() => {
+                          const element = document.getElementById(target)
+                          if (element) {
+                            element.scrollIntoView({ behavior: "smooth" })
+                          }
+                        }}
+                      >
+                        <Icon className="h-7 w-7 mb-1" />
+                        <span className="text-xs md:text-sm mt-1">{name}</span>
+                      </Button>
+                    ))}
                 </div>
               </div>
               <div className="hidden md:block" />
