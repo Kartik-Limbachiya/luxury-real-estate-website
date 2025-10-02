@@ -74,14 +74,14 @@ export function ComingSoonBanner() {
       {/* Coming Soon Animation Overlay */}
       {showComingSoon ? (
         <div className="absolute inset-0 flex items-center justify-center bg-black z-20 transition-opacity duration-1000">
-          <span
-            className="text-white text-6xl md:text-8xl font-extrabold animate-pulse-glow"
-            style={{
-              textShadow: '0 0 40px #fff, 0 0 80px #ffd700',
-            }}
-          >
-            Coming Soon
-          </span>
+           <span
+             className="text-white text-3xl sm:text-4xl md:text-6xl lg:text-8xl font-extrabold animate-pulse-glow"
+             style={{
+               textShadow: '0 0 40px #fff, 0 0 80px #ffd700',
+             }}
+           >
+             Coming Soon
+           </span>
         </div>
       ) : (
         <>
@@ -107,21 +107,21 @@ export function ComingSoonBanner() {
               SEWAS City
             </Badge>
           </div>
-          <div className="absolute bottom-8 left-8 z-10 text-white">
-            <h1 className="text-3xl md:text-5xl font-black mb-2 drop-shadow-lg">
-              800 SEWAS City Projects
-            </h1>
-            <p className="text-lg md:text-xl opacity-90 drop-shadow-md">
-              Launching across India - Stay tuned!
-            </p>
-          </div>
-          <div className="absolute bottom-8 right-8 z-10">
-            <div className="bg-black/50 text-white text-sm px-3 py-1 rounded-full backdrop-blur-sm">
+           <div className="absolute bottom-6 sm:bottom-8 left-4 sm:left-8 z-10 text-white">
+             <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-5xl font-black mb-1 sm:mb-2 drop-shadow-lg">
+               800 SEWAS City Projects
+             </h1>
+             <p className="text-sm sm:text-base md:text-lg lg:text-xl opacity-90 drop-shadow-md">
+               Launching across India - Stay tuned!
+             </p>
+           </div>
+          <div className="absolute bottom-6 sm:bottom-8 right-4 sm:right-8 z-10">
+            <div className="bg-black/50 text-white text-xs sm:text-sm px-2 sm:px-3 py-1 rounded-full backdrop-blur-sm">
               {currentImageIndex + 1} / {projectImages.length}
             </div>
           </div>
           {/* Navigation dots */}
-          <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-2 z-10">
+          <div className="absolute bottom-6 sm:bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-1 sm:space-x-2 z-10">
             {projectImages.slice(0, 10).map((_, index) => (
               <div
                 key={index}

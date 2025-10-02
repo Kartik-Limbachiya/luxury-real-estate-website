@@ -34,18 +34,18 @@ export function EmploymentSection() {
   }
 
   return (
-    <section className="py-16 bg-gradient-to-br from-amber-50 to-orange-50/40">
-      <div className="w-full px-6 md:px-10">
-        <div className="text-center mb-12">
-          <div className="flex items-center justify-center gap-3 mb-6">
-            <Briefcase className="h-10 w-10 text-amber-600" />
-            <h2 className="text-3xl md:text-4xl font-bold text-amber-800">
+    <section className="py-8 md:py-16 bg-gradient-to-br from-amber-50 to-orange-50/40">
+      <div className="w-full px-4 md:px-6 lg:px-10">
+        <div className="text-center mb-8 md:mb-12">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-3 mb-4 md:mb-6">
+            <Briefcase className="h-8 w-8 md:h-10 md:w-10 text-amber-600" />
+            <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-amber-800 text-center">
               {language === "en" ? "Employment Opportunities" : "रोजगार के अवसर"}
             </h2>
           </div>
 
-          <div className="bg-white rounded-lg shadow-lg p-6 max-w-4xl mx-auto border border-amber-200">
-            <p className="text-lg md:text-xl font-semibold text-amber-700 leading-relaxed mb-4">
+          <div className="bg-white rounded-lg shadow-lg p-4 md:p-6 max-w-4xl mx-auto border border-amber-200">
+            <p className="text-sm sm:text-base md:text-lg lg:text-xl font-semibold text-amber-700 leading-relaxed mb-3 md:mb-4">
               {language === "en"
                 ? "Want a home in 800 SEWAS City but don't have a job? Tell us your skills and we will try to provide you employment."
                 : "800 SEWAS City में घर चाहिए पर नौकरी नहीं है? अपनी स्किल्स बताइए, हम रोजगार देने का प्रयास करेंगे।"}
@@ -53,7 +53,7 @@ export function EmploymentSection() {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6 lg:gap-8">
           {/* Employment Benefits */}
           <Card className="border-amber-200 bg-white shadow-lg">
             <CardHeader>

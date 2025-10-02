@@ -26,13 +26,13 @@ export function PremiumHeader() {
           : "bg-transparent")
       }
     >
-      <div className="max-w-7xl mx-auto px-4 md:px-6">
-        <div className="h-16 md:h-20 flex items-center justify-between">
-          <Link href="#" className="inline-flex items-center gap-3">
-            <span className="inline-flex items-center justify-center h-10 w-10 rounded-md bg-white/90 shadow premium-shadow">
-              <Image src="/sewas-logo.png" alt="SEWAS Logo" width={40} height={40} className="h-10 w-10" />
+      <div className="max-w-7xl mx-auto px-3 md:px-6">
+        <div className="h-14 md:h-20 flex items-center justify-between">
+          <Link href="#" className="inline-flex items-center gap-2 md:gap-3">
+            <span className="inline-flex items-center justify-center h-8 w-8 md:h-10 md:w-10 rounded-md bg-white/90 shadow premium-shadow">
+              <Image src="/sewas-logo.png" alt="SEWAS Logo" width={32} height={32} className="h-6 w-6 md:h-8 md:w-8" />
             </span>
-            <span className="hidden sm:block font-black tracking-tight text-xl md:text-2xl gradient-text">
+            <span className="font-black tracking-tight text-sm md:text-xl lg:text-2xl gradient-text">
               800 SEWAS City
             </span>
           </Link>
@@ -44,16 +44,20 @@ export function PremiumHeader() {
             <a href="#about-us" className="hover:text-primary transition">About Us</a>
           </nav>
 
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2 md:gap-3">
             <Button
               variant="outline"
-              className="hidden sm:inline-flex"
+              size="sm"
+              className="hidden sm:inline-flex text-xs md:text-sm"
               onClick={toggle}
               title="Toggle language"
             >
               {language === "en" ? "A/अ" : "अ/A"}
             </Button>
-            <Button className="bg-gradient-to-r from-amber-500 to-orange-600 text-white border-0 shadow-lg hover:from-amber-600 hover:to-orange-700">
+            <Button 
+              size="sm"
+              className="bg-gradient-to-r from-amber-500 to-orange-600 text-white border-0 shadow-lg hover:from-amber-600 hover:to-orange-700 text-xs md:text-sm px-3 md:px-4"
+            >
               Get Started
             </Button>
           </div>

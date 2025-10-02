@@ -89,35 +89,35 @@ function PremiumHeroSection() {
 
       {showContent && (
         <div className="absolute inset-0 flex items-center bg-gradient-to-t from-background/95 via-background/50 to-transparent z-10">
-          <div className="w-full px-6 md:px-12">
-            <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-              <div className="space-y-6 animate-fade-in-up">
-                <div className="flex items-center gap-4">
-                  <Image src="/sewas-logo.png" alt="SEWAS Logo" width={96} height={96} className="h-20 w-20 md:h-24 md:w-24" />
-                  <div>
-                    <h1 className="font-black text-5xl sm:text-6xl md:text-7xl gradient-text text-left">800 SEWAS City</h1>
-                    <p className="text-xl md:text-2xl font-bold text-primary text-left">
+          <div className="w-full px-4 md:px-12">
+            <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 items-center">
+              <div className="space-y-4 md:space-y-6 animate-fade-in-up">
+                <div className="flex flex-col sm:flex-row items-center sm:items-start gap-3 md:gap-4">
+                  <Image src="/sewas-logo.png" alt="SEWAS Logo" width={64} height={64} className="h-16 w-16 md:h-20 md:w-20 lg:h-24 lg:w-24" />
+                  <div className="text-center sm:text-left">
+                    <h1 className="font-black text-2xl sm:text-3xl md:text-5xl lg:text-7xl gradient-text">800 SEWAS City</h1>
+                    <p className="text-sm sm:text-base md:text-xl lg:text-2xl font-bold text-primary mt-1">
                       {language === "en" ? "THE JAINISM OF UNIVERSE" : "द यूनिवर्स का जैनिज़्म"}
                     </p>
                   </div>
                 </div>
-                <p className="text-base md:text-lg text-black/80 font-medium text-left">
+                <p className="text-xs sm:text-sm md:text-base lg:text-lg text-black/80 font-medium text-center sm:text-left">
                   {language === "en" ? "Sun-Earth-Water-Air-Sky" : "सूर्य-पृथ्वी-हवा-पानी-आकाश"}
                 </p>
 
-                <div className="grid grid-cols-3 gap-4 mt-2 max-w-md">
+                <div className="grid grid-cols-3 gap-2 sm:gap-3 md:gap-4 mt-2 max-w-xs sm:max-w-md">
                   {[{n:800,l: language === "en"?"Cities":"शहर"}, {n:29,l: language === "en"?"States":"राज्य"}, {n:7,l: language === "en"?"UTs":"संघ प्रदेश"}].map((s) => (
-                    <div key={s.l} className="glass-card rounded-xl p-4 premium-hover text-left">
-                      <div className="text-3xl font-bold text-primary">{s.n}</div>
-                      <div className="text-sm text-black font-medium">{s.l}</div>
+                    <div key={s.l} className="glass-card rounded-lg md:rounded-xl p-2 sm:p-3 md:p-4 premium-hover text-center sm:text-left">
+                      <div className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-primary">{s.n}</div>
+                      <div className="text-xs sm:text-sm text-black font-medium">{s.l}</div>
                     </div>
                   ))}
                 </div>
 
-                <div className="flex items-center gap-3">
+                <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-3">
                   <Button
-                    size={isMobile ? "default" : "lg"}
-                    className="bg-gradient-to-r from-amber-500 to-orange-600 hover:from-amber-600 hover:to-orange-700 text-white border-0 shadow-lg"
+                    size="sm"
+                    className="bg-gradient-to-r from-amber-500 to-orange-600 hover:from-amber-600 hover:to-orange-700 text-white border-0 shadow-lg text-xs sm:text-sm w-full sm:w-auto"
                     onClick={() => {
                       const element = document.getElementById("home")
                       if (element) element.scrollIntoView({ behavior: "smooth" })
@@ -125,12 +125,18 @@ function PremiumHeroSection() {
                   >
                     {language === "en" ? "Get Started" : "शुरू करें"}
                   </Button>
-                  <Button variant="outline" onClick={toggle} title="Toggle language">
+                  <Button 
+                    variant="outline" 
+                    size="sm"
+                    onClick={toggle} 
+                    title="Toggle language"
+                    className="text-xs sm:text-sm w-full sm:w-auto"
+                  >
                     A/अ
                   </Button>
                 </div>
 
-                <div className="flex flex-wrap gap-3 pt-2">
+                <div className="flex flex-wrap justify-center sm:justify-start gap-2 sm:gap-3 pt-2">
               {[
                 { name: "Home", icon: Building, target: "home" },
                 { name: "Vision", icon: TrendingUp, target: "vision" },
@@ -139,12 +145,13 @@ function PremiumHeroSection() {
               ].map(({ name, icon: Icon, target }) => (
                 <Button
                   key={name}
-                  size="lg"
+                  size="sm"
                   className="
                     relative overflow-hidden transition-all duration-300 ease-out
                     bg-gradient-to-r from-amber-500 to-orange-600 text-white border-0 shadow-lg 
                     hover:from-amber-600 hover:to-orange-700 hover:shadow-xl
                     transform hover:scale-105 hover:-translate-y-1
+                    text-xs sm:text-sm px-2 sm:px-3 py-1 sm:py-2
                   "
                   onClick={() => {
                     const element = document.getElementById(target)
@@ -153,8 +160,9 @@ function PremiumHeroSection() {
                     }
                   }}
                 >
-                  <Icon className="h-5 w-5 mr-2" />
-                  {name}
+                  <Icon className="h-3 w-3 sm:h-4 sm:w-4 mr-1 sm:mr-2" />
+                  <span className="hidden sm:inline">{name}</span>
+                  <span className="sm:hidden">{name.charAt(0)}</span>
                 </Button>
               ))}
                 </div>
@@ -220,32 +228,32 @@ function StatisticsSection() {
   }, [isVisible])
 
   return (
-    <section ref={sectionRef} className="py-16 bg-gradient-to-r from-yellow-600 to-yellow-700">
-      <div className="max-w-7xl mx-auto px-4">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+    <section ref={sectionRef} className="py-8 md:py-16 bg-gradient-to-r from-yellow-600 to-yellow-700">
+      <div className="max-w-7xl mx-auto px-3 md:px-4">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 md:gap-6 lg:gap-8 text-center">
           <div className="animate-on-scroll luxury-fade-up" style={{ animationDelay: "0.1s" }}>
-            <div className="text-4xl md:text-5xl font-bold text-black mb-2">{counters.legacy}</div>
-            <div className="text-sm md:text-base font-medium text-black bg-white/20 rounded-lg px-2 py-1">
+            <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-black mb-1 md:mb-2">{counters.legacy}</div>
+            <div className="text-xs sm:text-sm md:text-base font-medium text-black bg-white/20 rounded-lg px-1 sm:px-2 py-1">
               YEARS LEGACY OF QUALITY & TRUST
             </div>
           </div>
           <div className="animate-on-scroll luxury-fade-up" style={{ animationDelay: "0.2s" }}>
-            <div className="text-4xl md:text-5xl font-bold text-black mb-2">#1</div>
-            <div className="text-sm md:text-base font-medium text-black bg-white/20 rounded-lg px-2 py-1">
+            <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-black mb-1 md:mb-2">#1</div>
+            <div className="text-xs sm:text-sm md:text-base font-medium text-black bg-white/20 rounded-lg px-1 sm:px-2 py-1">
               GLOBAL SUSTAINABLE DEVELOPER
             </div>
           </div>
           <div className="animate-on-scroll luxury-fade-up" style={{ animationDelay: "0.3s" }}>
-            <div className="text-4xl md:text-5xl font-bold text-black mb-2">{counters.universities}+</div>
-            <div className="text-sm md:text-base font-medium text-black bg-white/20 rounded-lg px-2 py-1">
+            <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-black mb-1 md:mb-2">{counters.universities}+</div>
+            <div className="text-xs sm:text-sm md:text-base font-medium text-black bg-white/20 rounded-lg px-1 sm:px-2 py-1">
               LIVE+ PROJECTS ACROSS INDIA
             </div>
           </div>
           <div className="animate-on-scroll luxury-fade-up" style={{ animationDelay: "0.4s" }}>
-            <div className="text-4xl md:text-5xl font-bold text-black mb-2">
+            <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-black mb-1 md:mb-2">
               {Math.floor(counters.families / 1000)}K+
             </div>
-            <div className="text-sm md:text-base font-medium text-black bg-white/20 rounded-lg px-2 py-1">
+            <div className="text-xs sm:text-sm md:text-base font-medium text-black bg-white/20 rounded-lg px-1 sm:px-2 py-1">
               SERVING HAPPY FAMILIES ACROSS INDIA
             </div>
           </div>
