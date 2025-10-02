@@ -90,7 +90,7 @@ function PremiumHeroSection() {
       {showContent && (
         <div className="absolute inset-0 flex items-center bg-gradient-to-t from-background/95 via-background/50 to-transparent z-10">
           <div className="w-full px-4 md:px-12">
-            <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 items-center">
+            <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 items-center">
               <div className="space-y-4 md:space-y-6 animate-fade-in-up">
                 <div className="flex flex-col sm:flex-row items-center sm:items-start gap-3 md:gap-4">
                   <Image src="/sewas-logo.png" alt="SEWAS Logo" width={64} height={64} className="h-16 w-16 md:h-20 md:w-20 lg:h-24 lg:w-24" />
@@ -232,7 +232,7 @@ function StatisticsSection() {
 
   return (
     <section ref={sectionRef} className="py-8 md:py-16 bg-gradient-to-r from-yellow-600 to-yellow-700">
-      <div className="max-w-7xl mx-auto px-3 md:px-4">
+  <div className="w-full px-3 md:px-4">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 md:gap-6 lg:gap-8 text-center">
           <div className="animate-on-scroll luxury-fade-up" style={{ animationDelay: "0.1s" }}>
             <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-black mb-1 md:mb-2">{counters.legacy}</div>
