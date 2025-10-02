@@ -49,12 +49,12 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="hi" className={`${playfairDisplay.variable} ${sourceSans.variable}`}>
-      <body className="font-sans antialiased">
+    <html lang="hi" className={`${playfairDisplay.variable} ${sourceSans.variable} w-full min-h-screen bg-background`}>
+      <body className="font-sans antialiased w-full min-h-screen bg-background">
         <LanguageProvider>
           <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false}>
             <PremiumHeader />
-            <div className="pt-16 md:pt-20">
+            <div className="pt-16 md:pt-20 w-full max-w-none">
               <Suspense fallback={null}>{children}</Suspense>
             </div>
             <LuxuryFooter />

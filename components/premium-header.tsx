@@ -54,12 +54,6 @@ export function PremiumHeader() {
             >
               {language === "en" ? "A/अ" : "अ/A"}
             </Button>
-            <Button 
-              size="sm"
-              className="bg-gradient-to-r from-amber-500 to-orange-600 text-white border-0 shadow-lg hover:from-amber-600 hover:to-orange-700 text-xs md:text-sm px-3 md:px-4"
-            >
-              Get Started
-            </Button>
           </div>
         </div>
       </div>

@@ -361,14 +361,14 @@ export function SEWASHomePage() {
   }
 
   return (
-    <main className="min-h-screen">
+    <main className="min-h-screen w-full">
       <ComingSoonBanner />
       <PremiumHeroSection />
 
       <StatisticsSection />
 
-      <section id="home" className="bg-background py-16 px-4 md:px-8">
-        <div className="w-full max-w-none space-y-12">
+      <section id="home" className="bg-background py-16 px-2 md:px-8 w-full">
+        <div className="w-full space-y-12">
           <div className="text-center space-y-6">
             <h2 className="text-4xl md:text-5xl font-black gradient-text luxury-fade-up">Service Categories</h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed luxury-fade-up stagger-child">
