@@ -1,14 +1,62 @@
+"use client"
+
 import Link from "next/link"
 import Image from "next/image"
 import { Facebook, Instagram, Linkedin, Mail, Phone } from "lucide-react"
 
 export function LuxuryFooter() {
+  const navigationSections = [
+    {
+      title: "Company",
+      links: [
+        { name: "About Us", href: "#about-us" },
+        { name: "Contact Us", href: "#contact-us" },
+        { name: "Visions", href: "#visions" },
+        { name: "Mission", href: "#mission" },
+        { name: "Project", href: "#project" },
+      ]
+    },
+    {
+      title: "Services",
+      links: [
+        { name: "Religious", href: "#religious" },
+        { name: "TV Channel", href: "#tv-channel" },
+        { name: "Award", href: "#award" },
+        { name: "Jain Tirth", href: "#jain-tirth" },
+        { name: "Sangh", href: "#sangh" },
+        { name: "Organizations", href: "#organizations" },
+        { name: "Jago Jaino Jago", href: "#jago-jaino-jago" },
+        { name: "Residential", href: "#residential" },
+        { name: "Commercial", href: "#commercial" },
+        { name: "Educational", href: "#educational" },
+        { name: "Medical", href: "#medical" },
+        { name: "Social", href: "#social" },
+        { name: "General", href: "#general" },
+      ]
+    },
+    {
+      title: "Gallery",
+      links: [
+        { name: "Photo", href: "#gallery-photo" },
+        { name: "Video", href: "#gallery-video" },
+      ]
+    }
+  ]
+
+  const handleNavClick = (href: string) => {
+    const element = document.querySelector(href)
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" })
+    }
+  }
+
   return (
     <footer className="relative bg-gradient-to-b from-background via-muted/40 to-background border-t">
       <div className="absolute inset-0 pointer-events-none premium-shadow" />
       <div className="w-full px-6 md:px-10 py-12 md:py-16">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-10">
-          <div className="space-y-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 md:gap-10">
+          {/* Company Info */}
+          <div className="lg:col-span-2 space-y-4">
             <div className="inline-flex items-center gap-3">
               <Image src="/sewas-logo.png" alt="SEWAS" width={48} height={48} className="rounded" />
               <span className="font-black text-xl gradient-text">800 SEWAS City</span>
@@ -26,36 +74,45 @@ export function LuxuryFooter() {
             </div>
           </div>
 
-          <div>
-            <h4 className="font-semibold mb-4">Navigation</h4>
-            <ul className="space-y-2 text-sm">
-              <li><Link href="#home" className="hover:text-primary">Home</Link></li>
-              <li><Link href="#vision" className="hover:text-primary">Vision</Link></li>
-              <li><Link href="#mission" className="hover:text-primary">Mission</Link></li>
-              <li><Link href="#about-us" className="hover:text-primary">About Us</Link></li>
-            </ul>
-          </div>
+          {/* Navigation Sections */}
+          {navigationSections.map((section) => (
+            <div key={section.title}>
+              <h4 className="font-semibold mb-4">{section.title}</h4>
+              <ul className="space-y-2 text-sm">
+                {section.links.map((link) => (
+                  <li key={link.name}>
+                    <button
+                      onClick={() => handleNavClick(link.href)}
+                      className="hover:text-primary transition-colors text-left"
+                    >
+                      {link.name}
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
 
+          {/* Contact */}
           <div>
             <h4 className="font-semibold mb-4">Contact</h4>
             <ul className="space-y-3 text-sm">
               <li className="flex items-center gap-2"><Phone className="h-4 w-4" /> +91 9930609108</li>
               <li className="flex items-center gap-2"><Mail className="h-4 w-4" /> contact@800sewas.com</li>
             </ul>
-          </div>
-
-          <div>
-            <h4 className="font-semibold mb-4">Follow</h4>
-            <div className="flex items-center gap-3">
-              <Link href="#" className="inline-flex h-9 w-9 items-center justify-center rounded-full border hover:bg-muted">
-                <Facebook className="h-4 w-4" />
-              </Link>
-              <Link href="#" className="inline-flex h-9 w-9 items-center justify-center rounded-full border hover:bg-muted">
-                <Instagram className="h-4 w-4" />
-              </Link>
-              <Link href="#" className="inline-flex h-9 w-9 items-center justify-center rounded-full border hover:bg-muted">
-                <Linkedin className="h-4 w-4" />
-              </Link>
+            <div className="mt-4">
+              <h5 className="font-semibold mb-3">Follow</h5>
+              <div className="flex items-center gap-3">
+                <Link href="#" className="inline-flex h-9 w-9 items-center justify-center rounded-full border hover:bg-muted">
+                  <Facebook className="h-4 w-4" />
+                </Link>
+                <Link href="#" className="inline-flex h-9 w-9 items-center justify-center rounded-full border hover:bg-muted">
+                  <Instagram className="h-4 w-4" />
+                </Link>
+                <Link href="#" className="inline-flex h-9 w-9 items-center justify-center rounded-full border hover:bg-muted">
+                  <Linkedin className="h-4 w-4" />
+                </Link>
+              </div>
             </div>
           </div>
         </div>

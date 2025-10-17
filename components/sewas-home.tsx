@@ -12,6 +12,14 @@ import ComingSoonBanner from "@/components/coming-soon-banner"
 import { InquiryForm } from "@/components/inquiry-form-working"
 import { EmploymentSection } from "@/components/employment-section-working"
 import { WarningSection } from "@/components/warning-section"
+import { 
+  AboutUsSection as NewAboutUsSection,
+  ContactUsSection,
+  VisionsSection,
+  ProjectSection,
+  ServicesSection,
+  GallerySection
+} from "@/components/new-sections"
 import { FileText, Users, Building, Heart, TrendingUp } from "lucide-react"
 import Image from "next/image"
 import { useLanguage } from "@/components/language-provider"
@@ -138,10 +146,11 @@ function PremiumHeroSection() {
 
                 <div className="flex flex-wrap justify-center sm:justify-start gap-2 sm:gap-3 pt-2">
                     {[ 
-                      { name: "Home", icon: Building, target: "home" },
-                      { name: "Vision", icon: TrendingUp, target: "vision" },
-                      { name: "Mission", icon: Heart, target: "mission" },
                       { name: "About Us", icon: Users, target: "about-us" },
+                      { name: "Contact Us", icon: FileText, target: "contact-us" },
+                      { name: "Visions", icon: TrendingUp, target: "visions" },
+                      { name: "Mission", icon: Heart, target: "mission" },
+                      { name: "Project", icon: Building, target: "project" },
                     ].map(({ name, icon: Icon, target }) => (
                       <Button
                         key={name}
@@ -451,12 +460,26 @@ export function SEWASHomePage() {
         <ImportantDatesSection />
       </section>
 
-      <section id="vision" className="image-reveal">
-        <VisionSection />
-      </section>
-
+      {/* New Navigation Sections */}
+      <NewAboutUsSection />
+      
+      <ContactUsSection />
+      
+      <VisionsSection />
+      
       <section id="mission" className="premium-slide-left">
         <MissionSection />
+      </section>
+      
+      <ProjectSection />
+      
+      <ServicesSection />
+      
+      <GallerySection />
+
+      {/* Legacy Sections */}
+      <section id="vision" className="image-reveal">
+        <VisionSection />
       </section>
 
       <section id="about-us" className="luxury-fade-up">
