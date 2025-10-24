@@ -310,7 +310,7 @@ function StatisticsSection() {
 }
 
 // Main Page Component
-export function SEWASHomePage() {
+export function SewasHome() {
   const [locationSelection, setLocationSelection] = useState<LocationSelection>({
     state: "",
     city: "",

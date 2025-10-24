@@ -5,6 +5,8 @@ import { Analytics } from "@vercel/analytics/next"
 import { Suspense } from "react"
 import { ThemeProvider } from "@/components/theme-provider"
 import { LanguageProvider } from "@/components/language-provider"
+import { AuthProvider } from "@/lib/context/auth-context"
+import { ToastProvider } from "@/components/providers/toast-provider"
 import PremiumHeader from "@/components/premium-header"
 import LuxuryFooter from "@/components/luxury-footer"
 import "./globals.css"
@@ -53,13 +55,16 @@ export default function RootLayout({
       <body className="font-sans antialiased w-full min-h-screen bg-background">
         <LanguageProvider>
           <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false}>
-            <PremiumHeader />
-            <div className="pt-16 md:pt-20 w-full max-w-none">
-              <Suspense fallback={null}>{children}</Suspense>
-            </div>
-            <LuxuryFooter />
+            <AuthProvider>
+              <PremiumHeader />
+              <div className="pt-16 md:pt-20 w-full max-w-none">
+                <Suspense fallback={null}>{children}</Suspense>
+              </div>
+              <LuxuryFooter />
+            </AuthProvider>
           </ThemeProvider>
         </LanguageProvider>
+        <ToastProvider />
         <Analytics />
       </body>
     </html>

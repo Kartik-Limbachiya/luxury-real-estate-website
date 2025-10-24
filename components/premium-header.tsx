@@ -4,6 +4,8 @@ import Link from "next/link"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { useLanguage } from "@/components/language-provider"
+import { UserAccountDropdown } from "@/components/auth/user-account-dropdown"
+import { useAuth } from "@/lib/context/auth-context"
 import { useEffect, useState } from "react"
 import { Menu, X, ChevronDown, Users, Mail, Eye, Heart, Building, Settings, Camera, Video } from "lucide-react"
 
@@ -12,6 +14,7 @@ export function PremiumHeader() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null)
   const { language, toggle } = useLanguage()
+  const { user } = useAuth()
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 16)
@@ -142,6 +145,20 @@ export function PremiumHeader() {
             >
               {language === "en" ? "A/अ" : "अ/A"}
             </Button>
+            
+            {/* User Account Dropdown */}
+            {user ? (
+              <UserAccountDropdown />
+            ) : (
+              <div className="hidden sm:flex items-center gap-2">
+                <Button asChild variant="ghost" size="sm">
+                  <Link href="/auth/login">Login</Link>
+                </Button>
+                <Button asChild size="sm" className="premium-hover">
+                  <Link href="/auth/signup">Sign Up</Link>
+                </Button>
+              </div>
+            )}
             
             {/* Mobile Menu Button */}
             <Button
