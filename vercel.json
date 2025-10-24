@@ -1,11 +1,5 @@
-# Create vercel.json file
-echo '{"buildCommand": "npm run build", "installCommand": "npm install", "framework": "nextjs"}' > vercel.json
-
-# Add it to git
-git add vercel.json
-
-# Commit
-git commit -m "chore: configure Vercel to use npm"
-
-# Push
-git push
+{
+    "buildCommand": "npm run build",
+    "installCommand": "npm install",
+    "framework": "nextjs"
+  }
