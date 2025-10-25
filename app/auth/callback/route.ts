@@ -507,7 +507,83 @@
 //   )
 // }
 
-import { createClient } from '@/lib/supabase/route-handler' // <-- CHANGED: Use route-handler client
+// import { createClient } from '@/lib/supabase/route-handler' // <-- CHANGED: Use route-handler client
+// import { NextResponse } from 'next/server'
+// import type { NextRequest } from 'next/server'
+
+// export async function GET(request: NextRequest) {
+//   const requestUrl = new URL(request.url)
+//   const code = requestUrl.searchParams.get('code')
+//   const next = requestUrl.searchParams.get('next') ?? '/'
+
+//   console.log('[Callback Route] Received request. Code parameter present:', !!code)
+//   console.log('[Callback Route] Full URL:', requestUrl.toString())
+
+//   if (code) {
+//     const supabase = createClient()
+
+//     // Exchange the code for a session
+//     const { data, error } = await supabase.auth.exchangeCodeForSession(code)
+
+//     console.log('[Callback Route] Session exchange result:', {
+//       hasSession: !!data.session,
+//       hasUser: !!data.session?.user,
+//       errorMessage: error?.message,
+//     })
+
+//     if (error) {
+//       console.error('[Callback Route] Error exchanging code:', error)
+//       return NextResponse.redirect(
+//         new URL(
+//           `/auth/login?error=${encodeURIComponent('Authentication failed. Please try again.')}`,
+//           requestUrl.origin
+//         )
+//       )
+//     }
+
+//     if (data.session?.user) {
+//       console.log('[Callback Route] Session obtained for user:', data.session.user.id)
+
+//       // Check if user profile exists
+//       const { data: profile, error: profileError } = await supabase
+//         .from('users')
+//         .select('id, is_verified')
+//         .eq('id', data.session.user.id)
+//         .maybeSingle()
+
+//       console.log('[Callback Route] Profile check:', {
+//         exists: !!profile,
+//         isVerified: profile?.is_verified,
+//         error: profileError?.message,
+//       })
+
+//       if (profile?.is_verified) {
+//         // User has completed profile - redirect to home
+//         console.log('[Callback Route] Redirecting to:', next)
+//         return NextResponse.redirect(new URL(next, requestUrl.origin))
+//       } else {
+//         // User needs to complete profile
+//         console.log('[Callback Route] Redirecting to complete profile')
+//         return NextResponse.redirect(new URL('/auth/complete-profile', requestUrl.origin))
+//       }
+//     }
+//   }
+
+//   // No code or session exchange failed
+//   console.log('[Callback Route] Invalid callback - no code or no session')
+//   return NextResponse.redirect(
+//     new URL(
+//       `/auth/login?error=${encodeURIComponent('Invalid callback. Please try again.')}`,
+//       requestUrl.origin
+//     )
+//   )
+// }
+
+// // Force dynamic rendering (important for Route Handlers with auth)
+// export const dynamic = 'force-dynamic'
+
+
+import { createClient } from '@/lib/supabase/route-handler'
 import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
 
@@ -517,7 +593,6 @@ export async function GET(request: NextRequest) {
   const next = requestUrl.searchParams.get('next') ?? '/'
 
   console.log('[Callback Route] Received request. Code parameter present:', !!code)
-  console.log('[Callback Route] Full URL:', requestUrl.toString())
 
   if (code) {
     const supabase = createClient()
@@ -542,29 +617,40 @@ export async function GET(request: NextRequest) {
     }
 
     if (data.session?.user) {
-      console.log('[Callback Route] Session obtained for user:', data.session.user.id)
+      const userId = data.session.user.id
+      console.log('[Callback Route] Session obtained for user:', userId)
 
-      // Check if user profile exists
-      const { data: profile, error: profileError } = await supabase
-        .from('users')
-        .select('id, is_verified')
-        .eq('id', data.session.user.id)
-        .maybeSingle()
+      try {
+        // Check if user profile exists in the users table
+        const { data: profile, error: profileError } = await supabase
+          .from('users')
+          .select('id, is_verified, full_name, email')
+          .eq('id', userId)
+          .maybeSingle()
 
-      console.log('[Callback Route] Profile check:', {
-        exists: !!profile,
-        isVerified: profile?.is_verified,
-        error: profileError?.message,
-      })
+        console.log('[Callback Route] Profile check:', {
+          exists: !!profile,
+          isVerified: profile?.is_verified,
+          error: profileError?.message,
+        })
 
-      if (profile?.is_verified) {
-        // User has completed profile - redirect to home
-        console.log('[Callback Route] Redirecting to:', next)
-        return NextResponse.redirect(new URL(next, requestUrl.origin))
-      } else {
-        // User needs to complete profile
-        console.log('[Callback Route] Redirecting to complete profile')
-        return NextResponse.redirect(new URL('/auth/complete-profile', requestUrl.origin))
+        // If profile exists AND is verified, user is good to go
+        if (profile && profile.is_verified) {
+          console.log('[Callback Route] User has complete profile, redirecting to:', next)
+          return NextResponse.redirect(new URL(next, requestUrl.origin))
+        } 
+        
+        // If profile doesn't exist OR is not verified, redirect to complete profile
+        if (!profile || !profile.is_verified) {
+          console.log('[Callback Route] User needs to complete profile')
+          return NextResponse.redirect(new URL('/auth/complete-profile', requestUrl.origin))
+        }
+
+      } catch (profileCheckError: any) {
+        console.error('[Callback Route] Unexpected error checking profile:', profileCheckError)
+        return NextResponse.redirect(
+          new URL(`/auth/login?error=${encodeURIComponent('Failed to verify account. Please try again.')}`, requestUrl.origin)
+        )
       }
     }
   }
@@ -579,5 +665,5 @@ export async function GET(request: NextRequest) {
   )
 }
 
-// Force dynamic rendering (important for Route Handlers with auth)
+// Force dynamic rendering
 export const dynamic = 'force-dynamic'

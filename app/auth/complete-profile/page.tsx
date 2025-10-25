@@ -1032,10 +1032,19 @@ export default function CompleteProfilePage() {
       router.push('/auth/signup')
       return
     }
-
+  
     setLoading(true)
-
+  
     try {
+      console.log('[CompleteProfile] Submitting profile for user:', user.id)
+      console.log('[CompleteProfile] Profile data:', {
+        full_name: initialData.fullName,
+        email: user.email,
+        mobile_number: initialData.mobileNumber,
+        state: locationData.state,
+        city: locationData.city,
+      })
+  
       const result = await createUserProfile({
         full_name: initialData.fullName,
         email: user.email!,
@@ -1043,26 +1052,33 @@ export default function CompleteProfilePage() {
         state: locationData.state,
         city: locationData.city,
       })
-
+  
+      console.log('[CompleteProfile] Profile creation result:', result)
+  
       if (result.success) {
         localStorage.removeItem('pending_signup_data')
+        
+        // Refresh the profile in context
         await refreshProfile()
+        
         toast.success('Profile completed successfully!')
         
+        // Small delay to ensure profile is loaded
         setTimeout(() => {
           router.push('/')
-        }, 1000)
+        }, 1500)
       } else {
+        console.error('[CompleteProfile] Profile creation failed:', result.error)
         toast.error(result.error || 'Failed to create profile.')
       }
     } catch (error: any) {
-      console.error('Profile completion error:', error)
+      console.error('[CompleteProfile] Exception during profile completion:', error)
       toast.error(error.message || 'Something went wrong. Please try again.')
     } finally {
       setLoading(false)
     }
   }
-
+  
   if (authLoading || !initialData) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-amber-50 via-orange-50 to-amber-100">
