@@ -932,6 +932,164 @@
 // }
 
 
+// 'use client'
+
+// import { useState, useEffect } from 'react'
+// import { useForm, Controller } from 'react-hook-form'
+// import { zodResolver } from '@hookform/resolvers/zod'
+// import { locationSchema, LocationInput } from '@/lib/validations/auth'
+// import { createUserProfile } from '@/lib/auth/auth-helpers'
+// import { useAuth } from '@/lib/context/auth-context'
+// import { useRouter } from 'next/navigation'
+// import { toast } from 'sonner'
+// import { states, getDistrictsForState, StateName } from '@/lib/location-data'
+// import { MapPin, CheckCircle2 } from 'lucide-react'
+
+// import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
+// import { Button } from '@/components/ui/button'
+// import { Checkbox } from '@/components/ui/checkbox'
+// import { Label } from '@/components/ui/label'
+
+// export default function CompleteProfilePage() {
+//   const [loading, setLoading] = useState(false)
+//   const [initialData, setInitialData] = useState<any>(null)
+//   const [cities, setCities] = useState<string[]>([])
+//   const router = useRouter()
+//   const { user, refreshProfile, loading: authLoading } = useAuth()
+
+//   const {
+//     handleSubmit,
+//     formState: { errors },
+//     watch,
+//     setValue,
+//     control
+//   } = useForm<LocationInput>({
+//     resolver: zodResolver(locationSchema),
+//     defaultValues: {
+//       termsAccepted: false,
+//       privacyAccepted: false,
+//       state: '',
+//       city: '',
+//     }
+//   })
+
+//   const stateValue = watch('state')
+
+//   useEffect(() => {
+//     if (authLoading) return
+
+//     if (!user) {
+//       toast.error('Please click the link in your email to continue.')
+//       router.push('/auth/login')
+//       return
+//     }
+
+//     // Try to get data from user metadata (set during signup)
+//     const userMetadata = user.user_metadata
+//     console.log('[CompleteProfile] User metadata:', userMetadata)
+
+//     if (userMetadata?.full_name && userMetadata?.mobile_number) {
+//       // Data from magic link metadata
+//       setInitialData({
+//         fullName: userMetadata.full_name,
+//         email: user.email,
+//         mobileNumber: userMetadata.mobile_number,
+//       })
+//       console.log('[CompleteProfile] Using data from user metadata')
+//     } else {
+//       // Fallback to localStorage
+//       const dataString = localStorage.getItem('pending_signup_data')
+//       if (dataString) {
+//         try {
+//           const parsedData = JSON.parse(dataString)
+//           setInitialData(parsedData)
+//           console.log('[CompleteProfile] Using data from localStorage')
+//         } catch (e) {
+//           toast.error('Invalid signup data. Please start again.')
+//           localStorage.removeItem('pending_signup_data')
+//           router.push('/auth/signup')
+//         }
+//       } else {
+//         toast.error('Could not find necessary details. Please signup again.')
+//         router.push('/auth/signup')
+//       }
+//     }
+//   }, [router, user, authLoading])
+
+//   useEffect(() => {
+//     if (stateValue) {
+//       const districts = getDistrictsForState(stateValue as StateName)
+//       setCities(districts)
+//       setValue('city', '')
+//     } else {
+//       setCities([])
+//     }
+//   }, [stateValue, setValue])
+
+//   const onSubmit = async (locationData: LocationInput) => {
+//     if (!initialData || !user) {
+//       toast.error('Missing required data. Please start signup again.')
+//       router.push('/auth/signup')
+//       return
+//     }
+  
+//     setLoading(true)
+  
+//     try {
+//       console.log('[CompleteProfile] Submitting profile for user:', user.id)
+//       console.log('[CompleteProfile] Profile data:', {
+//         full_name: initialData.fullName,
+//         email: user.email,
+//         mobile_number: initialData.mobileNumber,
+//         state: locationData.state,
+//         city: locationData.city,
+//       })
+  
+//       const result = await createUserProfile({
+//         full_name: initialData.fullName,
+//         email: user.email!,
+//         mobile_number: initialData.mobileNumber,
+//         state: locationData.state,
+//         city: locationData.city,
+//       })
+  
+//       console.log('[CompleteProfile] Profile creation result:', result)
+  
+//       if (result.success) {
+//         localStorage.removeItem('pending_signup_data')
+        
+//         // Refresh the profile in context
+//         await refreshProfile()
+        
+//         toast.success('Profile completed successfully!')
+        
+//         // Small delay to ensure profile is loaded
+//         setTimeout(() => {
+//           router.push('/')
+//         }, 1500)
+//       } else {
+//         console.error('[CompleteProfile] Profile creation failed:', result.error)
+//         toast.error(result.error || 'Failed to create profile.')
+//       }
+//     } catch (error: any) {
+//       console.error('[CompleteProfile] Exception during profile completion:', error)
+//       toast.error(error.message || 'Something went wrong. Please try again.')
+//     } finally {
+//       setLoading(false)
+//     }
+//   }
+  
+//   if (authLoading || !initialData) {
+//     return (
+//       <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-amber-50 via-orange-50 to-amber-100">
+//         <div className="text-center">
+//           <div className="animate-spin rounded-full h-16 w-16 border-b-4 border-amber-600 mx-auto"></div>
+//           <p className="mt-4 text-gray-600 font-medium">Loading your information...</p>
+//         </div>
+//       </div>
+//     )
+//   }
+
 'use client'
 
 import { useState, useEffect } from 'react'
@@ -955,7 +1113,16 @@ export default function CompleteProfilePage() {
   const [initialData, setInitialData] = useState<any>(null)
   const [cities, setCities] = useState<string[]>([])
   const router = useRouter()
-  const { user, refreshProfile, loading: authLoading } = useAuth()
+  const { user, profile, refreshProfile, loading: authLoading } = useAuth()
+
+  // ADD THIS NEW useEffect AT THE TOP - REDIRECT IF PROFILE ALREADY EXISTS
+  useEffect(() => {
+    if (!authLoading && profile?.is_verified) {
+      console.log('[CompleteProfile] Profile already exists and verified, redirecting home')
+      toast.success('Profile already completed!')
+      router.push('/')
+    }
+  }, [profile, authLoading, router])
 
   const {
     handleSubmit,
@@ -984,22 +1151,21 @@ export default function CompleteProfilePage() {
       return
     }
 
-    // Try to get data from user metadata (set during signup)
-    const userMetadata = user.user_metadata
-    console.log('[CompleteProfile] User metadata:', userMetadata)
-
-    if (userMetadata?.full_name && userMetadata?.mobile_number) {
-      // Data from magic link metadata
-      setInitialData({
-        fullName: userMetadata.full_name,
-        email: user.email,
-        mobileNumber: userMetadata.mobile_number,
-      })
-      console.log('[CompleteProfile] Using data from user metadata')
-    } else {
-      // Fallback to localStorage
+    // Only load initial data if profile doesn't exist yet
+    if (!profile || !profile.is_verified) {
       const dataString = localStorage.getItem('pending_signup_data')
-      if (dataString) {
+      const userMetadata = user.user_metadata
+
+      console.log('[CompleteProfile] User metadata:', userMetadata)
+
+      if (userMetadata?.full_name && userMetadata?.mobile_number) {
+        setInitialData({
+          fullName: userMetadata.full_name,
+          email: user.email,
+          mobileNumber: userMetadata.mobile_number,
+        })
+        console.log('[CompleteProfile] Using data from user metadata')
+      } else if (dataString) {
         try {
           const parsedData = JSON.parse(dataString)
           setInitialData(parsedData)
@@ -1014,7 +1180,7 @@ export default function CompleteProfilePage() {
         router.push('/auth/signup')
       }
     }
-  }, [router, user, authLoading])
+  }, [router, user, profile, authLoading])
 
   useEffect(() => {
     if (stateValue) {
@@ -1032,9 +1198,9 @@ export default function CompleteProfilePage() {
       router.push('/auth/signup')
       return
     }
-  
+
     setLoading(true)
-  
+
     try {
       console.log('[CompleteProfile] Submitting profile for user:', user.id)
       console.log('[CompleteProfile] Profile data:', {
@@ -1044,7 +1210,7 @@ export default function CompleteProfilePage() {
         state: locationData.state,
         city: locationData.city,
       })
-  
+
       const result = await createUserProfile({
         full_name: initialData.fullName,
         email: user.email!,
@@ -1052,18 +1218,14 @@ export default function CompleteProfilePage() {
         state: locationData.state,
         city: locationData.city,
       })
-  
+
       console.log('[CompleteProfile] Profile creation result:', result)
-  
+
       if (result.success) {
         localStorage.removeItem('pending_signup_data')
-        
-        // Refresh the profile in context
         await refreshProfile()
-        
         toast.success('Profile completed successfully!')
         
-        // Small delay to ensure profile is loaded
         setTimeout(() => {
           router.push('/')
         }, 1500)
@@ -1078,7 +1240,8 @@ export default function CompleteProfilePage() {
       setLoading(false)
     }
   }
-  
+
+  // Show loading while auth is loading
   if (authLoading || !initialData) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-amber-50 via-orange-50 to-amber-100">
@@ -1089,6 +1252,7 @@ export default function CompleteProfilePage() {
       </div>
     )
   }
+
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-amber-50 via-orange-50 to-amber-100 p-4">
