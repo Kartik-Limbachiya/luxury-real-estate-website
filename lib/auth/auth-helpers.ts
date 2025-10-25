@@ -254,93 +254,200 @@
 // }
 
 
-// lib/auth/auth-helpers.ts
+// // lib/auth/auth-helpers.ts
+// import { createClient } from '@/lib/supabase/client'
+
+// /**
+//  * Checks if a user already exists in the public 'users' table based on email or mobile number.
+//  * Safe to call from client side for signup validation.
+//  */
+// export async function checkUserExists(email: string, mobileNumber: string) {
+//   const supabase = createClient() // Use client-side client
+
+//   try {
+//     const { data, error } = await supabase
+//       .from('users')
+//       .select('id')
+//       .or(`email.eq.${email},mobile_number.eq.${mobileNumber}`)
+//       .maybeSingle() // Returns data or null, doesn't error if not found
+
+//     // Log errors other than 'not found'
+//     if (error && error.code !== 'PGRST116') { // PGRST116 indicates 0 rows found with maybeSingle
+//       console.error('Error checking user existence:', error.message);
+//       // Depending on policy, might return { exists: false } even on error
+//     }
+
+//     // Return true if data is not null (user found)
+//     return { exists: !!data, user: data }
+//   } catch (error: any) {
+//     console.error('Unexpected error in checkUserExists:', error.message);
+//     return { exists: false, user: null } // Fail safe
+//   }
+// }
+
+// /**
+//  * Creates a user profile in the public 'users' table for the currently authenticated user.
+//  * Assumes the Supabase Auth user (auth.users) already exists (created via magic link).
+//  * Safe to call from client-side component (e.g., complete-profile page) AFTER user is authenticated.
+//  */
+// export async function createUserProfile(data: {
+//   full_name: string
+//   email: string         // Should match the authenticated user's email
+//   mobile_number: string // From localStorage initially
+//   state: string
+//   city: string
+// }) {
+//   const supabase = createClient() // Use client-side client
+
+//   try {
+//     // Get the currently authenticated user session from the client-side helper
+//     const { data: { user }, error: userError } = await supabase.auth.getUser()
+
+//     if (userError || !user) {
+//       throw new Error('User not authenticated. Cannot create profile.')
+//     }
+
+//     // Ensure the email provided matches the logged-in user for consistency
+//     if (user.email !== data.email) {
+//         console.warn(`Attempting to create profile with email (${data.email}) different from authenticated user (${user.email}). Using authenticated user's email.`);
+//         // Optionally throw an error or just proceed using user.email
+//     }
+
+//     // Insert profile data into the public 'users' table
+//     const { error: profileError } = await supabase
+//       .from('users')
+//       .insert({
+//         id: user.id, // Use the actual authenticated user's ID
+//         full_name: data.full_name,
+//         email: user.email!, // Use authenticated user's email definitively
+//         mobile_number: data.mobile_number, // Use mobile from input data
+//         state: data.state,
+//         city: data.city,
+//         is_verified: true, // Mark profile as complete/verified
+//       })
+
+//     // Handle potential profile insertion errors (e.g., duplicate ID if run twice)
+//     if (profileError) {
+//       console.error('Profile insert error:', profileError);
+//       // Check for unique violation (code 23505) which might mean profile exists
+//       if (profileError.code === '23505') {
+//         throw new Error('User profile already exists.');
+//       }
+//       throw new Error(profileError.message || 'Failed to save user profile.');
+//     }
+
+//     // Success
+//     return { success: true, userId: user.id }
+
+//   } catch (error: any) {
+//     console.error('Create user profile helper error:', error)
+//     return { success: false, error: error.message }
+//   }
+// }
+
 import { createClient } from '@/lib/supabase/client'
 
 /**
- * Checks if a user already exists in the public 'users' table based on email or mobile number.
- * Safe to call from client side for signup validation.
+ * Checks if a user already exists based on email or mobile number.
  */
 export async function checkUserExists(email: string, mobileNumber: string) {
-  const supabase = createClient() // Use client-side client
+  const supabase = createClient()
 
   try {
     const { data, error } = await supabase
       .from('users')
       .select('id')
       .or(`email.eq.${email},mobile_number.eq.${mobileNumber}`)
-      .maybeSingle() // Returns data or null, doesn't error if not found
+      .maybeSingle()
 
-    // Log errors other than 'not found'
-    if (error && error.code !== 'PGRST116') { // PGRST116 indicates 0 rows found with maybeSingle
-      console.error('Error checking user existence:', error.message);
-      // Depending on policy, might return { exists: false } even on error
+    if (error && error.code !== 'PGRST116') {
+      console.error('Error checking user existence:', error);
     }
 
-    // Return true if data is not null (user found)
     return { exists: !!data, user: data }
-  } catch (error: any) {
-    console.error('Unexpected error in checkUserExists:', error.message);
-    return { exists: false, user: null } // Fail safe
+  } catch (error) {
+    console.error('Unexpected error in checkUserExists:', error);
+    return { exists: false, user: null }
   }
 }
 
 /**
- * Creates a user profile in the public 'users' table for the currently authenticated user.
- * Assumes the Supabase Auth user (auth.users) already exists (created via magic link).
- * Safe to call from client-side component (e.g., complete-profile page) AFTER user is authenticated.
+ * Creates or updates a user profile in the 'users' table.
  */
 export async function createUserProfile(data: {
   full_name: string
-  email: string         // Should match the authenticated user's email
-  mobile_number: string // From localStorage initially
+  email: string
+  mobile_number: string
   state: string
   city: string
 }) {
-  const supabase = createClient() // Use client-side client
+  const supabase = createClient()
 
   try {
-    // Get the currently authenticated user session from the client-side helper
+    // Get the current authenticated user
     const { data: { user }, error: userError } = await supabase.auth.getUser()
 
     if (userError || !user) {
-      throw new Error('User not authenticated. Cannot create profile.')
+      throw new Error('User not authenticated')
     }
 
-    // Ensure the email provided matches the logged-in user for consistency
-    if (user.email !== data.email) {
-        console.warn(`Attempting to create profile with email (${data.email}) different from authenticated user (${user.email}). Using authenticated user's email.`);
-        // Optionally throw an error or just proceed using user.email
-    }
+    console.log('[createUserProfile] Creating/updating profile for user:', user.id)
 
-    // Insert profile data into the public 'users' table
-    const { error: profileError } = await supabase
+    // First check if profile exists
+    const { data: existingProfile } = await supabase
       .from('users')
-      .insert({
-        id: user.id, // Use the actual authenticated user's ID
-        full_name: data.full_name,
-        email: user.email!, // Use authenticated user's email definitively
-        mobile_number: data.mobile_number, // Use mobile from input data
-        state: data.state,
-        city: data.city,
-        is_verified: true, // Mark profile as complete/verified
-      })
+      .select('id')
+      .eq('id', user.id)
+      .maybeSingle()
 
-    // Handle potential profile insertion errors (e.g., duplicate ID if run twice)
-    if (profileError) {
-      console.error('Profile insert error:', profileError);
-      // Check for unique violation (code 23505) which might mean profile exists
-      if (profileError.code === '23505') {
-        throw new Error('User profile already exists.');
+    if (existingProfile) {
+      // Profile exists, update it
+      console.log('[createUserProfile] Profile exists, updating...')
+      const { error: updateError } = await supabase
+        .from('users')
+        .update({
+          full_name: data.full_name,
+          email: data.email,
+          mobile_number: data.mobile_number,
+          state: data.state,
+          city: data.city,
+          is_verified: true,
+        })
+        .eq('id', user.id)
+
+      if (updateError) {
+        console.error('[createUserProfile] Update error:', updateError)
+        throw new Error(updateError.message || 'Failed to update user profile')
       }
-      throw new Error(profileError.message || 'Failed to save user profile.');
-    }
 
-    // Success
-    return { success: true, userId: user.id }
+      console.log('[createUserProfile] Profile updated successfully')
+      return { success: true, userId: user.id }
+    } else {
+      // Profile doesn't exist, create it
+      console.log('[createUserProfile] Creating new profile...')
+      const { error: insertError } = await supabase
+        .from('users')
+        .insert({
+          id: user.id,
+          full_name: data.full_name,
+          email: data.email,
+          mobile_number: data.mobile_number,
+          state: data.state,
+          city: data.city,
+          is_verified: true,
+        })
+
+      if (insertError) {
+        console.error('[createUserProfile] Insert error:', insertError)
+        throw new Error(insertError.message || 'Failed to create user profile')
+      }
+
+      console.log('[createUserProfile] Profile created successfully')
+      return { success: true, userId: user.id }
+    }
 
   } catch (error: any) {
-    console.error('Create user profile helper error:', error)
+    console.error('[createUserProfile] Exception:', error)
     return { success: false, error: error.message }
   }
 }
