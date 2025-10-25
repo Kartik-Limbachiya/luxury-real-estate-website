@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
-import { useAuth } from '@/lib/auth-context'
+import { useAuth } from '@/lib/context/auth-context'
 import { useToast } from '@/lib/use-toast'
 import { CheckCircle, XCircle, AlertCircle } from 'lucide-react'
 
