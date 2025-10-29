@@ -21,57 +21,85 @@ export function VisionSection() {
                 <Eye className="h-8 w-8 text-white" />
               </div>
             <Badge variant="secondary" className="text-base px-4 py-2 bg-primary/10 text-primary border-primary/20">
-              {language === "en" ? "Our Vision" : "हमारा दृष्टिकोण"}
+              Our Vision
             </Badge>
             </div>
             <h2 className="font-serif text-5xl md:text-6xl font-bold gradient-text leading-tight">
-              {language === "en" ? "Our Vision" : "हमारा दृष्टिकोण"}
+              Our Vision
             </h2>
           </div>
 
           {/* Main Vision Statement */}
-          <Card className="max-w-4xl mx-auto glass-card shadow-xl premium-slide-left">
+          <Card className="max-w-5xl mx-auto glass-card shadow-xl premium-slide-left">
             <CardContent className="p-12">
-              <blockquote className="text-3xl md:text-4xl font-bold text-foreground leading-relaxed text-center">
-                {language === "en"
-                  ? "No Jain in the world should live without their own home and livelihood."
-                  : "विश्व के एक भी जैन को खुद का घर और नौकरी-धंधा के बिना नहीं रहना चाहिए।"}
+              <blockquote className="text-2xl md:text-3xl font-bold text-foreground leading-relaxed text-center mb-8">
+                A World United in Peace and Brotherhood
               </blockquote>
+              <p className="text-lg text-muted-foreground leading-relaxed text-left">
+                SEWAS Universal Federation envisions a world united in peace and brotherhood. Our vision is to establish global harmony by bringing together influential leaders and change-makers from diverse sectors to create a global movement that transcends boundaries, cultivates universal brotherhood, and establishes enduring world peace for present and future generations.
+              </p>
             </CardContent>
           </Card>
 
-          {/* Vision Goals Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          {/* Vision Pillars Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
             <Card className="group glass-card premium-hover premium-slide-right stagger-child">
               <CardContent className="p-8 text-center">
                 <div className="w-16 h-16 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
-                  <Building className="h-8 w-8 text-white" />
+                  <Users className="h-8 w-8 text-white" />
                 </div>
-                <h3 className="text-2xl font-bold text-foreground mb-3">Housing for All</h3>
-                <div className="text-4xl font-bold text-primary mb-2">10,000+</div>
-                <p className="text-muted-foreground">Homes Delivered Across India</p>
+                <h3 className="text-xl font-bold text-foreground mb-3">Global Celebrities</h3>
+                <p className="text-sm text-muted-foreground">Leveraging their reach to inspire collective action</p>
               </CardContent>
             </Card>
 
             <Card className="group glass-card premium-hover premium-slide-right stagger-child">
               <CardContent className="p-8 text-center">
                 <div className="w-16 h-16 bg-gradient-to-br from-secondary to-accent rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
-                  <Users className="h-8 w-8 text-white" />
+                  <Building className="h-8 w-8 text-white" />
                 </div>
-                <h3 className="text-2xl font-bold text-foreground mb-3">Community Reach</h3>
-                <div className="text-4xl font-bold mb-2 text-primary">500+</div>
-                <p className="text-muted-foreground">Communities Served Nationwide</p>
+                <h3 className="text-xl font-bold text-foreground mb-3">Business Leaders</h3>
+                <p className="text-sm text-muted-foreground">Mobilizing resources for sustainable impact</p>
               </CardContent>
             </Card>
 
             <Card className="group glass-card premium-hover premium-slide-right stagger-child">
               <CardContent className="p-8 text-center">
                 <div className="w-16 h-16 bg-gradient-to-br from-accent to-primary rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
+                  <Lightbulb className="h-8 w-8 text-white" />
+                </div>
+                <h3 className="text-xl font-bold text-foreground mb-3">Professional Artists</h3>
+                <p className="text-sm text-muted-foreground">Harnessing creativity to bridge cultural divides</p>
+              </CardContent>
+            </Card>
+
+            <Card className="group glass-card premium-hover premium-slide-right stagger-child">
+              <CardContent className="p-8 text-center">
+                <div className="w-16 h-16 bg-gradient-to-br from-primary to-accent rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
+                  <Shield className="h-8 w-8 text-white" />
+                </div>
+                <h3 className="text-xl font-bold text-foreground mb-3">Political Leaders</h3>
+                <p className="text-sm text-muted-foreground">Fostering policy frameworks that promote peace</p>
+              </CardContent>
+            </Card>
+
+            <Card className="group glass-card premium-hover premium-slide-right stagger-child">
+              <CardContent className="p-8 text-center">
+                <div className="w-16 h-16 bg-gradient-to-br from-secondary to-primary rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
                   <Heart className="h-8 w-8 text-white" />
                 </div>
-                <h3 className="text-2xl font-bold text-foreground mb-3">Vision 2030</h3>
-                <div className="text-4xl font-bold mb-2 text-primary">100%</div>
-                <p className="text-muted-foreground">Jain Families with Homes</p>
+                <h3 className="text-xl font-bold text-foreground mb-3">Sports Icons</h3>
+                <p className="text-sm text-muted-foreground">Uniting communities through universal sports</p>
+              </CardContent>
+            </Card>
+
+            <Card className="group glass-card premium-hover premium-slide-right stagger-child">
+              <CardContent className="p-8 text-center">
+                <div className="w-16 h-16 bg-gradient-to-br from-accent to-secondary rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
+                  <Award className="h-8 w-8 text-white" />
+                </div>
+                <h3 className="text-xl font-bold text-foreground mb-3">Sustainable Contributors</h3>
+                <p className="text-sm text-muted-foreground">Engaging committed individuals for lasting change</p>
               </CardContent>
             </Card>
           </div>
@@ -100,64 +128,37 @@ export function MissionSection() {
                 variant="secondary"
                 className="text-base px-4 py-2 bg-secondary/10 text-secondary border-secondary/20"
               >
-                {language === "en" ? "Our Mission" : "हमारा मिशन"}
+                Our Mission
               </Badge>
             </div>
             <h2 className="font-serif text-5xl md:text-6xl font-bold gradient-text leading-tight">
-              {language === "en" ? "Our Mission" : "हमारा मिशन"}
+              Our Mission
             </h2>
           </div>
 
           {/* Mission Statement */}
           <Card className="max-w-5xl mx-auto glass-card shadow-xl premium-slide-right">
             <CardContent className="p-12">
-              <blockquote className="text-2xl md:text-3xl font-bold text-foreground leading-relaxed text-center mb-6">
-                {language === "en"
-                  ? "800 SEWAS Infrastructure Private Limited has been striving for the past 6 years to understand and fulfill the needs of Jains in every village of India."
-                  : "800 SEWAS इन्फ्रास्ट्रक्चर प्राइवेट लिमिटेड — पिछले 6 सालों से भारत के गाँव-गाँव में जैनों की ज़रूरियात को समझकर उनको पूरा करने का प्रयत्न कर रही है।"}
+              <blockquote className="text-2xl md:text-3xl font-bold text-foreground leading-relaxed text-center mb-8">
+                Ensuring Fundamental Human Necessities for All
               </blockquote>
+              <p className="text-lg text-muted-foreground leading-relaxed text-left">
+                SEWAS Universal Federation is committed to ensuring that no individual, anywhere in the world, is deprived of fundamental human necessities. We dedicate ourselves to tireless efforts in bridging these critical gaps, working across borders and cultures to create a world where basic human rights are not privileges, but guaranteed realities for every person.
+              </p>
             </CardContent>
           </Card>
 
-          {/* Mission Stats */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
-            <Card className="glass-card premium-hover luxury-fade-up stagger-child">
-              <CardContent className="p-6 text-center">
-                <div className="text-3xl font-bold text-primary mb-1">6+</div>
-                <div className="text-sm text-muted-foreground">Years of Service</div>
-              </CardContent>
-            </Card>
-            <Card className="glass-card premium-hover luxury-fade-up stagger-child">
-              <CardContent className="p-6 text-center">
-                <div className="text-3xl font-bold mb-1 text-primary">28</div>
-                <div className="text-sm text-muted-foreground">States Covered</div>
-              </CardContent>
-            </Card>
-            <Card className="glass-card premium-hover luxury-fade-up stagger-child">
-              <CardContent className="p-6 text-center">
-                <div className="text-3xl font-bold mb-1 text-primary">180+</div>
-                <div className="text-sm text-muted-foreground">Universities</div>
-              </CardContent>
-            </Card>
-            <Card className="glass-card premium-hover luxury-fade-up stagger-child">
-              <CardContent className="p-6 text-center">
-                <div className="text-3xl font-bold text-primary mb-1">24/7</div>
-                <div className="text-sm text-muted-foreground">Support</div>
-              </CardContent>
-            </Card>
-          </div>
-
-          {/* Core Services */}
+          {/* Core Mission Areas */}
           <div className="max-w-6xl mx-auto premium-slide-left">
-            <h3 className="text-3xl font-bold text-foreground mb-8">Our Core Services</h3>
+            <h3 className="text-3xl font-bold text-foreground mb-8">Our Comprehensive Approach</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {[
-                { icon: Shield, title: "Religious Infrastructure", desc: "Temples, Upashrays, and Sacred Spaces" },
-                { icon: Building, title: "Residential Solutions", desc: "Jain-friendly Housing Communities" },
-                { icon: Lightbulb, title: "Commercial Spaces", desc: "Business Centers and Markets" },
-                { icon: Award, title: "Educational Services", desc: "Schools and University Admissions" },
-                { icon: Heart, title: "Medical Facilities", desc: "Healthcare with Jain Values" },
-                { icon: Users, title: "Social Centers", desc: "Community Halls and Events" },
+                { icon: Shield, title: "Residential Security", desc: "Safe and dignified housing for all" },
+                { icon: Building, title: "Commercial Opportunities", desc: "Economic empowerment and sustainable livelihoods" },
+                { icon: Lightbulb, title: "Quality Education", desc: "Accessible learning opportunities for every age and background" },
+                { icon: Heart, title: "Healthcare Services", desc: "Comprehensive medical care without barriers" },
+                { icon: Users, title: "Social Welfare", desc: "Holistic support systems that uplift communities" },
+                { icon: Award, title: "Global Impact", desc: "Working across borders and cultures worldwide" },
               ].map((service, index) => (
                 <Card key={service.title} className="group glass-card premium-hover card-slide-in stagger-child">
                   <CardContent className="p-6 text-center">
@@ -193,123 +194,70 @@ export function AboutUsSection() {
                 <Award className="h-8 w-8 text-white" />
               </div>
               <Badge variant="secondary" className="text-base px-4 py-2 bg-accent/10 text-accent border-accent/20">
-                {language === "en" ? "About Us" : "हमारे बारे में"}
+                About Us
               </Badge>
             </div>
             <h2 className="font-serif text-5xl md:text-6xl font-bold gradient-text">
-              800 SEWAS Infrastructure Limited
+              SEWAS Universal Federation
             </h2>
             <p className="text-xl text-muted-foreground max-w-4xl mx-auto leading-relaxed">
-              Dedicated to serving the Jain community across India with comprehensive infrastructure solutions for over
-              6 years.
+              A beacon of hope for humanity, dedicated to addressing critical global challenges and fostering sustainable solutions.
             </p>
           </div>
 
           {/* Main Content */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-            {/* Company Story */}
-              <Card className="text-left glass-card shadow-xl premium-slide-left">
+          <div className="grid grid-cols-1 lg:grid-cols-1 gap-12 items-start max-w-6xl mx-auto">
+            {/* Our Story */}
+            <Card className="text-left glass-card shadow-xl premium-slide-left">
               <CardContent className="p-10 space-y-6">
-                <h3 className="font-serif text-3xl font-bold text-foreground">{language === "en" ? "Our Story" : "हमारी कहानी"}</h3>
-                <div className="space-y-4 text-muted-foreground leading-relaxed">
+                <h3 className="font-serif text-3xl font-bold text-foreground">A Beacon of Hope for Humanity</h3>
+                <div className="space-y-4 text-muted-foreground leading-relaxed text-base">
                   <p>
-                    {language === "en"
-                      ? "800 SEWAS Infrastructure Limited was founded with a singular vision: to ensure that no Jain in the world lives without their own home and sustainable livelihood. For over six years, we have been working tirelessly across India's villages and cities."
-                      : "800 SEWAS इंफ्रास्ट्रक्चर लिमिटेड की स्थापना एक लक्ष्य के साथ हुई: विश्व का कोई भी जैन अपने स्वयं के घर और आजीविका के बिना न रहे। पिछले छह वर्षों से, हम भारत के गाँवों और शहरों में निरंतर कार्य कर रहे हैं।"}
+                    In today's global landscape, humanity faces unprecedented challenges that threaten the fabric of our collective existence. Terrorism, armed conflicts, economic inflation, rising illiteracy, inadequate healthcare infrastructure, widespread malnutrition, environmental degradation, systemic corruption, escalating violence, and human trafficking have proliferated across all corners of the world. Millions of lives have been adversely affected by these multifaceted crises.
                   </p>
                   <p>
-                    {language === "en"
-                      ? "Our comprehensive approach encompasses religious infrastructure, residential solutions, commercial spaces, educational services, medical facilities, and social centers. We specialize in creating tailored solutions that honor Jain values."
-                      : "हमारा समग्र दृष्टिकोण धार्मिक अवसंरचना, आवासीय समाधान, व्यावसायिक स्थान, शैक्षणिक सेवाएँ, चिकित्सा सुविधाएँ, और सामाजिक केंद्रों को समाहित करता है। हम जैन मूल्यों का सम्मान करने वाले अनुकूलित समाधान बनाते हैं।"}
-                  </p>
-                  <p>
-                    {language === "en"
-                      ? "From establishing Jain temples and upashrays to developing residential complexes with Jain-friendly amenities, we bridge the gap between tradition and contemporary living."
-                      : "जैन मंदिरों और उपाश्रयों की स्थापना से लेकर जैन-हितैषी सुविधाओं वाले आवासीय परिसरों के विकास तक, हम परंपरा और आधुनिक जीवन के बीच की दूरी को पाटते हैं।"}
+                    Amidst these pressing contemporary challenges, SEWAS Universal Federation emerges as a beacon of hope for humanity. Our organization is dedicated to addressing these critical issues and fostering sustainable solutions that restore dignity, security, and prosperity to communities worldwide.
                   </p>
                 </div>
               </CardContent>
             </Card>
+          </div>
 
-            {/* Key Stats Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 premium-slide-right">
-              <Card className="glass-card premium-hover card-slide-in stagger-child">
-                <CardContent className="p-8 text-center">
-                  <div className="w-16 h-16 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center mx-auto mb-4">
-                    <MapPin className="h-8 w-8 text-white" />
-                  </div>
-                  <div className="text-4xl font-bold text-primary mb-2">28</div>
-                  <div className="text-sm text-muted-foreground">States & UTs Covered</div>
-                </CardContent>
-              </Card>
-
-              <Card className="glass-card premium-hover card-slide-in stagger-child">
-                <CardContent className="p-8 text-center">
-                  <div className="w-16 h-16 bg-gradient-to-br from-secondary to-accent rounded-full flex items-center justify-center mx-auto mb-4">
-                    <Building className="h-8 w-8 text-white" />
-                  </div>
-                  <div className="text-4xl font-bold mb-2 text-primary">10,000+</div>
-                  <div className="text-sm text-muted-foreground">Families Served</div>
-                </CardContent>
-              </Card>
-
-              <Card className="glass-card premium-hover card-slide-in stagger-child">
-                <CardContent className="p-8 text-center">
-                  <div className="w-16 h-16 bg-gradient-to-br from-accent to-primary rounded-full flex items-center justify-center mx-auto mb-4">
-                    <Award className="h-8 w-8 text-white" />
-                  </div>
-                  <div className="text-4xl font-bold mb-2 text-primary">6+</div>
-                  <div className="text-sm text-muted-foreground">Years of Excellence</div>
-                </CardContent>
-              </Card>
-
-              <Card className="glass-card premium-hover card-slide-in stagger-child">
-                <CardContent className="p-8 text-center">
-                  <div className="w-16 h-16 bg-gradient-to-br from-primary to-accent rounded-full flex items-center justify-center mx-auto mb-4">
-                    <Users className="h-8 w-8 text-white" />
-                  </div>
-                  <div className="text-4xl font-bold text-primary mb-2">500+</div>
-                  <div className="text-sm text-muted-foreground">Communities</div>
-                </CardContent>
-              </Card>
+          {/* Global Challenges Grid */}
+          <div className="max-w-6xl mx-auto">
+            <h3 className="text-3xl font-bold text-foreground mb-8">Challenges We Address</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+              {[
+                "Terrorism & Armed Conflicts",
+                "Economic Inflation",
+                "Rising Illiteracy",
+                "Healthcare Crisis",
+                "Widespread Malnutrition",
+                "Environmental Degradation",
+                "Systemic Corruption",
+                "Human Trafficking",
+              ].map((challenge, index) => (
+                <Card key={challenge} className="glass-card premium-hover card-slide-in stagger-child">
+                  <CardContent className="p-6 text-center">
+                    <div className="w-10 h-10 bg-gradient-to-br from-red-500 to-orange-500 rounded-full flex items-center justify-center mx-auto mb-3">
+                      <Shield className="h-5 w-5 text-white" />
+                    </div>
+                    <p className="text-sm font-medium text-foreground">{challenge}</p>
+                  </CardContent>
+                </Card>
+              ))}
             </div>
           </div>
 
-          {/* Contact Information */}
-          <Card className="glass-card shadow-xl luxury-fade-up">
+          {/* Impact Statement */}
+          <Card className="glass-card shadow-xl luxury-fade-up max-w-5xl mx-auto">
             <CardContent className="p-10">
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-                <div>
-                  <h4 className="font-bold text-lg text-foreground mb-3">Registered Office</h4>
-                  <p className="text-muted-foreground">
-                    800 SEWAS Infrastructure Limited
-                    <br />
-                    Serving Jain Communities
-                    <br />
-                    Across India Since 2018
-                  </p>
-                </div>
-                <div>
-                  <h4 className="font-bold text-lg text-foreground mb-3">Founded</h4>
-                  <p className="text-muted-foreground">
-                    2018
-                    <br />
-                    6+ Years of Dedicated Service
-                    <br />
-                    to Jain Communities
-                  </p>
-                </div>
-                <div>
-                  <h4 className="font-bold text-lg text-foreground mb-3">Leadership</h4>
-                  <p className="text-muted-foreground">
-                    Experienced Team of
-                    <br />
-                    Infrastructure Professionals
-                    <br />
-                    and Community Leaders
-                  </p>
-                </div>
-              </div>
+              <blockquote className="text-2xl md:text-3xl font-bold text-foreground leading-relaxed text-center mb-6">
+                "Working across borders and cultures to create a world where basic human rights are guaranteed realities for every person."
+              </blockquote>
+              <p className="text-center text-muted-foreground">
+                SEWAS Universal Federation - Restoring dignity, security, and prosperity worldwide
+              </p>
             </CardContent>
           </Card>
         </div>
