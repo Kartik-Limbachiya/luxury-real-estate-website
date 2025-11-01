@@ -18,9 +18,10 @@ export function ImportantDatesSection() {
               <h3 className="text-3xl font-bold gradient-text">Development Schedule</h3>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div className="glass-card p-6 rounded-xl shadow-lg premium-hover">
-                <div className="text-2xl font-bold text-primary mb-2">Dec 31, 2025</div>
-                <div className="text-muted-foreground font-medium">Online Booking Deadline</div>
+              <div className="glass-card p-6 rounded-xl shadow-lg premium-hover border-2 border-red-500 bg-red-50">
+                <div className="text-2xl font-bold text-red-600 mb-2">Mar 31, 2026</div>
+                <div className="text-red-800 font-bold">⏰ ONLINE BOOKING DEADLINE</div>
+                <div className="text-xs text-red-600 mt-1">Last Date to Book</div>
               </div>
               <div className="glass-card p-6 rounded-xl shadow-lg premium-hover">
                 <div className="text-2xl font-bold text-amber-600 mb-2">24-30 Months</div>

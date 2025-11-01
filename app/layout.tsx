@@ -24,22 +24,25 @@ const sourceSans = Source_Sans_3({
 })
 
 export const metadata: Metadata = {
-  title: "800 SEWAS City - THE JAINISM OF UNIVERSE",
+  title: "SEWAS Nagri - A Project by SEWAS Universal Federation | THE JAINISM OF UNIVERSE",
   description:
-    "800 Cities • 29 States • 7 Union Territories. THE JAINISM OF UNIVERSE - Complete housing solutions for Jain communities with 0% down payment and 100% bank loan.",
+    "SEWAS Nagri - 800 Cities • 29 States • 7 Union Territories. A Project by SEWAS Universal Federation. THE JAINISM OF UNIVERSE - Complete housing solutions for Jain communities with 0% down payment and 100% bank loan.",
   generator: "v0.app",
   keywords: [
-    "800 SEWAS City",
+    "SEWAS Nagri",
+    "SEWAS Universal Federation",
+    "800 SEWAS Cities",
     "Jain Community Housing",
     "800 Cities India",
     "0% Down Payment",
     "THE JAINISM OF UNIVERSE",
     "180 International University Tie-ups",
     "Swadeshi Products 50% Discount",
+    "Jain Housing Project",
   ],
-  authors: [{ name: "800 SEWAS Infrastructure Limited" }],
+  authors: [{ name: "SEWAS Universal Federation" }],
   openGraph: {
-    title: "800 SEWAS City - THE JAINISM OF UNIVERSE",
+    title: "SEWAS Nagri - A Project by SEWAS Universal Federation",
     description: "800 Cities • 29 States • 7 Union Territories serving Jain communities with complete life facilities",
     type: "website",
   },

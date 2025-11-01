@@ -80,14 +80,17 @@ export function ComingSoonBanner() {
       <div className="absolute top-8 left-8 z-10">
         <Badge className="bg-black/50 text-white border-white/20 text-sm px-3 py-1 backdrop-blur-sm">
           <Clock className="h-4 w-4 mr-2" />
-          SEWAS City
+          SEWAS Nagri
         </Badge>
       </div>
       <div className="absolute bottom-6 sm:bottom-8 left-4 sm:left-8 z-10 text-white">
         <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-5xl font-black mb-1 sm:mb-2 drop-shadow-lg">
-          800 SEWAS City Projects
+          SEWAS Nagri - 800 Cities
         </h1>
-        <p className="text-sm sm:text-base md:text-lg lg:text-xl opacity-90 drop-shadow-md">
+        <p className="text-sm sm:text-base md:text-lg lg:text-xl opacity-90 drop-shadow-md mb-1">
+          A Project by SEWAS Universal Federation
+        </p>
+        <p className="text-xs sm:text-sm md:text-base lg:text-lg opacity-80 drop-shadow-md">
           Launching across India - Stay tuned!
         </p>
       </div>

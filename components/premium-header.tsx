@@ -84,9 +84,14 @@ export function PremiumHeader() {
             <span className="inline-flex items-center justify-center h-8 w-8 md:h-10 md:w-10 rounded-md bg-white/90 shadow premium-shadow">
               <Image src="/sewas-logo.png" alt="SEWAS Logo" width={32} height={32} className="h-6 w-6 md:h-8 md:w-8" />
             </span>
-            <span className="font-black tracking-tight text-sm md:text-xl lg:text-2xl gradient-text">
-              800 SEWAS City
-            </span>
+            <div className="flex flex-col">
+              <span className="font-black tracking-tight text-xs md:text-sm lg:text-base gradient-text">
+                SEWAS Nagri
+              </span>
+              <span className="font-medium tracking-tight text-[10px] md:text-xs lg:text-sm text-gray-600">
+                A Project by SEWAS Universal Federation
+              </span>
+            </div>
           </Link>
 
           {/* Desktop Navigation */}

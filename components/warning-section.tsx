@@ -1,12 +1,26 @@
 "use client"
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { AlertTriangle, Home, CreditCard, ShoppingCart, FileText } from "lucide-react"
+import { AlertTriangle, Home, CreditCard, ShoppingCart, FileText, ShieldAlert, Users } from "lucide-react"
 import { useLanguage } from "@/components/language-provider"
 
 export function WarningSection() {
   const { language } = useLanguage()
   const warnings = [
+    {
+      icon: ShieldAlert,
+      title: "SAVADHAN! FRAUD WARNING",
+      description: "⚠️ SEWAS ने किसी एजेंट को नहीं नियुक्त किया है. केवल सीधा बैंक लेनदेन करें",
+      translation: "⚠️ SEWAS has NOT appointed any agents. Do direct bank transactions ONLY",
+      color: "bg-red-100 border-red-500 text-red-900",
+    },
+    {
+      icon: Users,
+      title: "Female-Only Property Registration",
+      description: "संपत्ति केवल महिलाओं के नाम पर पंजीकृत होगी (माता/पत्नी/बहन/बेटी)",
+      translation: "Property registered ONLY in female names (Mother/Wife/Sister/Daughter)",
+      color: "bg-pink-50 border-pink-300 text-pink-900",
+    },
     {
       icon: Home,
       title: "Immediate Eviction Policy",
@@ -52,7 +66,7 @@ export function WarningSection() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {warnings.map((warning, index) => (
             <Card key={index} className={`${warning.color} border-2 shadow-lg hover:shadow-xl transition-shadow`}>
               <CardHeader className="pb-3">

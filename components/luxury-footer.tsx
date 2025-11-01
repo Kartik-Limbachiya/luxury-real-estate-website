@@ -59,7 +59,10 @@ export function LuxuryFooter() {
           <div className="lg:col-span-2 space-y-4">
             <div className="inline-flex items-center gap-3">
               <Image src="/sewas-logo.png" alt="SEWAS" width={48} height={48} className="rounded" />
-              <span className="font-black text-xl gradient-text">800 SEWAS City</span>
+              <div>
+                <div className="font-black text-xl gradient-text">SEWAS Nagri</div>
+                <div className="font-medium text-xs text-gray-600">A Project by SEWAS Universal Federation</div>
+              </div>
             </div>
             <p className="text-sm text-muted-foreground leading-relaxed">
               THE JAINISM OF UNIVERSE — Complete housing and life facilities for Jain communities across India.
@@ -118,7 +121,7 @@ export function LuxuryFooter() {
         </div>
 
         <div className="mt-10 pt-6 border-t text-xs text-muted-foreground flex flex-col md:flex-row items-center justify-between gap-3">
-          <p>© {new Date().getFullYear()} 800 SEWAS Infrastructure Private Limited. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} SEWAS Universal Federation. All rights reserved.</p>
           <div className="flex items-center gap-4">
             <Link href="#" className="hover:text-primary">Privacy</Link>
             <Link href="#" className="hover:text-primary">Terms</Link>

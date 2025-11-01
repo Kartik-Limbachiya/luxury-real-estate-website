@@ -12,8 +12,8 @@ import ComingSoonBanner from "@/components/coming-soon-banner"
 import { InquiryForm } from "@/components/inquiry-form-working"
 import { EmploymentSection } from "@/components/employment-section-working"
 import { WarningSection } from "@/components/warning-section"
+import { AboutUsSection as NewAboutSection } from "@/components/new-sections"
 import { 
-  AboutUsSection as NewAboutUsSection,
   ContactUsSection,
   VisionsSection,
   ProjectSection,
@@ -103,8 +103,11 @@ function PremiumHeroSection() {
                 <div className="flex flex-col sm:flex-row items-center sm:items-start gap-3 md:gap-4">
                   <Image src="/sewas-logo.png" alt="SEWAS Logo" width={64} height={64} className="h-16 w-16 md:h-20 md:w-20 lg:h-24 lg:w-24" />
                   <div className="text-center sm:text-left">
-                    <h1 className="font-black text-2xl sm:text-3xl md:text-5xl lg:text-7xl gradient-text">800 SEWAS City</h1>
-                    <p className="text-sm sm:text-base md:text-xl lg:text-2xl font-bold text-primary mt-1">
+                    <h1 className="font-black text-2xl sm:text-3xl md:text-5xl lg:text-7xl gradient-text">SEWAS Nagri</h1>
+                    <p className="text-xs sm:text-sm md:text-base lg:text-lg font-medium text-amber-900 mt-1">
+                      A Project by SEWAS Universal Federation
+                    </p>
+                    <p className="text-sm sm:text-base md:text-xl lg:text-2xl font-bold text-primary mt-2">
                       {language === "en" ? "THE JAINISM OF UNIVERSE" : "द यूनिवर्स का जैनिज़्म"}
                     </p>
                   </div>
@@ -461,7 +464,8 @@ export function SewasHome() {
       </section>
 
       {/* New Navigation Sections */}
-      <NewAboutUsSection />
+      {/* With: */}
+      <NewAboutSection />
       
       <ContactUsSection />
       

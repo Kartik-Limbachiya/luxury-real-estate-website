@@ -1,67 +1,121 @@
 'use client'
 
-import { useAuth } from '@/lib/context/auth-context'
-import { LogOut, User, Settings } from 'lucide-react'
-import { useState, useRef, useEffect } from 'react'
+import { useState, useEffect } from 'react'
+import { useRouter } from 'next/navigation'
+import { createClient } from '@/lib/supabase/client'
+import { signOut } from '@/lib/actions/auth'
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu'
+import { Button } from '@/components/ui/button'
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
+import { User, LogOut, Settings, CreditCard } from 'lucide-react'
+import Link from 'next/link'
+import type { User as SupabaseUser } from '@supabase/supabase-js'
 
 export function UserAccountDropdown() {
-  const { user, profile, signOut } = useAuth()
-  const [showDropdown, setShowDropdown] = useState(false)
-  const dropdownRef = useRef<HTMLDivElement>(null)
+  const router = useRouter()
+  const [user, setUser] = useState<SupabaseUser | null>(null)
+  const [isLoading, setIsLoading] = useState(false)
+  const supabase = createClient()
 
   useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
-        setShowDropdown(false)
-      }
-    }
+    // Get initial user
+    supabase.auth.getUser().then(({ data: { user } }) => {
+      setUser(user)
+    })
 
-    document.addEventListener('mousedown', handleClickOutside)
-    return () => document.removeEventListener('mousedown', handleClickOutside)
-  }, [])
+    // Listen for auth changes
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((_event, session) => {
+      setUser(session?.user ?? null)
+    })
 
-  if (!user || !profile) return null
+    return () => subscription.unsubscribe()
+  }, [supabase.auth])
+
+  const handleSignOut = async () => {
+    setIsLoading(true)
+    await signOut()
+    router.push('/auth/login')
+    router.refresh()
+  }
+
+  if (!user) {
+    return (
+      <div className="flex gap-2">
+        <Button variant="ghost" asChild>
+          <Link href="/auth/login">Sign In</Link>
+        </Button>
+        <Button asChild>
+          <Link href="/auth/register">Sign Up</Link>
+        </Button>
+      </div>
+    )
+  }
+
+  const initials = user.user_metadata?.full_name
+    ?.split(' ')
+    .map((n: string) => n[0])
+    .join('')
+    .toUpperCase() || user.email?.[0]?.toUpperCase() || 'U'
 
   return (
-    <div className="relative" ref={dropdownRef}>
-      <button
-        onClick={() => setShowDropdown(!showDropdown)}
-        className="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-amber-100 transition text-sm font-medium"
-      >
-        <div className="w-8 h-8 bg-gradient-to-br from-amber-500 to-orange-500 rounded-full flex items-center justify-center">
-          <User className="w-4 h-4 text-white" />
-        </div>
-        <span className="hidden md:inline text-gray-700">{profile.full_name}</span>
-      </button>
-
-      {showDropdown && (
-        <div className="absolute right-0 mt-2 w-64 bg-white rounded-lg shadow-xl border border-gray-200 py-2 z-50">
-          {/* User Info */}
-          <div className="px-4 py-3 border-b border-gray-200">
-            <p className="font-semibold text-gray-900">{profile.full_name}</p>
-            <p className="text-sm text-gray-600">{profile.email}</p>
-            <p className="text-xs text-gray-500 mt-1">
-              {profile.city}, {profile.state}
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        <Button variant="ghost" className="relative h-10 w-10 rounded-full">
+          <Avatar>
+            <AvatarImage src={user.user_metadata?.avatar_url} alt={user.email || ''} />
+            <AvatarFallback>{initials}</AvatarFallback>
+          </Avatar>
+        </Button>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent align="end" className="w-56">
+        <DropdownMenuLabel>
+          <div className="flex flex-col space-y-1">
+            <p className="text-sm font-medium leading-none">
+              {user.user_metadata?.full_name || 'User'}
+            </p>
+            <p className="text-xs leading-none text-muted-foreground">
+              {user.email}
             </p>
           </div>
-          
-          {/* Menu Items */}
-          <div className="py-1">
-            <button className="w-full px-4 py-2 text-left hover:bg-gray-100 flex items-center gap-2 text-gray-700">
-              <Settings className="w-4 h-4" />
-              Profile Settings
-            </button>
-            
-            <button
-              onClick={signOut}
-              className="w-full px-4 py-2 text-left hover:bg-gray-100 flex items-center gap-2 text-red-600"
-            >
-              <LogOut className="w-4 h-4" />
-              Logout
-            </button>
-          </div>
-        </div>
-      )}
-    </div>
+        </DropdownMenuLabel>
+        <DropdownMenuSeparator />
+        <DropdownMenuItem asChild>
+          <Link href="/profile" className="cursor-pointer">
+            <User className="mr-2 h-4 w-4" />
+            Profile
+          </Link>
+        </DropdownMenuItem>
+        <DropdownMenuItem asChild>
+          <Link href="/dashboard" className="cursor-pointer">
+            <CreditCard className="mr-2 h-4 w-4" />
+            Dashboard
+          </Link>
+        </DropdownMenuItem>
+        <DropdownMenuItem asChild>
+          <Link href="/settings" className="cursor-pointer">
+            <Settings className="mr-2 h-4 w-4" />
+            Settings
+          </Link>
+        </DropdownMenuItem>
+        <DropdownMenuSeparator />
+        <DropdownMenuItem
+          onClick={handleSignOut}
+          disabled={isLoading}
+          className="cursor-pointer text-red-600 focus:text-red-600"
+        >
+          <LogOut className="mr-2 h-4 w-4" />
+          Sign out
+        </DropdownMenuItem>
+      </DropdownMenuContent>
+    </DropdownMenu>
   )
 }

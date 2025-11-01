@@ -1,13 +1,13 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
-import { signIn, signInWithOAuth } from "@/lib/actions/auth";
+import { useRouter } from "next/navigation";
+import { signUp, signInWithOAuth } from "@/lib/actions/auth";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Checkbox } from "@/components/ui/checkbox";
-import { Eye, EyeOff, Sparkles } from "lucide-react";
+import { UpgradeBanner } from "@/components/ui/upgrade-banner";
+import { Eye, EyeOff, Sparkles, Mail } from "lucide-react";
 import Link from "next/link";
 
 // Pupil Component
@@ -35,7 +35,6 @@ const Pupil = ({
       setMouseX(e.clientX);
       setMouseY(e.clientY);
     };
-
     window.addEventListener("mousemove", handleMouseMove);
     return () => window.removeEventListener("mousemove", handleMouseMove);
   }, []);
@@ -45,19 +44,15 @@ const Pupil = ({
     if (forceLookX !== undefined && forceLookY !== undefined) {
       return { x: forceLookX, y: forceLookY };
     }
-
     const pupil = pupilRef.current.getBoundingClientRect();
     const pupilCenterX = pupil.left + pupil.width / 2;
     const pupilCenterY = pupil.top + pupil.height / 2;
-
     const deltaX = mouseX - pupilCenterX;
     const deltaY = mouseY - pupilCenterY;
     const distance = Math.min(Math.sqrt(deltaX ** 2 + deltaY ** 2), maxDistance);
-
     const angle = Math.atan2(deltaY, deltaX);
     const x = Math.cos(angle) * distance;
     const y = Math.sin(angle) * distance;
-
     return { x, y };
   };
 
@@ -109,7 +104,6 @@ const EyeBall = ({
       setMouseX(e.clientX);
       setMouseY(e.clientY);
     };
-
     window.addEventListener("mousemove", handleMouseMove);
     return () => window.removeEventListener("mousemove", handleMouseMove);
   }, []);
@@ -119,19 +113,15 @@ const EyeBall = ({
     if (forceLookX !== undefined && forceLookY !== undefined) {
       return { x: forceLookX, y: forceLookY };
     }
-
     const eye = eyeRef.current.getBoundingClientRect();
     const eyeCenterX = eye.left + eye.width / 2;
     const eyeCenterY = eye.top + eye.height / 2;
-
     const deltaX = mouseX - eyeCenterX;
     const deltaY = mouseY - eyeCenterY;
     const distance = Math.min(Math.sqrt(deltaX ** 2 + deltaY ** 2), maxDistance);
-
     const angle = Math.atan2(deltaY, deltaX);
     const x = Math.cos(angle) * distance;
     const y = Math.sin(angle) * distance;
-
     return { x, y };
   };
 
@@ -164,16 +154,15 @@ const EyeBall = ({
   );
 };
 
-export default function AnimatedLoginPage() {
+export default function AnimatedRegisterPage() {
   const router = useRouter();
-  const searchParams = useSearchParams();
-  const redirect = searchParams.get('redirect') || '/';
-
   const [showPassword, setShowPassword] = useState(false);
+  const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [needsConfirmation, setNeedsConfirmation] = useState(false);
   const [mouseX, setMouseX] = useState<number>(0);
   const [mouseY, setMouseY] = useState<number>(0);
   const [isPurpleBlinking, setIsPurpleBlinking] = useState(false);
@@ -196,7 +185,6 @@ export default function AnimatedLoginPage() {
     return () => window.removeEventListener("mousemove", handleMouseMove);
   }, []);
 
-  // Blinking effects
   useEffect(() => {
     const scheduleBlink = () => {
       const timeout = setTimeout(() => {
@@ -273,16 +261,21 @@ export default function AnimatedLoginPage() {
     setIsLoading(true);
 
     const formData = new FormData();
+    formData.append('fullName', fullName);
     formData.append('email', email);
     formData.append('password', password);
     
-    const result = await signIn(formData);
+    const result = await signUp(formData);
 
     if (result.success) {
-      router.push(redirect);
-      router.refresh();
+      if (result.data?.needsConfirmation) {
+        setNeedsConfirmation(true);
+      } else {
+        router.push('/');
+        router.refresh();
+      }
     } else {
-      setError(result.error || 'Failed to sign in');
+      setError(result.error || 'Failed to create account');
     }
     setIsLoading(false);
   };
@@ -292,9 +285,87 @@ export default function AnimatedLoginPage() {
     await signInWithOAuth('google');
   };
 
+  if (needsConfirmation) {
+    return (
+      <div className="min-h-screen flex items-center justify-center p-8 bg-gradient-to-br from-background to-secondary/20">
+        <div className="w-full max-w-2xl">
+          <div className="text-center mb-8">
+            <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-green-100 dark:bg-green-900/20 mb-4">
+              <svg className="w-8 h-8 text-green-600 dark:text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+              </svg>
+            </div>
+            <h1 className="text-3xl font-bold mb-2">Account Created Successfully!</h1>
+            <p className="text-muted-foreground">Please verify your email to get started</p>
+          </div>
+
+          <UpgradeBanner
+            variant="success"
+            description={
+              <div className="space-y-3">
+                <p className="text-base">
+                  We've sent a confirmation email to <strong>{email}</strong>
+                </p>
+                <p className="text-sm">
+                  Please check your inbox and click the verification link to activate your account.
+                </p>
+                <div className="pt-2">
+                  <a 
+                    href="https://mail.google.com" 
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 text-sm font-semibold text-green-700 dark:text-green-300 hover:underline"
+                  >
+                    <Mail className="w-4 h-4" />
+                    Open Gmail
+                  </a>
+                </div>
+              </div>
+            }
+          />
+
+          <div className="mt-8 p-6 rounded-lg border border-yellow-200 dark:border-yellow-900 bg-yellow-50 dark:bg-yellow-950/20">
+            <p className="text-sm font-medium text-yellow-900 dark:text-yellow-100 mb-3">
+              📧 Didn't receive the email?
+            </p>
+            <ul className="text-sm text-yellow-800 dark:text-yellow-200 space-y-2 ml-4 list-disc">
+              <li>Check your spam or junk folder</li>
+              <li>Make sure you entered the correct email address</li>
+              <li>Wait a few minutes and refresh your inbox</li>
+              <li>The link will expire in 24 hours</li>
+            </ul>
+          </div>
+
+          <div className="mt-8 text-center">
+            <Button
+              variant="outline"
+              onClick={() => {
+                setNeedsConfirmation(false);
+                setEmail("");
+                setPassword("");
+                setFullName("");
+                setError("");
+              }}
+              className="w-full max-w-xs"
+            >
+              Back to Registration
+            </Button>
+          </div>
+
+          <div className="text-center text-sm text-muted-foreground mt-6">
+            Already verified?{" "}
+            <Link href="/auth/login" className="text-foreground font-medium hover:underline">
+              Sign in
+            </Link>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen grid lg:grid-cols-2">
-      {/* Left Content Section with Animated Characters */}
+      {/* Left Content Section with Animated Characters - Same as login */}
       <div className="relative hidden lg:flex flex-col justify-between bg-gradient-to-br from-primary/90 via-primary to-primary/80 p-12 text-primary-foreground">
         <div className="relative z-20">
           <div className="flex items-center gap-2 text-lg font-semibold">
@@ -306,7 +377,6 @@ export default function AnimatedLoginPage() {
         </div>
 
         <div className="relative z-20 flex items-end justify-center h-[500px]">
-          {/* Cartoon Characters */}
           <div className="relative" style={{ width: '550px', height: '400px' }}>
             {/* Purple Character */}
             <div 
@@ -488,7 +558,7 @@ export default function AnimatedLoginPage() {
         <div className="absolute bottom-1/4 left-1/4 size-96 bg-primary-foreground/5 rounded-full blur-3xl" />
       </div>
 
-      {/* Right Login Section */}
+      {/* Right Register Section */}
       <div className="flex items-center justify-center p-8 bg-background">
         <div className="w-full max-w-[420px]">
           <div className="lg:hidden flex items-center justify-center gap-2 text-lg font-semibold mb-12">
@@ -499,11 +569,27 @@ export default function AnimatedLoginPage() {
           </div>
 
           <div className="text-center mb-10">
-            <h1 className="text-3xl font-bold tracking-tight mb-2">Welcome back!</h1>
-            <p className="text-muted-foreground text-sm">Please enter your details to sign in</p>
+            <h1 className="text-3xl font-bold tracking-tight mb-2">Create an account</h1>
+            <p className="text-muted-foreground text-sm">Enter your information to get started</p>
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-5">
+            <div className="space-y-2">
+              <Label htmlFor="fullName" className="text-sm font-medium">Full Name</Label>
+              <Input
+                id="fullName"
+                type="text"
+                placeholder="John Doe"
+                value={fullName}
+                autoComplete="name"
+                onChange={(e) => setFullName(e.target.value)}
+                onFocus={() => setIsTyping(true)}
+                onBlur={() => setIsTyping(false)}
+                required
+                className="h-12 bg-background border-border/60 focus:border-primary"
+              />
+            </div>
+
             <div className="space-y-2">
               <Label htmlFor="email" className="text-sm font-medium">Email</Label>
               <Input
@@ -526,7 +612,7 @@ export default function AnimatedLoginPage() {
                 <Input
                   id="password"
                   type={showPassword ? "text" : "password"}
-                  placeholder="••••••••"
+                  placeholder="At least 8 characters"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   required
@@ -540,18 +626,7 @@ export default function AnimatedLoginPage() {
                   {showPassword ? <EyeOff className="size-5" /> : <Eye className="size-5" />}
                 </button>
               </div>
-            </div>
-
-            <div className="flex items-center justify-between">
-              <div className="flex items-center space-x-2">
-                <Checkbox id="remember" />
-                <Label htmlFor="remember" className="text-sm font-normal cursor-pointer">
-                  Remember for 30 days
-                </Label>
-              </div>
-              <Link href="/auth/reset-password" className="text-sm text-primary hover:underline font-medium">
-                Forgot password?
-              </Link>
+              <p className="text-xs text-muted-foreground">Must be at least 8 characters long</p>
             </div>
 
             {error && (
@@ -566,7 +641,7 @@ export default function AnimatedLoginPage() {
               size="lg" 
               disabled={isLoading}
             >
-              {isLoading ? "Signing in..." : "Sign in"}
+              {isLoading ? "Creating account..." : "Create Account"}
             </Button>
           </form>
 
@@ -596,14 +671,18 @@ export default function AnimatedLoginPage() {
                   fill="#EA4335"
                 />
               </svg>
-              Sign in with Google
+              Sign up with Google
             </Button>
           </div>
 
-          <div className="text-center text-sm text-muted-foreground mt-8">
-            Don't have an account?{" "}
-            <Link href="/auth/register" className="text-foreground font-medium hover:underline">
-              Sign up
+          <p className="text-center text-xs text-muted-foreground mt-6">
+            By creating an account, you agree to our Terms of Service and Privacy Policy.
+          </p>
+
+          <div className="text-center text-sm text-muted-foreground mt-6">
+            Already have an account?{" "}
+            <Link href="/auth/login" className="text-foreground font-medium hover:underline">
+              Sign in
             </Link>
           </div>
         </div>

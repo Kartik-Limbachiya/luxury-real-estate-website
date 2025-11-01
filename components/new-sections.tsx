@@ -1,5 +1,9 @@
 "use client"
 
+import { TimelineContent } from "@/components/ui/timeline-animation";
+import { VerticalCutReveal } from "@/components/ui/vertical-cut-reveal";
+import { ArrowRight, Facebook, Instagram, Linkedin, Youtube } from "lucide-react";
+import { useRef } from "react";
 import { useState } from "react"
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
@@ -53,10 +57,18 @@ export function AboutUsSection() {
                   <p className="text-muted-foreground">6+ Years of Excellence</p>
                 </div>
               </div>
-              <p className="text-muted-foreground leading-relaxed">
-                Founded with a vision to serve Jain communities across India, 800 SEWAS City has grown from a small 
+              <p className="text-muted-foreground leading-relaxed mb-3">
+                Founded with a vision to serve Jain communities across India, SEWAS Nagri has grown from a small 
                 initiative to a pan-India infrastructure development company serving 60,000+ families across 800 cities.
               </p>
+              <div className="bg-amber-50 border border-amber-200 rounded-lg p-3 mt-3">
+                <p className="text-xs text-amber-900 font-bold">
+                  "कोई भी जैन बिना घर और रोजगार नहीं रहना चाहिए" - अश्विन शाह
+                </p>
+                <p className="text-xs text-amber-700 italic mt-1">
+                  "No Jain should live without home and livelihood" - Ashwin Shah
+                </p>
+              </div>
             </div>
 
             <div className="glass-card rounded-xl p-6">

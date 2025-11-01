@@ -93,6 +93,34 @@ export function EmploymentSection() {
                   </div>
                 </div>
               </div>
+
+              {/* Employment Categories */}
+              <div className="mt-6">
+                <h4 className="font-bold text-amber-900 mb-3">Available Opportunities:</h4>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                  {[
+                    { cat: "Digital Work", jobs: ["Content Writing", "Editing & Proofreading", "Graphic Design", "Video Editing", "Social Media Management"] },
+                    { cat: "E-commerce", jobs: ["Online Selling", "Marketplace Management", "Product Photography"] },
+                    { cat: "Teaching", jobs: ["Online Teaching", "Tuition Classes", "Language Training"] },
+                    { cat: "Professional", jobs: ["Accountant", "Data Entry", "Tally Operator", "Legal Advisor"] },
+                    { cat: "Creative", jobs: ["Art Classes", "Painting", "Music Teaching", "Dance Classes"] },
+                    { cat: "Services", jobs: ["Marriage Bureau", "Event Management", "Tours & Travel"] },
+                    { cat: "Training", jobs: ["Computer Training", "Tailoring", "Handicrafts", "Skilled Trades"] },
+                    { cat: "Spiritual", jobs: ["Sanskrit Teaching", "Jyotish Classes", "Vastu Consulting"] },
+                  ].map((category, idx) => (
+                    <div key={idx} className="bg-white border border-amber-200 rounded-lg p-3">
+                      <p className="font-bold text-sm text-amber-900 mb-2">{category.cat}:</p>
+                      <div className="flex flex-wrap gap-1">
+                        {category.jobs.map((job, jdx) => (
+                          <span key={jdx} className="text-xs bg-amber-100 text-amber-800 px-2 py-1 rounded">
+                            {job}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
             </CardContent>
           </Card>
 
