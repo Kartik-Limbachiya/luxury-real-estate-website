@@ -12,7 +12,7 @@ import ComingSoonBanner from "@/components/coming-soon-banner"
 import { InquiryForm } from "@/components/inquiry-form-working"
 import { EmploymentSection } from "@/components/employment-section-working"
 import { WarningSection } from "@/components/warning-section"
-import { AboutUsSection as NewAboutSection } from "@/components/new-sections"
+import { NewAboutSection } from "@/components/new-sections"
 import { 
   ContactUsSection,
   VisionsSection,
