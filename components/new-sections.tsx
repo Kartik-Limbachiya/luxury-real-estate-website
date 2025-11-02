@@ -329,27 +329,30 @@ export function NewAboutSection() {
                 animationNum={16}
                 timelineRef={heroRef}
                 customVariants={revealVariants}
-                className="mb-6 text-left"
+                className="mb-6 text-left bg-gradient-to-br from-gray-50 to-white rounded-lg p-4 border border-gray-100"
               >
-                <h3 className="text-gray-900 font-semibold mb-3 text-sm">Our Core Values:</h3>
-                <ul className="space-y-2 text-gray-600 text-xs">
-                  <li className="flex items-start gap-2">
-                    <span className="text-orange-500 mt-1">›</span>
-                    <span>Sustainable Development</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-orange-500 mt-1">›</span>
-                    <span>Community First Approach</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-orange-500 mt-1">›</span>
-                    <span>Quality & Trust</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-orange-500 mt-1">›</span>
-                    <span>Innovation & Excellence</span>
-                  </li>
-                </ul>
+                <h3 className="text-gray-900 font-bold mb-4 text-sm flex items-center gap-2">
+                  <span className="w-1 h-4 bg-orange-500 rounded"></span>
+                  Our Core Values
+                </h3>
+                <div className="grid grid-cols-2 gap-3 text-xs">
+                  <div className="flex items-center gap-2 p-2 bg-white rounded-md border border-gray-100 hover:border-orange-200 transition-colors">
+                    <div className="w-1.5 h-1.5 bg-orange-500 rounded-full"></div>
+                    <span className="text-gray-700">Sustainable Development</span>
+                  </div>
+                  <div className="flex items-center gap-2 p-2 bg-white rounded-md border border-gray-100 hover:border-orange-200 transition-colors">
+                    <div className="w-1.5 h-1.5 bg-orange-500 rounded-full"></div>
+                    <span className="text-gray-700">Community First</span>
+                  </div>
+                  <div className="flex items-center gap-2 p-2 bg-white rounded-md border border-gray-100 hover:border-orange-200 transition-colors">
+                    <div className="w-1.5 h-1.5 bg-orange-500 rounded-full"></div>
+                    <span className="text-gray-700">Quality & Trust</span>
+                  </div>
+                  <div className="flex items-center gap-2 p-2 bg-white rounded-md border border-gray-100 hover:border-orange-200 transition-colors">
+                    <div className="w-1.5 h-1.5 bg-orange-500 rounded-full"></div>
+                    <span className="text-gray-700">Innovation</span>
+                  </div>
+                </div>
               </TimelineContent>
 
               <TimelineContent
@@ -542,7 +545,7 @@ export function AboutUsSection() {
   )
 }
 
-// REST OF YOUR SECTIONS (ContactUs, Visions, Project, Services, Gallery)
+// CONTACT US SECTION
 export function ContactUsSection() {
   return (
     <section id="contact-us" className="py-8 md:py-16 lg:py-24 bg-gradient-to-b from-muted/30 to-background mobile-section">
@@ -640,6 +643,7 @@ export function ContactUsSection() {
   )
 }
 
+// VISIONS SECTION
 export function VisionsSection() {
   return (
     <section id="visions" className="py-16 md:py-24 bg-gradient-to-b from-background to-muted/30">
@@ -696,6 +700,7 @@ export function VisionsSection() {
   )
 }
 
+// PROJECT SECTION
 export function ProjectSection() {
   return (
     <section id="project" className="py-16 md:py-24 bg-gradient-to-b from-muted/30 to-background">
@@ -750,6 +755,7 @@ export function ProjectSection() {
   )
 }
 
+// SERVICES SECTION
 export function ServicesSection() {
   const [expandedCard, setExpandedCard] = useState<string | null>(null)
 
@@ -874,6 +880,7 @@ export function ServicesSection() {
   )
 }
 
+// GALLERY SECTION
 export function GallerySection() {
   return (
     <section id="gallery" className="py-16 md:py-24 bg-gradient-to-b from-muted/30 to-background">
