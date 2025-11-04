@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react"
 import { Badge } from "@/components/ui/badge"
 import { Clock } from "lucide-react"
-
+import { motion } from "framer-motion"
 export function ComingSoonBanner() {
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
 
@@ -84,9 +84,14 @@ export function ComingSoonBanner() {
         </Badge>
       </div>
       <div className="absolute bottom-6 sm:bottom-8 left-4 sm:left-8 z-10 text-white">
-        <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-5xl font-black mb-1 sm:mb-2 drop-shadow-lg">
-          SEWAS Nagri - 800 Cities
-        </h1>
+      <motion.h1 
+  initial={{ opacity: 0, y: 20 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ duration: 0.8 }}
+  className="text-6xl font-bold text-white"
+>
+  SEWAS Nagri - 800 Cities
+</motion.h1>
         <p className="text-sm sm:text-base md:text-lg lg:text-xl opacity-90 drop-shadow-md mb-1">
           A Project by SEWAS Universal Federation
         </p>
