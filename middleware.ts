@@ -76,7 +76,7 @@ export async function middleware(request: NextRequest) {
 
   // Redirect to dashboard if accessing auth pages while authenticated
   if (isAuthPath && user) {
-    return NextResponse.redirect(new URL('/dashboard', request.url))
+    return NextResponse.redirect(new URL('/', request.url))
   }
 
   return response
