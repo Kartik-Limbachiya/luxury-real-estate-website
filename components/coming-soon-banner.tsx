@@ -90,7 +90,7 @@ export function ComingSoonBanner() {
   transition={{ duration: 0.8 }}
   className="text-6xl font-bold text-white"
 >
-  SEWAS Nagri - 800 Cities
+  800 SEWAS Nagri
 </motion.h1>
         <p className="text-sm sm:text-base md:text-lg lg:text-xl opacity-90 drop-shadow-md mb-1">
           A Project by SEWAS Universal Federation

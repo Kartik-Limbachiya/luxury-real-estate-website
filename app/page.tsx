@@ -36,8 +36,9 @@ export default function HomePage() {
   }
 
   return (
-    <ProtectedRoute>
-      <SewasHome />
-    </ProtectedRoute>
+    // <ProtectedRoute>
+    //   <SewasHome />
+    // </ProtectedRoute>
+    <SewasHome />
   )
 }

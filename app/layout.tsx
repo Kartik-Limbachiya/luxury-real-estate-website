@@ -26,7 +26,7 @@ const sourceSans = Source_Sans_3({
 export const metadata: Metadata = {
   title: "SEWAS Nagri - A Project by SEWAS Universal Federation | THE JAINISM OF UNIVERSE",
   description:
-    "SEWAS Nagri - 800 Cities • 29 States • 7 Union Territories. A Project by SEWAS Universal Federation. THE JAINISM OF UNIVERSE - Complete housing solutions for Jain communities with 0% down payment and 100% bank loan.",
+    "SEWAS Nagri - 800 SEWAS Nagri • 29 States • 7 Union Territories. A Project by SEWAS Universal Federation. THE JAINISM OF UNIVERSE - Complete housing solutions for Jain communities with 0% down payment and 100% bank loan.",
   generator: "v0.app",
   keywords: [
     "SEWAS Nagri",

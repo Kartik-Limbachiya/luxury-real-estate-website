@@ -199,14 +199,12 @@ function PremiumHeroSection() {
           </div>
         </>
       )}
-
-      {/* Header now contains the logo; removing duplicate corner logo for cleaner hero */}
     </section>
   )
 }
 
 function StatisticsSection() {
-  const [counters, setCounters] = useState({ years: 0, families: 0, universities: 0, legacy: 0 })
+  const [counters, setCounters] = useState({ years: 0, projects: 0, families: 0 })
   const [isVisible, setIsVisible] = useState(false)
   const sectionRef = useRef<HTMLDivElement>(null)
 
@@ -225,10 +223,9 @@ function StatisticsSection() {
             step++
             const progress = step / steps
             setCounters({
-              legacy: Math.floor(6 * progress),
-              years: Math.floor(6 * progress),
-              families: Math.floor(60000 * progress),
-              universities: Math.floor(65 * progress),
+              years: Math.floor(5 * progress),
+              projects: Math.floor(800 * progress),
+              families: Math.floor(80 * progress),
             })
 
             if (step >= steps) clearInterval(timer)
@@ -244,10 +241,10 @@ function StatisticsSection() {
 
   return (
     <section ref={sectionRef} className="py-8 md:py-16 bg-gradient-to-r from-yellow-600 to-yellow-700">
-  <div className="w-full px-3 md:px-4">
+      <div className="w-full px-3 md:px-4">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 md:gap-6 lg:gap-8 text-center">
           <div className="animate-on-scroll luxury-fade-up" style={{ animationDelay: "0.1s" }}>
-            <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-black mb-1 md:mb-2">{counters.legacy}</div>
+            <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-black mb-1 md:mb-2">{counters.years}</div>
             <div className="text-xs sm:text-sm md:text-base font-medium text-black bg-white/20 rounded-lg px-1 sm:px-2 py-1">
               YEARS LEGACY OF QUALITY & TRUST
             </div>
@@ -259,17 +256,17 @@ function StatisticsSection() {
             </div>
           </div>
           <div className="animate-on-scroll luxury-fade-up" style={{ animationDelay: "0.3s" }}>
-            <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-black mb-1 md:mb-2">{counters.universities}+</div>
+            <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-black mb-1 md:mb-2">{counters.projects}+</div>
             <div className="text-xs sm:text-sm md:text-base font-medium text-black bg-white/20 rounded-lg px-1 sm:px-2 py-1">
               LIVE+ PROJECTS ACROSS INDIA
             </div>
           </div>
           <div className="animate-on-scroll luxury-fade-up" style={{ animationDelay: "0.4s" }}>
             <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-black mb-1 md:mb-2">
-              {Math.floor(counters.families / 1000)}K+
+              {counters.families} Lakhs+
             </div>
             <div className="text-xs sm:text-sm md:text-base font-medium text-black bg-white/20 rounded-lg px-1 sm:px-2 py-1">
-              SERVING HAPPY FAMILIES ACROSS INDIA
+              SERVING HAPPY SEWAS FAMILIES
             </div>
           </div>
         </div>
@@ -281,7 +278,7 @@ function StatisticsSection() {
                 <Users className="h-10 w-10 text-white" />
               </div>
               <div>
-                <h3 className="text-xl font-bold text-black">60,000+ Families Served</h3>
+                <h3 className="text-xl font-bold text-black">8 to 80 Lakhs SEWAS Families</h3>
                 <p className="text-black/80">Across 29 States & 7 Union Territories</p>
               </div>
             </div>
@@ -463,8 +460,6 @@ export function SewasHome() {
         <ImportantDatesSection />
       </section>
 
-      {/* New Navigation Sections */}
-      {/* With: */}
       <NewAboutSection />
       
       <ContactUsSection />
@@ -481,7 +476,6 @@ export function SewasHome() {
       
       <GallerySection />
 
-      {/* Legacy Sections */}
       <section id="vision" className="image-reveal">
         <VisionSection />
       </section>
@@ -492,4 +486,3 @@ export function SewasHome() {
     </main>
   )
 }
-
