@@ -18,7 +18,6 @@ export function ComingSoonBanner() {
     "/temp57.jpg",
     "/temp58.jpg",
     "/temp59.jpg",
-    "/temp60.jpg",
     "/temp61.jpg",
     "/temp62.jpg",
     "/temp63.jpg",
@@ -49,6 +48,9 @@ export function ComingSoonBanner() {
     "/temp88.jpg",
     "/temp89.jpg",
     "/temp90.jpg",
+    "/temp91.jpg",
+    "/temp92.jpg",
+    "/temp93.jpg",
   ]
 
   useEffect(() => {
