@@ -2,8 +2,9 @@
 
 import { TimelineContent } from "@/components/ui/timeline-animation";
 import { VerticalCutReveal } from "@/components/ui/vertical-cut-reveal";
-import { ArrowRight, Facebook, Instagram, Linkedin, Youtube, ChevronRight } from "lucide-react";
-import { useRef, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import { ArrowRight,ArrowLeft, Facebook, Instagram, Linkedin, Youtube, ChevronRight } from "lucide-react";
+import { useRef, useState, useEffect } from "react";
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { 
@@ -880,8 +881,125 @@ export function ServicesSection() {
   )
 }
 
-// GALLERY SECTION
+
+// Animated Image Stack Component for Gallery
+const AnimatedImageStack = ({ images, currentIndex, onImageClick }: { 
+  images: string[], 
+  currentIndex: number,
+  onImageClick: (index: number) => void 
+}) => {
+  const randomRotate = () => `${Math.floor(Math.random() * 16) - 8}deg`;
+  
+  // Show 5 images in the stack at a time
+  const visibleImages = images.slice(currentIndex, currentIndex + 5);
+  if (visibleImages.length < 5) {
+    visibleImages.push(...images.slice(0, 5 - visibleImages.length));
+  }
+
+  return (
+    <div className="relative h-[600px] w-full max-w-md mx-auto">
+      <AnimatePresence>
+        {visibleImages.map((image, idx) => {
+          const actualIndex = (currentIndex + idx) % images.length;
+          const isActive = idx === 0;
+          
+          return (
+            <motion.div
+              key={`${actualIndex}-${currentIndex}`}
+              initial={{ opacity: 0, scale: 0.9, y: 50, rotate: randomRotate() }}
+              animate={{
+                opacity: isActive ? 1 : 0.7 - (idx * 0.15),
+                scale: isActive ? 1 : 0.9 - (idx * 0.05),
+                y: isActive ? 0 : 10 + (idx * 8),
+                zIndex: 5 - idx,
+                rotate: isActive ? '0deg' : randomRotate(),
+              }}
+              exit={{ opacity: 0, scale: 0.9, y: -50 }}
+              transition={{ duration: 0.5, ease: "easeInOut" }}
+              className="absolute inset-0 origin-bottom cursor-pointer"
+              onClick={() => onImageClick(actualIndex)}
+            >
+              <img
+                src={image}
+                alt={`Gallery ${actualIndex + 1}`}
+                className="h-full w-full rounded-3xl object-cover shadow-2xl"
+              />
+            </motion.div>
+          );
+        })}
+      </AnimatePresence>
+    </div>
+  );
+};
+
 export function GallerySection() {
+  const [currentImageIndex, setCurrentImageIndex] = useState(0)
+
+  const projectImages = [
+    "/temp50.jpg",
+    "/temp51.jpg",
+    "/temp52.jpg",
+    "/temp53.jpg",
+    "/temp54.jpg",
+    "/temp55.jpg",
+    "/temp56.jpg",
+    "/temp57.jpg",
+    "/temp58.jpg",
+    "/temp59.jpg",
+    "/temp61.jpg",
+    "/temp62.jpg",
+    "/temp63.jpg",
+    "/temp64.jpg",
+    "/temp65.jpg",
+    "/temp66.jpg",
+    "/temp67.jpg",
+    "/temp68.jpg",
+    "/temp69.jpg",
+    "/temp70.jpg",
+    "/temp71.jpg",
+    "/temp72.jpg",
+    "/temp73.jpg",
+    "/temp74.jpg",
+    "/temp75.jpg",
+    "/temp76.jpg",
+    "/temp77.jpg",
+    "/temp78.jpg",
+    "/temp79.jpg",
+    "/temp80.jpg",
+    "/temp81.jpg",
+    "/temp82.jpg",
+    "/temp83.jpg",
+    "/temp84.jpg",
+    "/temp85.jpg",
+    "/temp86.jpg",
+    "/temp87.jpg",
+    "/temp88.jpg",
+    "/temp89.jpg",
+    "/temp90.jpg",
+    "/temp91.jpg",
+    "/temp92.jpg",
+    "/temp93.jpg",
+  ]
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImageIndex((prev) => (prev + 1) % projectImages.length)
+    }, 5000)
+    return () => clearInterval(interval)
+  }, [projectImages.length])
+
+  const handlePrevious = () => {
+    setCurrentImageIndex((prev) => (prev === 0 ? projectImages.length - 1 : prev - 1))
+  }
+
+  const handleNext = () => {
+    setCurrentImageIndex((prev) => (prev + 1) % projectImages.length)
+  }
+
+  const handleImageClick = (index: number) => {
+    setCurrentImageIndex(index)
+  }
+
   return (
     <section id="gallery" className="py-16 md:py-24 bg-gradient-to-b from-muted/30 to-background">
       <div className="max-w-7xl mx-auto px-4 md:px-8">
@@ -892,8 +1010,8 @@ export function GallerySection() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          {/* Photo Gallery */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          {/* Photo Gallery with Animated Stack */}
           <div id="gallery-photo" className="space-y-6">
             <div className="flex items-center gap-4 mb-6">
               <div className="w-16 h-16 bg-gradient-to-br from-amber-500 to-orange-600 rounded-lg flex items-center justify-center">
@@ -905,31 +1023,40 @@ export function GallerySection() {
               </div>
             </div>
             
-            <div className="grid grid-cols-2 gap-4">
-              {[
-                "/luxury-mumbai-apartment-building.jpg",
-                "/luxury-pune-residential-complex.jpg",
-                "/modern-architectural-design.png",
-                "/luxury-construction-quality.jpg"
-              ].map((image, index) => (
-                <div key={index} className="aspect-square rounded-lg overflow-hidden">
-                  <Image 
-                    src={image} 
-                    alt={`Gallery photo ${index + 1}`} 
-                    width={300} 
-                    height={300}
-                    className="w-full h-full object-cover hover:scale-105 transition-transform"
-                  />
-                </div>
-              ))}
+            {/* Animated Image Stack */}
+            <AnimatedImageStack 
+              images={projectImages} 
+              currentIndex={currentImageIndex}
+              onImageClick={handleImageClick}
+            />
+
+            {/* Image Counter and Controls */}
+            <div className="text-center space-y-4">
+              <div className="text-sm text-muted-foreground">
+                {currentImageIndex + 1} / {projectImages.length}
+              </div>
+              
+              <div className="flex gap-4 justify-center">
+                <button
+                  onClick={handlePrevious}
+                  className="group flex h-12 w-12 items-center justify-center rounded-full bg-slate-100 transition-colors hover:bg-slate-200 focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2"
+                  aria-label="Previous image"
+                >
+                  <ArrowLeft className="h-5 w-5 text-slate-800 transition-transform duration-300 group-hover:-translate-x-1" />
+                </button>
+                <button
+                  onClick={handleNext}
+                  className="group flex h-12 w-12 items-center justify-center rounded-full bg-slate-100 transition-colors hover:bg-slate-200 focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2"
+                  aria-label="Next image"
+                >
+                  <ArrowRight className="h-5 w-5 text-slate-800 transition-transform duration-300 group-hover:translate-x-1" />
+                </button>
+              </div>
             </div>
-            <Button className="w-full" variant="outline">
-              View All Photos
-            </Button>
           </div>
 
           {/* Video Gallery */}
-          <div id="gallery-video" className="space-y-6">
+          <div id="gallery-video" className="space-y-6 flex flex-col">
             <div className="flex items-center gap-4 mb-6">
               <div className="w-16 h-16 bg-gradient-to-br from-orange-500 to-amber-600 rounded-lg flex items-center justify-center">
                 <Video className="h-8 w-8 text-white" />
@@ -940,21 +1067,37 @@ export function GallerySection() {
               </div>
             </div>
             
-            <div className="space-y-4">
-              <div className="aspect-video rounded-lg overflow-hidden bg-gray-100 flex items-center justify-center">
-                <div className="text-center">
-                  <Video className="h-16 w-16 text-gray-400 mx-auto mb-4" />
-                  <p className="text-gray-600">Project Walkthrough Video</p>
+            <div className="space-y-6 flex-1">
+              {/* Project Walkthrough Video */}
+              <div className="space-y-2">
+                <h4 className="font-semibold text-lg">Project Walkthrough Video</h4>
+                <div className="relative rounded-lg overflow-hidden shadow-xl" style={{paddingBottom: '56.25%', position: 'relative', height: 0}}>
+                  <iframe 
+                    src="https://player.vimeo.com/video/1144089368?badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1&muted=1&loop=1" 
+                    frameBorder="0" 
+                    allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" 
+                    style={{position: 'absolute', top: 0, left: 0, width: '100%', height: '100%'}}
+                    title="Project Walkthrough Video"
+                  />
                 </div>
               </div>
-              <div className="aspect-video rounded-lg overflow-hidden bg-gray-100 flex items-center justify-center">
-                <div className="text-center">
-                  <Video className="h-16 w-16 text-gray-400 mx-auto mb-4" />
-                  <p className="text-gray-600">Community Testimonials</p>
+
+              {/* Community Testimonials Video */}
+              <div className="space-y-2">
+                <h4 className="font-semibold text-lg">Community Testimonials</h4>
+                <div className="relative rounded-lg overflow-hidden shadow-xl" style={{paddingBottom: '56.25%', position: 'relative', height: 0}}>
+                  <iframe 
+                    src="https://player.vimeo.com/video/1144089377?badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1&muted=1&loop=1" 
+                    frameBorder="0" 
+                    allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" 
+                    style={{position: 'absolute', top: 0, left: 0, width: '100%', height: '100%'}}
+                    title="Community Testimonials"
+                  />
                 </div>
               </div>
             </div>
-            <Button className="w-full" variant="outline">
+            
+            <Button className="w-full flex-shrink-0" variant="outline">
               View All Videos
             </Button>
           </div>
