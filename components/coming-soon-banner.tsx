@@ -16,16 +16,18 @@ function SewasTextInteractive() {
       char: "S",
       rest: "un",
       full: "Sun",
-      gradient: "from-yellow-400 via-orange-500 to-red-500",
+      // UPDATED: Sun Surface / Fire Texture for better visibility in text
+      image: "https://images.unsplash.com/photo-1470252649378-9c29740c9fa8?q=80&w=1000&auto=format&fit=crop", 
       description: "Radiance",
-      confettiColor: "#FFD700", // Gold
+      confettiColor: "#FF4500", // Red-Orange
       shape: "circle",
     },
     {
       char: "E",
       rest: "arth",
       full: "Earth",
-      gradient: "from-green-400 via-emerald-600 to-teal-700",
+      // UPDATED: Top-down Forest/Greenery Texture
+      image: "https://images.unsplash.com/photo-1502082553048-f009c37129b9?q=80&w=1000&auto=format&fit=crop", 
       description: "Foundation",
       confettiColor: "#228B22", // Forest Green
       shape: "square",
@@ -34,7 +36,8 @@ function SewasTextInteractive() {
       char: "W",
       rest: "ater",
       full: "Water",
-      gradient: "from-blue-400 via-cyan-500 to-blue-700",
+      // KEPT SAME: Ocean Water
+      image: "https://images.unsplash.com/photo-1505118380757-91f5f5632de0?q=80&w=1000&auto=format&fit=crop", 
       description: "Purity",
       confettiColor: "#00BFFF", // Deep Sky Blue
       shape: "circle",
@@ -43,16 +46,18 @@ function SewasTextInteractive() {
       char: "A",
       rest: "ir",
       full: "Air",
-      gradient: "from-slate-200 via-gray-400 to-slate-600",
+      // KEPT SAME: Clouds/Air
+      image: "https://images.unsplash.com/photo-1534088568595-a066f410bcda?q=80&w=1000&auto=format&fit=crop", 
       description: "Freedom",
-      confettiColor: "#A9A9A9", // Dark Gray
+      confettiColor: "#A9A9A9", // Silver/Gray
       shape: "star",
     },
     {
       char: "S",
       rest: "ky",
       full: "Sky",
-      gradient: "from-sky-300 via-blue-400 to-indigo-600",
+      // UPDATED: Deep Blue Sky (Distinct from Air's clouds)
+      image: "https://images.unsplash.com/photo-1464802686167-b939a6910659?q=80&w=1000&auto=format&fit=crop", 
       description: "Limitless",
       confettiColor: "#87CEEB", // Sky Blue
       shape: "circle",
@@ -63,19 +68,19 @@ function SewasTextInteractive() {
     setHoveredIndex(index)
     // Fire confetti for the specific letter
     confettiRef.current?.fire({
-      particleCount: 20,
-      spread: 60,
-      origin: { y: 0.6 }, // Approximate vertical center of text
+      particleCount: 30,
+      spread: 70,
+      origin: { y: 0.55 }, 
       colors: [letters[index].confettiColor],
       shapes: [letters[index].shape as "circle" | "square" | "star"],
       scalar: 1.2,
       drift: 0,
-      ticks: 100,
+      ticks: 150,
     })
   }
 
   return (
-    <div className="relative flex flex-col items-center justify-center py-8">
+    <div className="relative flex flex-col items-center justify-center py-2 md:py-8">
       {/* Invisible Confetti Canvas Controller */}
       <div className="absolute inset-0 pointer-events-none">
         <Confetti
@@ -85,7 +90,7 @@ function SewasTextInteractive() {
         />
       </div>
 
-      <div className="flex flex-wrap justify-center items-baseline gap-1 sm:gap-2 md:gap-4 select-none z-10">
+      <div className="flex flex-wrap justify-center items-baseline gap-0 md:gap-2 select-none z-10">
         {letters.map((item, index) => (
           <motion.div
             key={index}
@@ -97,15 +102,22 @@ function SewasTextInteractive() {
             transition={{ delay: index * 0.1, duration: 0.5 }}
           >
             <div className="flex items-baseline">
-              {/* Main Letter - Always Visible */}
+              {/* Main Letter - Textured by default */}
               <motion.span
-                className={`text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-black tracking-tighter bg-gradient-to-b ${item.gradient} bg-clip-text text-transparent`}
+                className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-black tracking-tighter text-transparent bg-clip-text bg-cover bg-center transition-all duration-300"
+                style={{ 
+                  backgroundImage: `url('${item.image}')`,
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                  // Ensure texture is visible even without hover
+                  filter: "brightness(1.1) contrast(1.1)",
+                }}
                 animate={{
                   scale: hoveredIndex === index ? 1.15 : 1,
-                  filter: hoveredIndex === index ? "brightness(1.2)" : "brightness(1)",
+                  y: hoveredIndex === index ? -5 : 0,
                   textShadow:
                     hoveredIndex === index
-                      ? "0px 0px 30px rgba(255,255,255,0.4)"
+                      ? "0px 10px 30px rgba(255,255,255,0.3)"
                       : "0px 0px 0px rgba(0,0,0,0)",
                 }}
                 transition={{ type: "spring", stiffness: 300, damping: 15 }}
@@ -113,16 +125,21 @@ function SewasTextInteractive() {
                 {item.char}
               </motion.span>
 
-              {/* Expanding Text - Only Visible on Hover */}
+              {/* Expanding Text - Matches Texture */}
               <motion.span
-                className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r ${item.gradient} bg-clip-text text-transparent overflow-hidden whitespace-nowrap`}
+                className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-transparent bg-clip-text bg-cover bg-center overflow-hidden whitespace-nowrap"
+                style={{ 
+                  backgroundImage: `url('${item.image}')`,
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                }}
                 initial={{ width: 0, opacity: 0 }}
                 animate={{
                   width: hoveredIndex === index ? "auto" : 0,
                   opacity: hoveredIndex === index ? 1 : 0,
-                  marginLeft: hoveredIndex === index ? 2 : 0,
+                  marginLeft: hoveredIndex === index ? 4 : 0,
                 }}
-                transition={{ duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }} // Smooth easeOut
+                transition={{ duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
               >
                 {item.rest}
               </motion.span>
@@ -135,7 +152,7 @@ function SewasTextInteractive() {
                   initial={{ opacity: 0, y: 5 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: 5 }}
-                  className="absolute -bottom-8 md:-bottom-12 text-xs sm:text-sm font-medium tracking-widest text-white/80 uppercase whitespace-nowrap"
+                  className="absolute -bottom-8 md:-bottom-10 text-xs sm:text-sm font-bold tracking-widest text-white uppercase whitespace-nowrap drop-shadow-md"
                 >
                   {item.description}
                 </motion.div>
@@ -239,14 +256,14 @@ export function ComingSoonBanner() {
 
           {/* Interactive SEWAS Text Component */}
           <div className="flex flex-col md:flex-row items-center justify-center gap-2 md:gap-4 lg:gap-6">
-            <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-serif font-medium text-white tracking-tight leading-none">
+            <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-serif font-medium text-white tracking-tight leading-none drop-shadow-xl">
               800
             </h1>
             
             {/* The Magic Hover Component */}
             <SewasTextInteractive />
             
-            <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-serif font-medium tracking-tight leading-none">
+            <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-serif font-medium tracking-tight leading-none drop-shadow-xl">
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-yellow-400 to-amber-600">
                 Nagri
               </span>
@@ -254,7 +271,7 @@ export function ComingSoonBanner() {
           </div>
 
           {/* Subtext */}
-          <p className="text-base sm:text-lg md:text-xl text-gray-300 font-light max-w-2xl mx-auto leading-relaxed mt-4">
+          <p className="text-base sm:text-lg md:text-xl text-gray-300 font-light max-w-2xl mx-auto leading-relaxed mt-4 drop-shadow-md">
             Building <strong>1,024 Homes per City</strong> across India.
             <span className="block mt-2 text-gray-400 text-sm sm:text-base">
               A Project by SEWAS Universal Federation
@@ -323,4 +340,5 @@ export function ComingSoonBanner() {
   )
 }
 
+// Ensure explicit export to fix "Element type is invalid" errors
 export default ComingSoonBanner;
