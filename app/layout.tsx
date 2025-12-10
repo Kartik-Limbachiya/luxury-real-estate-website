@@ -54,8 +54,8 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="hi" className={`${playfairDisplay.variable} ${sourceSans.variable} w-full min-h-screen bg-background`}>
-      <body className="font-sans antialiased w-full min-h-screen bg-background">
+    <html lang="hi" className={`${playfairDisplay.variable} ${sourceSans.variable} w-full min-h-screen bg-background overflow-x-hidden`}>
+      <body className="font-sans antialiased w-full min-h-screen bg-background overflow-x-hidden">
         <LanguageProvider>
           <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false}>
             <AuthProvider>

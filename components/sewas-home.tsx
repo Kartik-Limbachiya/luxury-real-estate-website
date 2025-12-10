@@ -20,6 +20,7 @@ import {
   ServicesSection,
   GallerySection
 } from "@/components/new-sections"
+import CustomBentoGallery from "@/components/custom-bento-gallery" // New Import
 import { FileText, Users, Building, Heart, TrendingUp } from "lucide-react"
 import Image from "next/image"
 import { useLanguage } from "@/components/language-provider"
@@ -390,6 +391,10 @@ export function SewasHome() {
           <div className="premium-slide-left">
             <LocationFilter onSelectionChange={setLocationSelection} />
           </div>
+
+
+          <CustomBentoGallery />
+
 
           {/* Warning Section */}
           <div className="premium-slide-right">

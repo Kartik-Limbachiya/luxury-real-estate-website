@@ -144,13 +144,13 @@ export function PremiumHeader() {
             <Button
               variant="outline"
               size="sm"
-              className="hidden sm:inline-flex text-xs md:text-sm"
+              className="hidden sm:inline-flex text-xs md:text-sm min-w-[60px] justify-center"
               onClick={toggle}
               title="Toggle language"
             >
-              {language === "en" ? "A/अ" : "अ/A"}
+              {language === "en" ? "A / अ" : "अ / A"}
             </Button>
-            
+
             {/* User Account Dropdown */}
             {user ? (
               <UserAccountDropdown />
@@ -164,7 +164,7 @@ export function PremiumHeader() {
                 </Button>
               </div>
             )}
-            
+
             {/* Mobile Menu Button */}
             <Button
               variant="ghost"

@@ -17,7 +17,7 @@ function SewasTextInteractive() {
       rest: "un",
       full: "Sun",
       // UPDATED: Sun Surface / Fire Texture for better visibility in text
-      image: "https://images.unsplash.com/photo-1470252649378-9c29740c9fa8?q=80&w=1000&auto=format&fit=crop", 
+      image: "https://images.unsplash.com/photo-1470252649378-9c29740c9fa8?q=80&w=1000&auto=format&fit=crop",
       description: "Radiance",
       confettiColor: "#FF4500", // Red-Orange
       shape: "circle",
@@ -27,7 +27,7 @@ function SewasTextInteractive() {
       rest: "arth",
       full: "Earth",
       // UPDATED: Top-down Forest/Greenery Texture
-      image: "https://images.unsplash.com/photo-1502082553048-f009c37129b9?q=80&w=1000&auto=format&fit=crop", 
+      image: "https://images.unsplash.com/photo-1502082553048-f009c37129b9?q=80&w=1000&auto=format&fit=crop",
       description: "Foundation",
       confettiColor: "#228B22", // Forest Green
       shape: "square",
@@ -37,7 +37,7 @@ function SewasTextInteractive() {
       rest: "ater",
       full: "Water",
       // KEPT SAME: Ocean Water
-      image: "https://images.unsplash.com/photo-1505118380757-91f5f5632de0?q=80&w=1000&auto=format&fit=crop", 
+      image: "https://images.unsplash.com/photo-1505118380757-91f5f5632de0?q=80&w=1000&auto=format&fit=crop",
       description: "Purity",
       confettiColor: "#00BFFF", // Deep Sky Blue
       shape: "circle",
@@ -47,7 +47,7 @@ function SewasTextInteractive() {
       rest: "ir",
       full: "Air",
       // KEPT SAME: Clouds/Air
-      image: "https://images.unsplash.com/photo-1534088568595-a066f410bcda?q=80&w=1000&auto=format&fit=crop", 
+      image: "https://images.unsplash.com/photo-1534088568595-a066f410bcda?q=80&w=1000&auto=format&fit=crop",
       description: "Freedom",
       confettiColor: "#A9A9A9", // Silver/Gray
       shape: "star",
@@ -57,7 +57,7 @@ function SewasTextInteractive() {
       rest: "ky",
       full: "Sky",
       // UPDATED: Deep Blue Sky (Distinct from Air's clouds)
-      image: "https://images.unsplash.com/photo-1464802686167-b939a6910659?q=80&w=1000&auto=format&fit=crop", 
+      image: "https://images.unsplash.com/photo-1464802686167-b939a6910659?q=80&w=1000&auto=format&fit=crop",
       description: "Limitless",
       confettiColor: "#87CEEB", // Sky Blue
       shape: "circle",
@@ -70,7 +70,7 @@ function SewasTextInteractive() {
     confettiRef.current?.fire({
       particleCount: 30,
       spread: 70,
-      origin: { y: 0.55 }, 
+      origin: { y: 0.55 },
       colors: [letters[index].confettiColor],
       shapes: [letters[index].shape as "circle" | "square" | "star"],
       scalar: 1.2,
@@ -102,10 +102,9 @@ function SewasTextInteractive() {
             transition={{ delay: index * 0.1, duration: 0.5 }}
           >
             <div className="flex items-baseline">
-              {/* Main Letter - Textured by default */}
               <motion.span
-                className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-black tracking-tighter text-transparent bg-clip-text bg-cover bg-center transition-all duration-300"
-                style={{ 
+                className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black tracking-tighter text-transparent bg-clip-text bg-cover bg-center transition-all duration-300"
+                style={{
                   backgroundImage: `url('${item.image}')`,
                   WebkitBackgroundClip: "text",
                   WebkitTextFillColor: "transparent",
@@ -125,10 +124,9 @@ function SewasTextInteractive() {
                 {item.char}
               </motion.span>
 
-              {/* Expanding Text - Matches Texture */}
               <motion.span
-                className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-transparent bg-clip-text bg-cover bg-center overflow-hidden whitespace-nowrap"
-                style={{ 
+                className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold text-transparent bg-clip-text bg-cover bg-center overflow-hidden whitespace-nowrap"
+                style={{
                   backgroundImage: `url('${item.image}')`,
                   WebkitBackgroundClip: "text",
                   WebkitTextFillColor: "transparent",
@@ -254,16 +252,15 @@ export function ComingSoonBanner() {
             <div className="h-[1px] w-8 sm:w-12 bg-amber-500/60" />
           </div>
 
-          {/* Interactive SEWAS Text Component */}
-          <div className="flex flex-col md:flex-row items-center justify-center gap-2 md:gap-4 lg:gap-6">
-            <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-serif font-medium text-white tracking-tight leading-none drop-shadow-xl">
+          <div className="flex flex-col md:flex-row items-center justify-center gap-2 md:gap-4 lg:gap-6 flex-wrap">
+            <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-serif font-medium text-white tracking-tight leading-none drop-shadow-xl">
               800
             </h1>
-            
+
             {/* The Magic Hover Component */}
             <SewasTextInteractive />
-            
-            <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-serif font-medium tracking-tight leading-none drop-shadow-xl">
+
+            <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-serif font-medium tracking-tight leading-none drop-shadow-xl">
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-yellow-400 to-amber-600">
                 Nagri
               </span>
@@ -327,9 +324,8 @@ export function ComingSoonBanner() {
               <button
                 key={idx}
                 onClick={() => setCurrentImageIndex(idx)}
-                className={`h-1 transition-all duration-500 rounded-full ${
-                  idx === currentImageIndex ? "w-8 bg-amber-500" : "w-2 bg-white/20 hover:bg-white/40"
-                }`}
+                className={`h-1 transition-all duration-500 rounded-full ${idx === currentImageIndex ? "w-8 bg-amber-500" : "w-2 bg-white/20 hover:bg-white/40"
+                  }`}
                 aria-label={`Go to slide ${idx + 1}`}
               />
             ))}
