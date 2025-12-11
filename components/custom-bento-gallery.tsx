@@ -3,7 +3,8 @@ import React, { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import {
   X, Plane, Tv, Heart, Building2, Users, Globe2,
-  Briefcase, Leaf, Zap, ArrowRight, Star
+  Briefcase, Leaf, Zap, ArrowRight, Star,
+  DollarSign, Home
 } from 'lucide-react';
 import Image from 'next/image';
 
@@ -32,30 +33,162 @@ const ListOption = ({ title, sub }: { title: string, sub?: string }) => (
   </div>
 );
 
-// 1. Residential Options
-const ResidentialContent = () => (
-  <div className="space-y-5">
-    <div className="relative h-40 w-full rounded-xl overflow-hidden mb-4 shadow-lg group">
-      <Image
-        src="/luxury-mumbai-apartment-building.jpg"
-        alt="Luxury Living"
-        fill
-        className="object-cover transition-transform duration-700 group-hover:scale-105"
-      />
-      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end p-6">
-        <div>
-          <p className="text-amber-400 text-[10px] font-bold tracking-widest uppercase mb-1">Exclusive Portfolio</p>
-          <h3 className="text-white text-2xl font-serif italic">Curated Living Spaces</h3>
+// 1. Residential Options (Rich Content)
+const ResidentialContent = () => {
+  const [activeLayout, setActiveLayout] = useState<'2BHK' | '3BHK'>('2BHK');
+
+  const buildingStats = [
+    { label: "Per Floor", value: "32 Homes" },
+    { label: "Per Building", value: "8 Floors", sub: "256 Homes" },
+    { label: "Per Complex", value: "4 Buildings", sub: "1,024 Homes" }
+  ];
+
+
+
+  const features = [
+    {
+      title: "100% Solar System",
+      desc: "No Electricity Bills",
+      image: "https://images.unsplash.com/photo-1509391366360-2e959784a276?w=800&q=80",
+      icon: <Zap className="w-4 h-4 text-amber-500" />
+    },
+    {
+      title: "0% Down Payment",
+      desc: "100% Bank Loan",
+      image: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800&q=80",
+      icon: <DollarSign className="w-4 h-4 text-green-500" />
+    },
+    {
+      title: "Fully Furnished",
+      desc: "Electronics & Utensils",
+      image: "https://images.unsplash.com/photo-1556911220-bff31c812dba?w=800&q=80",
+      icon: <Home className="w-4 h-4 text-blue-500" />
+    },
+    {
+      title: "6-Month Ration",
+      desc: "Supply Included",
+      image: "https://images.unsplash.com/photo-1542838132-92c53300491e?w=800&q=80",
+      icon: <Leaf className="w-4 h-4 text-emerald-500" />
+    }
+  ];
+
+  return (
+    <div className="space-y-8">
+      {/* Quote Section */}
+      <div className="relative border-l-4 border-amber-500 pl-6 py-4 italic text-slate-600 dark:text-slate-300 bg-amber-50/50 dark:bg-amber-900/10 rounded-r-xl">
+        <span className="text-5xl text-amber-200 absolute -top-2 -left-3 font-serif">"</span>
+        <p className="font-serif text-lg md:text-xl leading-relaxed relative z-10">
+          Experience the pinnacle of architectural excellence. Our residential projects redefine luxury with sustainable community living and world-class amenities.
+        </p>
+      </div>
+
+      {/* Architecture Stats */}
+      {/* Architecture Stats */}
+      <div className="space-y-6 mb-8">
+        <div className="w-full relative shadow-md rounded-xl overflow-hidden border border-slate-100 dark:border-slate-800 bg-amber-50">
+          <Image
+            src="/swastik-concept.png"
+            alt="Swastik Architecture Concept"
+            width={800}
+            height={400}
+            className="w-full h-auto object-contain"
+          />
+        </div>
+
+        <div className="bg-gradient-to-r from-slate-50 to-amber-50 dark:from-slate-900 dark:to-amber-950/30 p-5 rounded-xl border border-slate-100 dark:border-slate-800">
+          <div className="flex items-center justify-center gap-2 mb-4">
+            <Building2 className="w-5 h-5 text-amber-600" />
+            <h4 className="font-bold text-slate-800 dark:text-slate-200 uppercase tracking-wide text-sm">Swastik Concept Stats</h4>
+          </div>
+          <div className="grid grid-cols-3 gap-4">
+            {buildingStats.map((stat, idx) => (
+              <div key={idx} className="bg-white dark:bg-slate-800 p-4 rounded-lg shadow-sm text-center border border-slate-100 dark:border-slate-700 flex flex-col justify-center items-center h-full min-h-[110px]">
+                <div className="font-bold text-amber-600 text-xl leading-tight mb-1">{stat.value}</div>
+                <div className="text-xs text-slate-600 dark:text-slate-300 uppercase font-bold tracking-wide">{stat.label}</div>
+                <div className={`text-xs font-semibold mt-1 ${stat.sub ? 'text-blue-600 dark:text-blue-400' : 'invisible'}`}>
+                  {stat.sub || "-"}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Features Grid */}
+      <div>
+        <h4 className="font-bold text-slate-800 dark:text-slate-200 mb-4 flex items-center gap-2">
+          <Star className="w-4 h-4 text-amber-500" />
+          <span>Premium Features</span>
+        </h4>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          {features.map((feature, idx) => (
+            <div key={idx} className="group relative overflow-hidden rounded-lg aspect-[16/9] shadow-md border border-slate-100 dark:border-slate-800">
+              <Image
+                src={feature.image}
+                alt={feature.title}
+                fill
+                className="object-cover transition-transform duration-700 group-hover:scale-110"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent p-4 flex flex-col justify-end">
+                <div className="flex items-center gap-2 mb-1">
+                  <div className="bg-white/20 backdrop-blur-md p-1 rounded-full">
+                    {feature.icon}
+                  </div>
+                  <span className="text-white font-bold text-sm shadow-sm">{feature.title}</span>
+                </div>
+                <span className="text-white/80 text-xs pl-8">{feature.desc}</span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Floor Plans Toggle */}
+      <div className="bg-slate-50 dark:bg-slate-900 rounded-xl p-6 border border-slate-200 dark:border-slate-800">
+        <div className="flex items-center justify-between mb-6">
+          <h4 className="font-bold text-slate-800 dark:text-slate-200">Floor Layouts</h4>
+          <div className="flex bg-white dark:bg-slate-800 rounded-lg p-1 shadow-sm border border-slate-200 dark:border-slate-700">
+            {(['2BHK', '3BHK'] as const).map((layout) => (
+              <button
+                key={layout}
+                onClick={() => setActiveLayout(layout)}
+                className={`px-4 py-1.5 rounded-md text-xs font-bold transition-all ${activeLayout === layout
+                  ? 'bg-amber-500 text-white shadow-md'
+                  : 'text-slate-500 hover:text-amber-600'
+                  }`}
+              >
+                {layout}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <div className="bg-white dark:bg-slate-800 rounded-lg overflow-hidden shadow-sm border border-slate-100 dark:border-slate-700 relative aspect-video group cursor-zoom-in">
+          <Image
+            src={activeLayout === '2BHK'
+              ? "https://images.unsplash.com/photo-1493809842364-78817add7ffb?w=800&q=80"
+              : "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=800&q=80"}
+            alt={`${activeLayout} Layout`}
+            fill
+            className="object-cover transition-all duration-500"
+          />
+          <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+            <span className="text-white font-bold tracking-widest uppercase border border-white/50 px-4 py-2 rounded backdrop-blur-sm">View Details</span>
+          </div>
+
+          <div className="absolute bottom-4 left-4 right-4 flex justify-between items-end">
+            <div className="bg-white/90 dark:bg-slate-900/90 backdrop-blur px-3 py-2 rounded shadow-lg">
+              <div className="text-lg font-bold text-slate-800 dark:text-white">
+                {activeLayout === '2BHK' ? '540' : '720'} <span className="text-xs font-normal text-slate-500">sq ft</span>
+              </div>
+              <div className="text-[10px] uppercase tracking-wider text-slate-400 font-bold">Super Built-up Area</div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-2.5">
-      {['Luxury Apartments', 'Sky Villas', 'Penthouses', 'Studio Suites', 'Garden Homes', 'Senior Living'].map((item) => (
-        <ListOption key={item} title={item} />
-      ))}
-    </div>
-  </div>
-);
+  );
+};
 
 // 2. Airways Content
 const AirwaysContent = () => {
@@ -459,7 +592,7 @@ const GalleryModal = ({ selectedItem, onClose }: { selectedItem: BentoItem, onCl
 
           <div className="flex-1 overflow-y-auto px-6 py-6 md:px-10 md:py-8 custom-scrollbar pt-12 md:pt-14 pb-40 min-h-0 overscroll-contain">
             <div className="max-w-2xl mx-auto">
-              {selectedItem.id !== 'airways' && (
+              {selectedItem.id !== 'airways' && selectedItem.id !== 'infrastructure' && (
                 <p className="text-lg md:text-xl text-slate-700 dark:text-slate-200 leading-relaxed mb-8 font-serif border-l-4 border-amber-500 pl-5 italic bg-amber-50/50 dark:bg-amber-900/10 py-3 rounded-r-lg">
                   "{selectedItem.description}"
                 </p>
