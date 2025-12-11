@@ -713,14 +713,21 @@ const UniversalContent = () => {
     { icon: <Briefcase className="w-5 h-5" />, title: "World Summit" },
     { icon: <Star className="w-5 h-5" />, title: "Leadership" }
   ];
+
+  // Using the generated images for the internal slideshow
+  const universalImages = ['/universal-gen-1.png', '/universal-gen-2.png', '/universal-gen-3.png'];
+
   return (
     <div className="space-y-6">
-      <div className="p-5 bg-amber-50 dark:bg-amber-900/20 rounded-xl border border-amber-100 dark:border-amber-800/30">
-        <Globe2 className="w-8 h-8 text-amber-600 dark:text-amber-500 mb-3" />
-        <h3 className="text-xl font-serif font-bold text-slate-900 dark:text-white mb-2">Uniting Communities Globally</h3>
-        <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
-          A federation dedicated to unifying branches worldwide, fostering cooperation, and implementing unique global projects for the betterment of society.
-        </p>
+      <div className="relative h-48 rounded-xl overflow-hidden shadow-md group">
+        <SlideshowBackground images={universalImages} interval={3500} fit="cover" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex flex-col justify-end p-5">
+          <Globe2 className="w-8 h-8 text-amber-500 mb-2" />
+          <h3 className="text-xl font-serif font-bold text-white mb-1">Uniting Communities Globally</h3>
+          <p className="text-white/80 text-xs leading-relaxed max-w-lg">
+            A federation dedicated to unifying branches worldwide, fostering cooperation, and implementing unique global projects.
+          </p>
+        </div>
       </div>
       <div className="grid grid-cols-2 gap-3">
         {initiatives.map((init, i) => (
@@ -741,17 +748,17 @@ const SaveFreeContentEnhanced = () => {
   const saveItems = [
     { title: 'Girl Child', image: '/save-girl.png', color: 'text-pink-600', bg: 'bg-pink-50', border: 'border-pink-100' },
     { title: 'Child Care', image: '/save-child.png', color: 'text-orange-600', bg: 'bg-orange-50', border: 'border-orange-100' },
-    { title: 'Animal Welfare', image: '/save-free-gen-2.png', color: 'text-amber-600', bg: 'bg-amber-50', border: 'border-amber-100' }, // Reusing Medical/Care image for Kindness/Welfare
-    { title: 'Tree Planting', image: '/save-free-gen-1.png', color: 'text-emerald-600', bg: 'bg-emerald-50', border: 'border-emerald-100' }, // Forest image
-    { title: 'Fuel Saving', image: '/infinity-gen-3.png', color: 'text-blue-600', bg: 'bg-blue-50', border: 'border-blue-100' } // Energy/Modern image
+    { title: 'Animal Welfare', image: '/save-animal-final.jpg', color: 'text-amber-600', bg: 'bg-amber-50', border: 'border-amber-100' },
+    { title: 'Tree Planting', image: '/save-free-gen-1.png', color: 'text-emerald-600', bg: 'bg-emerald-50', border: 'border-emerald-100' },
+    { title: 'Fuel Saving', image: '/save-fuel-final.jpg', color: 'text-blue-600', bg: 'bg-blue-50', border: 'border-blue-100' }
   ];
 
   const freeItems = [
-    { title: 'Pollution', icon: <Leaf className="w-4 h-4" /> },
-    { title: 'Crime', icon: <Users className="w-4 h-4" /> },
-    { title: 'Violence', icon: <Hand className="w-4 h-4" /> },
-    { title: 'Corruption', icon: <Briefcase className="w-4 h-4" /> },
-    { title: 'Injustice', icon: <Star className="w-4 h-4" /> }
+    { title: 'Pollution', icon: <Leaf className="w-5 h-5" />, img: '/save-free-gen-1.png' }, // Nature -> Clean Air
+    { title: 'Crime', icon: <Users className="w-5 h-5" />, img: '/peace-gen-2.png' }, // Dialogue -> Anti-crime
+    { title: 'Violence', icon: <Hand className="w-5 h-5" />, img: '/peace-gen-3.png' }, // Harmony -> Non-violence
+    { title: 'Corruption', icon: <Briefcase className="w-5 h-5" />, img: '/universal-gen-2.png' }, // Governance -> Anti-corruption
+    { title: 'Injustice', icon: <Star className="w-5 h-5" />, img: '/universal-gen-3.png' } // Justice/Leadership
   ];
 
   return (
@@ -802,8 +809,8 @@ const SaveFreeContentEnhanced = () => {
               <div className="grid grid-cols-2 gap-3">
                 {saveItems.map((item, i) => (
                   <div key={i} className={`relative overflow-hidden rounded-xl border ${item.border} ${item.bg} group`}>
-                    <div className="aspect-square relative w-full mb-2">
-                      <Image src={item.image} alt={item.title} fill className="object-cover" />
+                    <div className="aspect-video relative w-full mb-2">
+                      <Image src={`${item.image}?v=final`} alt={item.title} fill className="object-cover" />
                     </div>
                     <div className="p-3">
                       <h4 className={`text-sm font-bold ${item.color}`}>{item.title}</h4>
@@ -818,18 +825,22 @@ const SaveFreeContentEnhanced = () => {
                 <p className="text-sm text-slate-600 dark:text-slate-300 italic mb-2 border-l-2 border-rose-400 pl-3">
                   "A society liberated from systemic issues."
                 </p>
-                <div className="grid grid-cols-2 gap-2">
+                <div className="grid grid-cols-2 gap-3">
                   {freeItems.map((i, idx) => (
-                    <div key={idx} className="flex items-center gap-2 p-3 bg-rose-50 dark:bg-rose-900/10 border border-rose-100 dark:border-rose-900/30 rounded-lg">
-                      <div className="text-rose-600">{i.icon}</div>
-                      <span className="text-xs font-bold text-rose-700 dark:text-rose-300">{i.title}</span>
+                    <div key={idx} className="relative h-20 overflow-hidden rounded-xl border border-slate-200 dark:border-slate-800 md:col-span-1 group">
+                      <div className="absolute inset-0 bg-black/50 z-10 group-hover:bg-black/40 transition-colors" />
+                      <Image src={`${i.img}?v=2`} alt={i.title} fill className="object-cover" />
+                      <div className="absolute inset-0 z-20 flex items-center justify-center gap-2">
+                        <div className="text-white drop-shadow-md">{i.icon}</div>
+                        <span className="text-sm font-bold text-white tracking-wide drop-shadow-md">{i.title}</span>
+                      </div>
                     </div>
                   ))}
                 </div>
                 <div className="mt-4 p-4 rounded-xl bg-gradient-to-br from-rose-50 to-white dark:from-rose-900/10 dark:to-slate-900 border border-rose-100 dark:border-rose-800/30">
                   <h5 className="font-bold text-rose-800 dark:text-rose-200 text-sm mb-1">Our Pledge</h5>
                   <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
-                    We are committed to eradicating these social evils through continuous monitoring, community policing, and strict zero-tolerance policies.
+                    We are committed to eradicating these social evils through continuous monitoring.
                   </p>
                 </div>
               </div>
@@ -844,16 +855,16 @@ const SaveFreeContentEnhanced = () => {
                   </h5>
                   <div className="grid grid-cols-2 gap-3">
                     {[
-                      { name: 'EDUCATION', img: '/save-free-gen-3.png' }, // Education image
-                      { name: 'MEDICAL', img: '/save-free-gen-2.png' },   // Medical image
-                      { name: 'SOCIAL', img: '/universal-gen-1.png' },   // Global Unity image
-                      { name: 'HOME PRODUCT', img: '/infinity-gen-5.png' }, // Interior image
-                      { name: 'JOB', img: '/universal-gen-3.png' }       // Network/Digital image
+                      { name: 'EDUCATION', img: '/save-free-gen-3.png' },
+                      { name: 'MEDICAL', img: '/save-free-gen-2.png' },
+                      { name: 'SOCIAL', img: '/universal-gen-1.png' },
+                      { name: 'HOME PRODUCT', img: '/camp-home-final.jpg' },
+                      { name: 'JOB', img: '/camp-job-final.jpg' }
                     ].map(tag => (
-                      <div key={tag.name} className="relative rounded-lg overflow-hidden border border-slate-200 dark:border-slate-800 group">
+                      <div key={tag.name} className="relative rounded-lg overflow-hidden border border-slate-200 dark:border-slate-800 group h-24">
                         <div className="absolute inset-0 bg-black/40 z-10 group-hover:bg-black/20 transition-colors" />
-                        <Image src={tag.img} alt={tag.name} width={200} height={120} className="w-full h-24 object-cover" />
-                        <span className="absolute bottom-2 left-2 z-20 text-xs font-bold text-white tracking-wide">{tag.name}</span>
+                        <Image src={`${tag.img}?v=final`} alt={tag.name} fill className="object-cover" />
+                        <span className="absolute bottom-2 left-2 z-20 text-xs font-bold text-white tracking-wide shadow-black/50 drop-shadow-sm">{tag.name}</span>
                       </div>
                     ))}
                   </div>
