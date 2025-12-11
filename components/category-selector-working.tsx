@@ -106,7 +106,7 @@ const categoryData = {
       },
       "EMI Options": {
         type: "select",
-        options: ["₹60/month", "₹120/month", "₹240/month"],
+        options: ["60 months", "120 months", "240 months"],
       },
       Facilities: {
         type: "checkbox",
