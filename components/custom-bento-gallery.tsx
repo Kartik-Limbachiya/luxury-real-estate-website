@@ -58,31 +58,94 @@ const ResidentialContent = () => (
 );
 
 // 2. Airways Content
-const AirwaysContent = () => (
-  <div className="space-y-6">
-    <div className="bg-gradient-to-br from-blue-950 to-slate-900 text-white p-6 rounded-xl shadow-xl relative overflow-hidden group">
-      <div className="absolute top-0 right-0 p-6 opacity-10 group-hover:opacity-20 transition-opacity duration-500 transform group-hover:scale-110">
-        <Plane className="w-32 h-32" />
-      </div>
-      <h3 className="text-2xl font-serif mb-3 relative z-10">Global Aviation Excellence</h3>
-      <p className="text-blue-100 leading-relaxed relative z-10 max-w-lg font-light text-base">
-        To provide world-class training that equips aviation professionals with the knowledge, skills, and mindset to excel in their roles.
-      </p>
-    </div>
+const AirwaysContent = () => {
+  const features = [
+    {
+      id: "f1",
+      title: "Flight Booking",
+      tagline: "Worldwide Connectivity",
+      description: "Book airline tickets without difficulty. Competitive prices and transparent pricing for global destinations.",
+      icon: <Plane className="w-5 h-5" />
+    },
+    {
+      id: "f2",
+      title: "Private Jet Rental",
+      tagline: "Exclusive Luxury",
+      description: "Redefining luxury travel for business or leisure. Experience privacy, comfort, and time-saving efficiency.",
+      icon: <Star className="w-5 h-5" />
+    },
+    {
+      id: "f3",
+      title: "Helicopter Rental",
+      tagline: "Scenic & Medical",
+      description: "Services for weddings, business travel, scenic tours, and emergency medical air ambulance services.",
+      icon: <Zap className="w-5 h-5" />
+    },
+    {
+      id: "f4",
+      title: "Visa Services",
+      tagline: "Global Access",
+      description: "Expert guidance for tourist, business, and student visas with real-time application tracking.",
+      icon: <Globe2 className="w-5 h-5" />
+    }
+  ];
 
-    <div>
-      <h4 className="text-base font-bold mb-3 flex items-center gap-2 text-slate-800 dark:text-white border-b border-slate-200 dark:border-slate-700 pb-2">
-        <Star className="w-4 h-4 text-amber-500 fill-amber-500" /> Premium Services
-      </h4>
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-        <ListOption title="Flight Ticket Booking" sub="Global Connectivity" />
-        <ListOption title="Private Jet Rentals" sub="Exclusive Luxury" />
-        <ListOption title="Helicopter Rental" sub="Rapid Transit" />
-        <ListOption title="Visa Services" sub="Hassle-free Travel" />
+  return (
+    <div className="space-y-8">
+      {/* Premium Quote Section */}
+      <div className="relative border-l-4 border-amber-500 pl-6 py-4 italic text-slate-600 dark:text-slate-300 bg-amber-50/50 dark:bg-amber-900/10 rounded-r-xl">
+        <span className="text-5xl text-amber-200 absolute -top-2 -left-3 font-serif">"</span>
+        <p className="font-serif text-lg md:text-xl leading-relaxed relative z-10">
+          Where the sky is not the limit, but the beginning of your extraordinary journey.
+        </p>
+      </div>
+
+      {/* Hero Description Box */}
+      <div className="bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-950/40 dark:to-slate-900/40 p-6 rounded-2xl border border-blue-100 dark:border-blue-800/50 shadow-sm relative overflow-hidden">
+        <div className="absolute top-0 right-0 p-4 opacity-[0.03]">
+          <Plane className="w-24 h-24 rotate-45" />
+        </div>
+        <h4 className="text-blue-900 dark:text-blue-100 font-bold mb-3 flex items-center gap-2 text-lg">
+          <span className="p-1.5 bg-blue-100 dark:bg-blue-900 rounded-lg"><Plane className="w-4 h-4 text-blue-600 dark:text-blue-400" /></span>
+          Redefining Luxury Travel
+        </h4>
+        <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed relative z-10">
+          Welcome to SEWAS Airways. We are dedicated to empowering aviation professionals and providing world-class travel experiences. From seamless flight bookings to exclusive private jet charters, we ensure your journey is smooth, rewarding, and safe.
+        </p>
+      </div>
+
+      {/* Feature Grid */}
+      <div>
+        <h4 className="text-xs font-bold uppercase tracking-[0.2em] text-slate-400 dark:text-slate-500 mb-6 flex items-center gap-2">
+          <span>Core Services</span>
+          <div className="h-px bg-slate-200 dark:bg-slate-800 flex-1" />
+        </h4>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          {features.slice(0, 4).map((f) => (
+            <div key={f.id} className="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 hover:border-amber-400 dark:hover:border-amber-600 hover:shadow-[0_8px_30px_rgb(0,0,0,0.04)] transition-all duration-300 group cursor-default">
+              <div className="flex justify-between items-start mb-3">
+                <div className="p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 group-hover:bg-amber-50 dark:group-hover:bg-amber-900/20 text-slate-600 dark:text-slate-400 group-hover:text-amber-600 dark:group-hover:text-amber-500 transition-colors">
+                  {f.icon}
+                </div>
+                <span className="text-[10px] uppercase tracking-wider font-bold text-amber-500/80 bg-amber-50 dark:bg-amber-900/10 px-2 py-1 rounded-full border border-amber-100 dark:border-amber-800/30">
+                  {f.tagline}
+                </span>
+              </div>
+
+              <h5 className="font-bold text-slate-800 dark:text-slate-100 mb-2 group-hover:text-amber-700 dark:group-hover:text-amber-400 transition-colors">
+                {f.title}
+              </h5>
+              <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+                {f.description}
+              </p>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
-  </div>
-);
+  );
+};
 
 // --- Slideshow Component ---
 const SlideshowBackground = ({
@@ -318,7 +381,7 @@ const GalleryModal = ({ selectedItem, onClose }: { selectedItem: BentoItem, onCl
     >
       <motion.div
         layoutId={`card-${selectedItem.id}`}
-        className="bg-white dark:bg-slate-900 w-full max-w-4xl max-h-[85vh] rounded-2xl overflow-hidden shadow-2xl flex flex-col md:flex-row relative ring-1 ring-white/10"
+        className="bg-white dark:bg-slate-900 w-full max-w-4xl h-[80vh] md:h-[85vh] rounded-2xl overflow-hidden shadow-2xl flex flex-col md:flex-row relative ring-1 ring-white/10"
         onClick={(e) => e.stopPropagation()}
       >
 
@@ -337,6 +400,18 @@ const GalleryModal = ({ selectedItem, onClose }: { selectedItem: BentoItem, onCl
             <SlideshowBackground
               images={Array.from({ length: 93 }, (_, i) => `/TEMP${100 + i}.jpg`)}
               interval={2000}
+              fit="cover"
+            />
+          ) : selectedItem.id === 'airways' ? (
+            <SlideshowBackground
+              images={[
+                '/sewas-airways-flight.png',
+                '/sewas-airways-jet.png',
+                '/sewas-airways-heli.png',
+                '/sewas-airways-crew.png',
+                '/sewas-airways-globe.png'
+              ]}
+              interval={4000}
               fit="cover"
             />
           ) : selectedItem.image ? (
@@ -382,11 +457,13 @@ const GalleryModal = ({ selectedItem, onClose }: { selectedItem: BentoItem, onCl
             </button>
           </div>
 
-          <div className="flex-1 overflow-y-auto px-6 py-6 md:px-10 md:py-8 custom-scrollbar pt-12 md:pt-14">
+          <div className="flex-1 overflow-y-auto px-6 py-6 md:px-10 md:py-8 custom-scrollbar pt-12 md:pt-14 pb-40 min-h-0 overscroll-contain">
             <div className="max-w-2xl mx-auto">
-              <p className="text-lg md:text-xl text-slate-700 dark:text-slate-200 leading-relaxed mb-8 font-serif border-l-4 border-amber-500 pl-5 italic bg-amber-50/50 dark:bg-amber-900/10 py-3 rounded-r-lg">
-                "{selectedItem.description}"
-              </p>
+              {selectedItem.id !== 'airways' && (
+                <p className="text-lg md:text-xl text-slate-700 dark:text-slate-200 leading-relaxed mb-8 font-serif border-l-4 border-amber-500 pl-5 italic bg-amber-50/50 dark:bg-amber-900/10 py-3 rounded-r-lg">
+                  "{selectedItem.description}"
+                </p>
+              )}
 
               <div className="animate-in fade-in slide-in-from-bottom-4 duration-500 delay-150">
                 {selectedItem.modalContent}
@@ -419,10 +496,10 @@ const CustomBentoGallery = () => {
     {
       id: 'airways',
       title: 'SEWAS Airways',
-      subtitle: 'Global Aviation',
+      subtitle: 'Global Aviation & Infrastructure',
       description: 'Connecting the world with premium aviation services, from private jet charters to specialized crew training.',
       className: 'col-span-1 row-span-1',
-      image: '/modern-architectural-design.png',
+      image: '/sewas-airways-flight.png',
       icon: <Plane className="w-6 h-6" />,
       modalContent: <AirwaysContent />
     },
