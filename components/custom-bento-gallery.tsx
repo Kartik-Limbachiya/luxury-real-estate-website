@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import {
   X, Plane, Tv, Heart, Building2, Users, Globe2,
   Briefcase, Leaf, Zap, ArrowRight, Star,
-  DollarSign, Home
+  DollarSign, Home, Hand
 } from 'lucide-react';
 import Image from 'next/image';
 
@@ -645,6 +645,17 @@ const GalleryModal = ({ selectedItem, onClose }: { selectedItem: BentoItem, onCl
               {selectedItem.icon}
             </div>
           )}
+
+          {/* Slideshow Background for Specific Items in Modal Left Panel */}
+          {selectedItem.id === 'save-free' && (
+            <div className="absolute inset-0 z-0">
+              <SlideshowBackground
+                images={['/save-free-gen-1.png', '/save-free-gen-2.png', '/save-free-gen-3.png']}
+                interval={4000}
+                fit="cover"
+              />
+            </div>
+          )}
           <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent md:bg-gradient-to-r md:from-transparent md:via-black/20 md:to-black/80" />
 
           <div className="absolute bottom-0 left-0 p-6 md:p-8 text-white w-full">
@@ -694,6 +705,196 @@ const GalleryModal = ({ selectedItem, onClose }: { selectedItem: BentoItem, onCl
   );
 };
 
+// 6. Universal Federation Content
+const UniversalContent = () => {
+  const initiatives = [
+    { icon: <Globe2 className="w-5 h-5" />, title: "Global Unity" },
+    { icon: <Users className="w-5 h-5" />, title: "Int. Networking" },
+    { icon: <Briefcase className="w-5 h-5" />, title: "World Summit" },
+    { icon: <Star className="w-5 h-5" />, title: "Leadership" }
+  ];
+  return (
+    <div className="space-y-6">
+      <div className="p-5 bg-amber-50 dark:bg-amber-900/20 rounded-xl border border-amber-100 dark:border-amber-800/30">
+        <Globe2 className="w-8 h-8 text-amber-600 dark:text-amber-500 mb-3" />
+        <h3 className="text-xl font-serif font-bold text-slate-900 dark:text-white mb-2">Uniting Communities Globally</h3>
+        <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
+          A federation dedicated to unifying branches worldwide, fostering cooperation, and implementing unique global projects for the betterment of society.
+        </p>
+      </div>
+      <div className="grid grid-cols-2 gap-3">
+        {initiatives.map((init, i) => (
+          <div key={i} className="flex items-center gap-2 p-3 bg-white dark:bg-slate-800 rounded-lg shadow-sm border border-slate-100 dark:border-slate-700">
+            <div className="text-amber-500">{init.icon}</div>
+            <span className="text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-tighter">{init.title}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+// 7. Save Free Campaign Content - Enhanced
+const SaveFreeContentEnhanced = () => {
+  const [activeTab, setActiveTab] = useState<'SAVE' | 'FREE' | 'CAMPAIGN'>('SAVE');
+
+  const saveItems = [
+    { title: 'Girl Child', image: '/save-girl.png', color: 'text-pink-600', bg: 'bg-pink-50', border: 'border-pink-100' },
+    { title: 'Child Care', image: '/save-child.png', color: 'text-orange-600', bg: 'bg-orange-50', border: 'border-orange-100' },
+    { title: 'Animal Welfare', image: '/save-free-gen-2.png', color: 'text-amber-600', bg: 'bg-amber-50', border: 'border-amber-100' }, // Reusing Medical/Care image for Kindness/Welfare
+    { title: 'Tree Planting', image: '/save-free-gen-1.png', color: 'text-emerald-600', bg: 'bg-emerald-50', border: 'border-emerald-100' }, // Forest image
+    { title: 'Fuel Saving', image: '/infinity-gen-3.png', color: 'text-blue-600', bg: 'bg-blue-50', border: 'border-blue-100' } // Energy/Modern image
+  ];
+
+  const freeItems = [
+    { title: 'Pollution', icon: <Leaf className="w-4 h-4" /> },
+    { title: 'Crime', icon: <Users className="w-4 h-4" /> },
+    { title: 'Violence', icon: <Hand className="w-4 h-4" /> },
+    { title: 'Corruption', icon: <Briefcase className="w-4 h-4" /> },
+    { title: 'Injustice', icon: <Star className="w-4 h-4" /> }
+  ];
+
+  return (
+    <div className="h-full flex flex-col">
+      {/* Header */}
+      <div className="flex items-center gap-4 mb-6">
+        <div className="p-3 bg-emerald-100 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400 rounded-xl">
+          <Leaf className="w-6 h-6" />
+        </div>
+        <div>
+          <h3 className="text-xl font-serif font-bold text-slate-900 dark:text-white leading-tight">Social Impact Mission</h3>
+          <p className="text-xs font-medium text-slate-500 dark:text-slate-400 tracking-wide uppercase">Empowering Change</p>
+        </div>
+      </div>
+
+      {/* Custom Tab Switcher */}
+      <div className="bg-slate-100 dark:bg-slate-800 p-1.5 rounded-xl flex mb-6 relative">
+        <div className="absolute inset-y-1.5 rounded-lg bg-white dark:bg-slate-700 shadow-sm transition-all duration-300 ease-out"
+          style={{
+            left: activeTab === 'SAVE' ? '0.375rem' : activeTab === 'FREE' ? '33.33%' : '66.66%',
+            width: 'calc(33.33% - 0.5rem)'
+          }}
+        />
+        {['SAVE', 'FREE', 'CAMPAIGN'].map((tab) => (
+          <button
+            key={tab}
+            onClick={() => setActiveTab(tab as any)}
+            className={`flex-1 relative z-10 py-2 text-xs font-bold rounded-lg transition-colors duration-300 ${activeTab === tab
+              ? 'text-slate-900 dark:text-white'
+              : 'text-slate-500 hover:text-slate-700 dark:hover:text-slate-300'
+              }`}
+          >
+            {tab === 'FREE' ? 'FREE FROM' : tab}
+          </button>
+        ))}
+      </div>
+
+      <div className="flex-1 relative overflow-y-auto custom-scrollbar pr-2">
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={activeTab}
+            initial={{ opacity: 0, x: 10 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -10 }}
+            transition={{ duration: 0.2 }}
+          >
+            {activeTab === 'SAVE' && (
+              <div className="grid grid-cols-2 gap-3">
+                {saveItems.map((item, i) => (
+                  <div key={i} className={`relative overflow-hidden rounded-xl border ${item.border} ${item.bg} group`}>
+                    <div className="aspect-square relative w-full mb-2">
+                      <Image src={item.image} alt={item.title} fill className="object-cover" />
+                    </div>
+                    <div className="p-3">
+                      <h4 className={`text-sm font-bold ${item.color}`}>{item.title}</h4>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+
+            {activeTab === 'FREE' && (
+              <div className="space-y-4">
+                <p className="text-sm text-slate-600 dark:text-slate-300 italic mb-2 border-l-2 border-rose-400 pl-3">
+                  "A society liberated from systemic issues."
+                </p>
+                <div className="grid grid-cols-2 gap-2">
+                  {freeItems.map((i, idx) => (
+                    <div key={idx} className="flex items-center gap-2 p-3 bg-rose-50 dark:bg-rose-900/10 border border-rose-100 dark:border-rose-900/30 rounded-lg">
+                      <div className="text-rose-600">{i.icon}</div>
+                      <span className="text-xs font-bold text-rose-700 dark:text-rose-300">{i.title}</span>
+                    </div>
+                  ))}
+                </div>
+                <div className="mt-4 p-4 rounded-xl bg-gradient-to-br from-rose-50 to-white dark:from-rose-900/10 dark:to-slate-900 border border-rose-100 dark:border-rose-800/30">
+                  <h5 className="font-bold text-rose-800 dark:text-rose-200 text-sm mb-1">Our Pledge</h5>
+                  <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                    We are committed to eradicating these social evils through continuous monitoring, community policing, and strict zero-tolerance policies.
+                  </p>
+                </div>
+              </div>
+            )}
+
+            {activeTab === 'CAMPAIGN' && (
+              <div className="space-y-5">
+                {/* Focus Areas */}
+                <div>
+                  <h5 className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-slate-400 mb-3">
+                    <span className="w-1.5 h-1.5 rounded-full bg-blue-500"></span> Core Campaigns
+                  </h5>
+                  <div className="grid grid-cols-2 gap-3">
+                    {[
+                      { name: 'EDUCATION', img: '/save-free-gen-3.png' }, // Education image
+                      { name: 'MEDICAL', img: '/save-free-gen-2.png' },   // Medical image
+                      { name: 'SOCIAL', img: '/universal-gen-1.png' },   // Global Unity image
+                      { name: 'HOME PRODUCT', img: '/infinity-gen-5.png' }, // Interior image
+                      { name: 'JOB', img: '/universal-gen-3.png' }       // Network/Digital image
+                    ].map(tag => (
+                      <div key={tag.name} className="relative rounded-lg overflow-hidden border border-slate-200 dark:border-slate-800 group">
+                        <div className="absolute inset-0 bg-black/40 z-10 group-hover:bg-black/20 transition-colors" />
+                        <Image src={tag.img} alt={tag.name} width={200} height={120} className="w-full h-24 object-cover" />
+                        <span className="absolute bottom-2 left-2 z-20 text-xs font-bold text-white tracking-wide">{tag.name}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            )}
+          </motion.div>
+        </AnimatePresence>
+      </div>
+    </div>
+  );
+};
+
+// 8. Peace Unity Content
+const PeaceUnityContent = () => (
+  <div className="space-y-6">
+    <div className="relative h-40 rounded-xl overflow-hidden mb-4">
+      <Image src="/peace-gen-1.png" alt="Peace Summit" fill className="object-cover" />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex items-end p-4">
+        <h3 className="text-white font-serif font-bold text-xl">Global Harmony Summit</h3>
+      </div>
+    </div>
+    <div className="grid grid-cols-1 gap-3">
+      <div className="flex items-start gap-3 p-3 bg-indigo-50 dark:bg-indigo-900/20 rounded-lg border border-indigo-100 dark:border-indigo-800/30">
+        <Users className="w-5 h-5 text-indigo-600 mt-1" />
+        <div>
+          <h4 className="font-bold text-indigo-900 dark:text-indigo-200 text-sm">Dialogue Forums</h4>
+          <p className="text-xs text-indigo-700 dark:text-indigo-300 mt-1">Facilitating cross-cultural conversations.</p>
+        </div>
+      </div>
+      <div className="flex items-start gap-3 p-3 bg-purple-50 dark:bg-purple-900/20 rounded-lg border border-purple-100 dark:border-purple-800/30">
+        <Heart className="w-5 h-5 text-purple-600 mt-1" />
+        <div>
+          <h4 className="font-bold text-purple-900 dark:text-purple-200 text-sm">Conflict Resolution</h4>
+          <p className="text-xs text-purple-700 dark:text-purple-300 mt-1">Community-led peace initiatives.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+);
+
 // --- Main Bento Grid ---
 
 const CustomBentoGallery = () => {
@@ -739,17 +940,7 @@ const CustomBentoGallery = () => {
       className: 'col-span-1 md:col-span-2 row-span-1',
       image: '/community-living-spaces.jpg',
       icon: <Globe2 className="w-6 h-6" />,
-      modalContent: (
-        <div className="flex flex-col items-center justify-center py-10 text-center bg-slate-50 dark:bg-slate-900 rounded-xl border border-dashed border-slate-300 dark:border-slate-700">
-          <div className="bg-amber-100 dark:bg-amber-900/30 p-3 rounded-full mb-4">
-            <Globe2 className="w-10 h-10 text-amber-600 dark:text-amber-500" />
-          </div>
-          <h3 className="text-2xl font-serif font-bold mb-3 text-slate-900 dark:text-white">Uniting Communities Globally</h3>
-          <p className="text-slate-600 dark:text-slate-400 max-w-sm text-base leading-relaxed">
-            A federation dedicated to unifying branches worldwide, fostering cooperation, and implementing unique global projects.
-          </p>
-        </div>
-      )
+      modalContent: <UniversalContent />
     },
     {
       id: 'infinity',
@@ -769,7 +960,7 @@ const CustomBentoGallery = () => {
       className: 'col-span-1 md:col-span-1 row-span-1',
       image: '/green-sustainable-building.jpg',
       icon: <Leaf className="w-6 h-6" />,
-      modalContent: <SaveFreeCampaignContent />
+      modalContent: <SaveFreeContentEnhanced />
     },
     {
       id: 'peace',
@@ -779,14 +970,7 @@ const CustomBentoGallery = () => {
       className: 'col-span-1 md:col-span-1 row-span-1',
       image: '/luxury-pune-residential-complex.jpg',
       icon: <Users className="w-6 h-6" />,
-      modalContent: (
-        <div className="flex flex-col items-center justify-center h-full py-8 space-y-3">
-          <div className="w-14 h-14 bg-slate-100 dark:bg-slate-800 rounded-full flex items-center justify-center">
-            <Users className="w-7 h-7 text-slate-400" />
-          </div>
-          <p className="text-base font-medium text-slate-500 dark:text-slate-400">Community initiatives coming soon.</p>
-        </div>
-      )
+      modalContent: <PeaceUnityContent />
     }
   ];
 
@@ -843,6 +1027,21 @@ const CustomBentoGallery = () => {
                 ) : item.id === 'infinity' ? (
                   <SlideshowBackground
                     images={['/infinity-gen-4.png', '/infinity-gen-5.png', '/infinity-gen-3.png']}
+                    interval={3000}
+                  />
+                ) : item.id === 'universal' ? (
+                  <SlideshowBackground
+                    images={['/universal-gen-1.png', '/universal-gen-2.png', '/universal-gen-3.png']}
+                    interval={3500}
+                  />
+                ) : item.id === 'save-free' ? (
+                  <SlideshowBackground
+                    images={['/save-free-gen-1.png', '/save-free-gen-2.png', '/save-free-gen-3.png']}
+                    interval={4000}
+                  />
+                ) : item.id === 'peace' ? (
+                  <SlideshowBackground
+                    images={['/peace-gen-1.png', '/peace-gen-2.png', '/peace-gen-3.png']}
                     interval={3000}
                   />
                 ) : (
