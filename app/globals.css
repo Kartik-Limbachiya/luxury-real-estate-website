@@ -469,17 +469,13 @@
 
 .slideshow-container .aspect-video {
   transition: all 0.3s ease;
-  background-color: white;
 }
 
 .slideshow-container img {
   transition: opacity 0.5s ease-in-out;
 }
 
-.slideshow-container .aspect-video img {
-  object-fit: contain !important;
-  background-color: white;
-}
+
 
 /* Mobile responsiveness for expanded cards */
 @media (max-width: 768px) {
@@ -494,13 +490,9 @@
   
   .slideshow-container .aspect-video {
     height: 200px;
-    background-color: white;
   }
   
-  .slideshow-container .aspect-video img {
-    object-fit: contain !important;
-    background-color: white;
-  }
+
 }
 
 @keyframes background-gradient {

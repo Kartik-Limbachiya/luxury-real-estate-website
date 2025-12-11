@@ -137,7 +137,7 @@ const NetworkContent = () => {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
       {/* TV Serial Production Card */}
-      <div className="relative group overflow-hidden rounded-xl h-96 cursor-pointer shadow-lg hover:shadow-xl transition-all border border-slate-200 dark:border-slate-800">
+      <div className="relative group overflow-hidden rounded-xl h-72 md:h-96 cursor-pointer shadow-lg hover:shadow-xl transition-all border border-slate-200 dark:border-slate-800">
         <SlideshowBackground images={tvImages} interval={4000} fit="cover" />
 
         {/* Gradient Overlay */}
@@ -159,7 +159,7 @@ const NetworkContent = () => {
       </div>
 
       {/* Animation Studios Card */}
-      <div className="relative group overflow-hidden rounded-xl h-96 cursor-pointer shadow-lg hover:shadow-xl transition-all border border-slate-200 dark:border-slate-800">
+      <div className="relative group overflow-hidden rounded-xl h-72 md:h-96 cursor-pointer shadow-lg hover:shadow-xl transition-all border border-slate-200 dark:border-slate-800">
         <SlideshowBackground images={animImages} interval={4000} fit="cover" />
 
         {/* Gradient Overlay */}
@@ -370,7 +370,7 @@ const GalleryModal = ({ selectedItem, onClose }: { selectedItem: BentoItem, onCl
         </div>
 
         {/* Right Side: Content */}
-        <div className="w-full md:w-7/12 flex flex-col h-full bg-white dark:bg-slate-950 relative">
+        <div className="w-full md:w-7/12 flex flex-col flex-1 min-h-0 md:h-full bg-white dark:bg-slate-950 relative">
           {/* Desktop Close Button - In Header */}
           <div className="hidden md:flex justify-end p-4 absolute top-0 right-0 z-20">
             <button
