@@ -379,28 +379,113 @@ const NetworkContent = () => {
   );
 };
 
-// 4. Infinity Life Content
-const InfinityContent = () => (
-  <div className="space-y-5">
-    <div className="flex items-center gap-4 mb-6 p-5 bg-amber-50 dark:bg-amber-900/10 rounded-xl border border-amber-100 dark:border-amber-900/30">
-      <div className="p-3 bg-amber-500 rounded-lg text-white shadow-lg shadow-amber-500/20">
-        <Heart className="w-6 h-6" />
-      </div>
-      <div>
-        <h3 className="text-xl font-serif font-bold text-slate-900 dark:text-white">Infinity Life Organization</h3>
-        <p className="text-sm text-slate-600 dark:text-slate-400 mt-0.5">Holistic Ecosystem for Modern Living</p>
-      </div>
-    </div>
+const InfinityContent = () => {
+  const sections = [
+    {
+      title: "825 Jain Temple & Sthanak",
+      subtitle: "RELIGIOUS",
+      icon: <Building2 className="w-5 h-5" />,
+      images: [
+        "https://www.nfttworld.com/wp-content/uploads/2024/04/Rajasthan-Jain-Tirth-Tour-in-India-820x565.jpg",
+        "https://knsarchitects.com/wp-content/uploads/2023/12/Jain-Upashray.jpg",
+        "https://content3.jdmagicbox.com/v2/comp/delhi/v3/011pxx11.xx11.220309193440.y7v3/catalogue/jain-sthanak-rishabh-vihar-karkardooma-delhi-jain-temples-t2l1ommbkq.jpg",
+        "https://jaipurthrumylens.com/wp-content/uploads/2023/02/jinalaya-shwetamber-jain-temple-jaipur-mohanbari-arihant-vatika.jpg"
+      ],
+      features: ["SEWAS Jain Temple", "SEWAS Jain Upashray", "SEWAS Jain Sthanak", "84 Gacch Support", "4 Sampradaya Support"]
+    },
+    {
+      title: "800 University",
+      subtitle: "EDUCATION",
+      icon: <Users className="w-5 h-5" />, // Using Users as GraduationCap might not be imported, confirmed imports: Star, Building2, etc. - waiting, I checked imports and GraduationCap is NOT in imports. Using Users or similar. Actually, let's stick to imported icons: Home, Building2, Globe2, Users, Heart.
+      // Re-checking imports: X, Plane, Tv, Heart, Building2, Users, Globe2, Briefcase, Leaf, Zap, ArrowRight, Star, DollarSign, Home.
+      // Education -> Users or Briefcase
+      images: [
+        "https://images.shiksha.com/mediadata/images/1539689597phpsD5n8S_g.jpg",
+        "https://spsu.ac.in//wp-content/uploads/2022/08/international.jpg",
+        "https://www.chitkara.edu.in/blogs/wp-content/uploads/2024/06/Global-Programs-at-Chitkara.png"
+      ],
+      features: ["180 Int. University Tie-ups", "Paperless Admission", "Hostel Facilities", "Scholarship Programs"]
+    },
+    {
+      title: "800 Hospital",
+      subtitle: "MEDICAL",
+      icon: <Heart className="w-5 h-5" />,
+      images: [
+        "https://ilshospitals.com/wp-content/uploads/2023/10/ILSDumdum-Building512.webp",
+        "https://media.istockphoto.com/id/181553727/photo/outpatient-surgery-center.jpg?s=612x612&w=0&k=20&c=TSOFoFo6VWkBLtmvTgcsngxYmn3I677ilQxhoAbzfnE=",
+        "https://image.slidesharecdn.com/allopathyvshomeopathyvsayurveda-161024174714/75/Allopathy-vs-homeopathy-vs-ayurveda-1-2048.jpg"
+      ],
+      features: ["SEWAS Jain Hospital", "Animal Hospital", "Ayurvedic & Homeopathic", "Min. Rate Treatments"]
+    },
+    {
+      title: "800 Commercial Malls",
+      subtitle: "COMMERCIAL",
+      icon: <Briefcase className="w-5 h-5" />,
+      images: [
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJaQnoAGbqHYt99d5xmI0QB7DTqhdXn4ahWA&s",
+        "https://media.gettyimages.com/id/578071420/photo/india-mumbai-lower-parel-high-street-phoenix-mall-inside-interior-palladium-shopping.jpg?s=612x612&w=gi&k=20&c=VtAKrdHG2PhtXsnoNbMttCiMYlztFZEVZtwFY9CRk5w=",
+        "https://5.imimg.com/data5/JN/TI/MY-6480170/showroom-interior-designing.jpg"
+      ],
+      features: ["SEWAS Jain Mall", "50% Swadeshi Discount", "Business Centers", "Local Market Transport"]
+    },
+    {
+      title: "800 Social Halls",
+      subtitle: "SOCIAL",
+      icon: <Users className="w-5 h-5" />,
+      images: [
+        "https://sewas800.city/image/services/social.png",
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQGNyrQ0KofecU3KDFehrzqTVBmjkRD8-Y1tQ&s",
+        "https://images.squarespace-cdn.com/content/v1/61d89c9fe365be2bd16d70a0/abeb3399-8ef4-4a1d-a989-7819eb14b19c/charlotte-downtown_1400.jpg"
+      ],
+      features: ["SEWAS Jain Social Hall", "Event Management", "Community Gatherings", "National Events"]
+    }
+  ];
 
-    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-      <ListOption title="825 Jain Temple & Sthanak" sub="Religious" />
-      <ListOption title="800 University" sub="Education" />
-      <ListOption title="800 Hospital" sub="Medical" />
-      <ListOption title="800 Commercial Malls" sub="Commercial" />
-      <ListOption title="800 Social Halls" sub="Social" />
+  return (
+    <div className="space-y-12">
+      {/* Intro Quote */}
+      <div className="relative border-l-4 border-amber-500 pl-6 py-4 italic text-slate-600 dark:text-slate-300 bg-amber-50/50 dark:bg-amber-900/10 rounded-r-xl">
+        <span className="text-5xl text-amber-200 absolute -top-2 -left-3 font-serif">"</span>
+        <p className="font-serif text-lg md:text-xl leading-relaxed relative z-10">
+          A holistic ecosystem designed to nurture every aspect of life—spiritual, educational, physical, and social—creating a harmonious community existence.
+        </p>
+      </div>
+
+      {sections.map((section, idx) => (
+        <div key={idx} className="group">
+          <div className="flex items-center gap-3 mb-4">
+            <div className="p-2 rounded-lg bg-amber-100 dark:bg-amber-900/30 text-amber-600 dark:text-amber-500">
+              {section.icon}
+            </div>
+            <div>
+              <h3 className="text-xl font-bold text-slate-800 dark:text-slate-200 leading-none">{section.title}</h3>
+              <span className="text-[10px] font-bold tracking-widest text-slate-500 dark:text-slate-400 uppercase">{section.subtitle}</span>
+            </div>
+          </div>
+
+          {/* Slideshow Card */}
+          <div className="relative w-full aspect-video rounded-xl overflow-hidden shadow-md border border-slate-100 dark:border-slate-800 mb-4 bg-slate-100 dark:bg-slate-900 group-hover:shadow-lg transition-all">
+            <SlideshowBackground images={section.images} interval={3500 + (idx * 500)} />
+
+            {/* Gradient Overlay */}
+            <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/80 to-transparent" />
+
+            {/* Features Overlay List */}
+            <div className="absolute bottom-3 left-3 right-3">
+              <div className="flex flex-wrap gap-2">
+                {section.features.slice(0, 3).map((feat, fIdx) => (
+                  <span key={fIdx} className="text-[10px] bg-white/20 backdrop-blur-md border border-white/30 text-white px-2 py-0.5 rounded-full font-medium">
+                    {feat}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      ))}
     </div>
-  </div>
-);
+  );
+};
 
 // 6. Save Free Campaign Content
 const SaveFreeCampaignContent = () => {
@@ -668,7 +753,7 @@ const CustomBentoGallery = () => {
     },
     {
       id: 'infinity',
-      title: 'Infinity Life Org.',
+      title: 'SEWAS Infinity Life Org.',
       subtitle: 'Holistic Ecosystem',
       description: 'A comprehensive ecosystem encompassing religious, educational, medical, commercial, and social institutions.',
       className: 'col-span-1 md:col-span-2 row-span-1',
@@ -754,6 +839,11 @@ const CustomBentoGallery = () => {
                   <SlideshowBackground
                     images={Array.from({ length: 93 }, (_, i) => `/TEMP${100 + i}.jpg`)}
                     interval={2000}
+                  />
+                ) : item.id === 'infinity' ? (
+                  <SlideshowBackground
+                    images={['/infinity-gen-4.png', '/infinity-gen-5.png', '/infinity-gen-3.png']}
+                    interval={3000}
                   />
                 ) : (
                   <Image
