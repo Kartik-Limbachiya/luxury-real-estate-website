@@ -632,7 +632,7 @@ const GalleryModal = ({ selectedItem, onClose }: { selectedItem: BentoItem, onCl
               interval={4000}
               fit="cover"
             />
-          ) : selectedItem.image ? (
+          ) : (selectedItem.image && selectedItem.id !== 'universal' && selectedItem.id !== 'save-free') ? (
             <Image
               src={selectedItem.image}
               alt={selectedItem.title}
@@ -647,11 +647,15 @@ const GalleryModal = ({ selectedItem, onClose }: { selectedItem: BentoItem, onCl
           )}
 
           {/* Slideshow Background for Specific Items in Modal Left Panel */}
-          {selectedItem.id === 'save-free' && (
+          {(selectedItem.id === 'save-free' || selectedItem.id === 'universal') && (
             <div className="absolute inset-0 z-0">
               <SlideshowBackground
-                images={['/save-free-gen-1.png', '/save-free-gen-2.png', '/save-free-gen-3.png']}
-                interval={4000}
+                images={
+                  selectedItem.id === 'save-free'
+                    ? ['/save-free-gen-1.png', '/save-free-gen-2.png', '/save-free-gen-3.png']
+                    : ['/universal-gen-1.png', '/universal-gen-2.png', '/universal-gen-3.png']
+                }
+                interval={3500}
                 fit="cover"
               />
             </div>
