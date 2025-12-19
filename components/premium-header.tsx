@@ -55,10 +55,8 @@ export function PremiumHeader() {
   ]
 
   const handleNavClick = (href: string, isSubmenu = false) => {
-    if (!isSubmenu) {
-      setIsMobileMenuOpen(false)
-      setActiveDropdown(null)
-    }
+    setIsMobileMenuOpen(false)
+    setActiveDropdown(null)
 
     if (href.startsWith("#")) {
       const element = document.querySelector(href)
