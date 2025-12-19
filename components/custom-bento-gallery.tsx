@@ -995,7 +995,7 @@ const CustomBentoGallery = () => {
       <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-amber-500/50 to-transparent" />
       <div className="absolute inset-0 bg-[url('/public/placeholder.svg')] opacity-[0.03] bg-repeat pointer-events-none" />
 
-      <div className="container mx-auto px-4 relative z-10">
+      <div className="w-full px-6 md:px-12 relative z-10">
         <div className="text-center mb-16">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -1015,7 +1015,7 @@ const CustomBentoGallery = () => {
           </motion.div>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 auto-rows-[160px] md:auto-rows-[190px] gap-4 max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 auto-rows-[160px] md:auto-rows-[190px] gap-4 w-full max-w-[1920px] mx-auto">
           {items.map((item, index) => (
             <motion.div
               key={item.id}

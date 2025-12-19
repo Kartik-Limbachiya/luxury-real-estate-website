@@ -8,6 +8,7 @@ import { UserAccountDropdown } from "@/components/auth/user-account-dropdown"
 import { useAuth } from "@/lib/context/auth-context"
 import { useEffect, useState } from "react"
 import { Menu, X, ChevronDown, Users, Mail, Eye, Heart, Building, Settings, Camera, Video } from "lucide-react"
+import { useRouter } from "next/navigation"
 
 export function PremiumHeader() {
   const [scrolled, setScrolled] = useState(false)
@@ -15,6 +16,7 @@ export function PremiumHeader() {
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null)
   const { language, toggle } = useLanguage()
   const { user } = useAuth()
+  const router = useRouter()
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 16)
@@ -24,38 +26,32 @@ export function PremiumHeader() {
   }, [])
 
   const navigationItems = [
-    { name: "About Us", href: "#about-us", icon: Users },
-    { name: "Contact Us", href: "#contact-us", icon: Mail },
-    { name: "Visions", href: "#visions", icon: Eye },
-    { name: "Mission", href: "#mission", icon: Heart },
-    { name: "Project", href: "#project", icon: Building },
+    { name: "About Us", href: "/about-us", icon: Users },
+    { name: "Mission", href: "/mission", icon: Heart },
+    { name: "Vision", href: "/vision", icon: Eye },
     {
-      name: "Services",
-      icon: Settings,
+      name: "Project",
+      icon: Building,
       submenu: [
-        { name: "Religious", href: "#religious" },
-        { name: "TV Channel", href: "#tv-channel" },
-        { name: "Award", href: "#award" },
-        { name: "Jain Tirth", href: "#jain-tirth" },
-        { name: "Sangh", href: "#sangh" },
-        { name: "Organizations", href: "#organizations" },
-        { name: "Jago Jaino Jago", href: "#jago-jaino-jago" },
-        { name: "Residential", href: "#residential" },
-        { name: "Commercial", href: "#commercial" },
-        { name: "Educational", href: "#educational" },
-        { name: "Medical", href: "#medical" },
-        { name: "Social", href: "#social" },
-        { name: "General", href: "#general" },
+        { name: "SEWAS Ecosystem highlights", href: "/sewas-ecosystem-highlights" },
+        { name: "SEWAS JAIN NAGRI", href: "/residential" },
+        { name: "SEWAS JAIN AWARDS", href: "/awards" },
+        { name: "SEWAS UNIVERSAL SANGH", href: "/universal-sangh" },
+        { name: "SEWAS JAIN AIRLINES", href: "/airlines" },
+        { name: "SEWAS JAIN TV CHANNEL", href: "/tv-channel" },
+        { name: "SEWAS JAIN TEMPLE", href: "/religious" },
+        { name: "SEWAS JAIN UNIVERSITY", href: "/education" },
+        { name: "SEWAS JAIN HOSPITAL", href: "/medical" },
+        { name: "SEWAS JAIN COMMERCIAL MALL", href: "/commercial" },
+        { name: "SEWAS JAIN SOCIAL HALL", href: "/social" },
+        { name: "SEWAS ANIMAL HOSPITAL", href: "/animal-hospital" },
+        { name: "SEWAS JAIN SHASAN PRABHAVNA", href: "/jain-shasan-prabhavna" },
+        { name: "SEWAS JAINO JAGO", href: "/jaino-jago" },
+        { name: "SEWAS HAPPY PEACE UNITY", href: "/happy-peace-unity" },
+        { name: "SEWAS SAVE FREE CAMPING", href: "/save-free-campaign" },
       ]
     },
-    {
-      name: "Gallery",
-      icon: Camera,
-      submenu: [
-        { name: "Photo", href: "#gallery-photo" },
-        { name: "Video", href: "#gallery-video" },
-      ]
-    },
+    { name: "Contact Us", href: "/contact-us", icon: Mail },
   ]
 
   const handleNavClick = (href: string, isSubmenu = false) => {
@@ -63,9 +59,14 @@ export function PremiumHeader() {
       setIsMobileMenuOpen(false)
       setActiveDropdown(null)
     }
-    const element = document.querySelector(href)
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" })
+
+    if (href.startsWith("#")) {
+      const element = document.querySelector(href)
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" })
+      }
+    } else {
+      router.push(href)
     }
   }
 
@@ -111,7 +112,7 @@ export function PremiumHeader() {
                     </button>
                     {activeDropdown === item.name && (
                       <div
-                        className="absolute top-full left-0 mt-2 w-64 bg-white rounded-lg shadow-lg border border-gray-200 py-2 z-50"
+                        className="absolute top-full left-0 mt-2 w-72 max-h-[80vh] overflow-y-auto bg-white rounded-lg shadow-lg border border-gray-200 py-2 z-50"
                         onMouseEnter={() => setActiveDropdown(item.name)}
                         onMouseLeave={() => setActiveDropdown(null)}
                       >
@@ -180,7 +181,7 @@ export function PremiumHeader() {
         {/* Mobile Navigation */}
         {isMobileMenuOpen && (
           <div className="lg:hidden absolute top-full left-0 right-0 bg-white border-t border-gray-200 shadow-lg z-40 mobile-dropdown">
-            <div className="px-4 py-4 space-y-2 max-h-96 overflow-y-auto">
+            <div className="px-4 py-4 space-y-2 max-h-[80vh] overflow-y-auto">
               {navigationItems.map((item) => (
                 <div key={item.name}>
                   {item.submenu ? (
