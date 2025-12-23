@@ -51,7 +51,7 @@ export function CommercialServiceContent() {
             description: "Exclusive marketplace for authentic Indian products."
         },
         {
-            title: "50% Discount on Swadeshi Products",
+            title: "50% Discount on All Made in India Swadeshi Products",
             image: "https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=800&q=80",
             alt: "huge Discount",
             description: "Massive savings for community members."

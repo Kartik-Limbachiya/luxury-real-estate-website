@@ -148,8 +148,8 @@ export function AwardsContent() {
                     </p>
                     <div className="flex gap-4 pt-2">
                         <div className="flex flex-col gap-1">
-                            <span className="text-3xl font-bold text-amber-600">50+</span>
-                            <span className="text-sm font-medium text-slate-600">Annual Awards</span>
+                            <span className="text-3xl font-bold text-amber-600">108+</span>
+                            <span className="text-sm font-medium text-slate-600">Types (Total 2552)</span>
                         </div>
                         <div className="w-px bg-amber-200" />
                         <div className="flex flex-col gap-1">

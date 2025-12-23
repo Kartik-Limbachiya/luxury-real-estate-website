@@ -61,7 +61,7 @@ export function UniversalSanghContent() {
                         SEWAS <span className="text-blue-700 italic">Universal Sangh</span>
                     </h1>
                     <p className="text-lg md:text-xl text-slate-600 max-w-2xl mx-auto leading-relaxed">
-                        A unified global platform empowering the Jain community through connection, collaboration, and collective leadership.
+                        Uniting 234 countries with their cities, states, districts, talukas, and villages. Appointing dedicated candidates in each location to promote Jain Dharma globally.
                     </p>
                 </div>
             </div>

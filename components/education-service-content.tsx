@@ -23,11 +23,7 @@ export function EducationServiceContent() {
             image: "https://3.imimg.com/data3/KI/ET/MY-11537384/hostel-facility-500x500.png",
             alt: "Premium Hostel Accommodation"
         },
-        {
-            title: "6 Month Ration with Documentation",
-            image: "https://img.freepik.com/free-photo/top-view-food-donation-box_23-2149182037.jpg?semt=ais_incoming&w=740&q=80",
-            alt: "Nutritional Support"
-        },
+
         {
             title: "Paperless Admission Process",
             image: "https://knowledge-hub.com/wp-content/uploads/2021/08/Digitalizing-the-admission-process.jpg",

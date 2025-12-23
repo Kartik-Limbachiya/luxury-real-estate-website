@@ -2,129 +2,172 @@
 
 import Link from "next/link"
 import Image from "next/image"
-import { Facebook, Instagram, Linkedin, Mail, Phone } from "lucide-react"
+import { Facebook, Instagram, Linkedin, Mail, Phone, MapPin, ArrowRight } from "lucide-react"
 
 export function LuxuryFooter() {
-  const navigationSections = [
-    {
-      title: "Company",
-      links: [
-        { name: "About Us", href: "#about-us" },
-        { name: "Contact Us", href: "#contact-us" },
-        { name: "Visions", href: "#visions" },
-        { name: "Mission", href: "#mission" },
-        { name: "Project", href: "#project" },
-      ]
-    },
-    {
-      title: "Services",
-      links: [
-        { name: "Religious", href: "#religious" },
-        { name: "TV Channel", href: "#tv-channel" },
-        { name: "Award", href: "#award" },
-        { name: "Jain Tirth", href: "#jain-tirth" },
-        { name: "Sangh", href: "#sangh" },
-        { name: "Organizations", href: "#organizations" },
-        { name: "Jago Jaino Jago", href: "#jago-jaino-jago" },
-        { name: "Residential", href: "#residential" },
-        { name: "Commercial", href: "#commercial" },
-        { name: "Educational", href: "#educational" },
-        { name: "Medical", href: "#medical" },
-        { name: "Social", href: "#social" },
-        { name: "General", href: "#general" },
-      ]
-    },
-    {
-      title: "Gallery",
-      links: [
-        { name: "Photo", href: "#gallery-photo" },
-        { name: "Video", href: "#gallery-video" },
-      ]
-    }
-  ]
+  const currentYear = new Date().getFullYear();
 
-  const handleNavClick = (href: string) => {
-    const element = document.querySelector(href)
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" })
-    }
-  }
+  const footerLinks = {
+    services: [
+      { name: "Universal Sangh", href: "/universal-sangh" },
+      { name: "Jain Shasan Prabhavna", href: "/jain-shasan-prabhavna" },
+      { name: "Jaino Jago", href: "/jaino-jago" },
+      { name: "Happy Peace Unity", href: "/happy-peace-unity" },
+      { name: "Save Free Campaign", href: "/save-free-campaign" },
+    ],
+    facilities: [
+      { name: "Jain Airlines", href: "/airlines" },
+      { name: "TV Channel", href: "/tv-channel" },
+      { name: "Animal Hospital", href: "/animal-hospital" },
+      { name: "Jain University", href: "/education" },
+      { name: "Jain Hospital", href: "/medical" },
+    ],
+    realEstate: [
+      { name: "SEWAS Nagri (Residential)", href: "/residential" },
+      { name: "Commercial Mall", href: "/commercial" },
+      { name: "Jain Temple", href: "/religious" },
+      { name: "Social Hall", href: "/social" },
+      { name: "Awards", href: "/awards" },
+    ],
+    company: [
+      { name: "About Us", href: "/about-us" },
+      { name: "Mission & Vision", href: "/mission" },
+      { name: "Ecosystem Highlights", href: "/sewas-ecosystem-highlights" },
+      { name: "Contact Us", href: "/contact-us" },
+    ]
+  };
 
   return (
-    <footer className="relative bg-gradient-to-b from-background via-muted/40 to-background border-t">
-      <div className="absolute inset-0 pointer-events-none premium-shadow" />
-      <div className="w-full px-6 md:px-10 py-12 md:py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 md:gap-10">
-          {/* Company Info */}
-          <div className="lg:col-span-2 space-y-4">
-            <div className="inline-flex items-center gap-3">
-              <Image src="/sewas-logo.png" alt="SEWAS" width={48} height={48} className="rounded" />
+    <footer className="relative bg-[#0f172a] text-slate-300 border-t border-slate-800 overflow-hidden">
+      {/* Decorative Elements */}
+      <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-amber-500 via-orange-500 to-amber-600" />
+      <div className="absolute -top-24 -right-24 w-96 h-96 bg-amber-500/10 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute -bottom-24 -left-24 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl pointer-events-none" />
+
+      <div className="w-full max-w-7xl mx-auto px-6 md:px-10 py-16 md:py-20 relative z-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8">
+
+          {/* Brand Column */}
+          <div className="lg:col-span-3 space-y-6">
+            <Link href="/" className="inline-flex items-center gap-3 group">
+              <div className="relative w-12 h-12 bg-white/10 rounded-xl p-2 border border-white/10 group-hover:bg-white/20 transition-all duration-300 backdrop-blur-sm">
+                <Image src="/sewas-logo.png" alt="SEWAS" width={48} height={48} className="object-contain w-full h-full" />
+              </div>
               <div>
-                <div className="font-black text-xl gradient-text">SEWAS Nagri</div>
-                <div className="font-medium text-xs text-gray-600">A Project by SEWAS Universal Federation</div>
+                <div className="font-serif text-2xl font-bold text-white tracking-wide">SEWAS Nagri</div>
+                <div className="text-[10px] uppercase tracking-[0.2em] text-amber-500 font-bold">Universal Federation</div>
               </div>
-            </div>
-            <p className="text-sm text-muted-foreground leading-relaxed">
-              THE JAINISM OF UNIVERSE — Complete housing and life facilities for Jain communities across India.
+            </Link>
+
+            <p className="text-slate-400 leading-relaxed text-sm pr-4">
+              A revolutionary ecosystem uniting 800 cities, 29 states, and 7 union territories under the banner of "The Jainism of Universe". Providing complete housing and life facilities with 0% down payment.
             </p>
-            <div className="flex items-center gap-3">
-              <span className="inline-flex items-center rounded-md bg-amber-100 text-amber-800 text-xs font-semibold px-2 py-1 border border-amber-200">
-                Trusted Developer
-              </span>
-              <span className="inline-flex items-center rounded-md bg-emerald-100 text-emerald-800 text-xs font-semibold px-2 py-1 border border-emerald-200">
-                Sustainable Living
-              </span>
-            </div>
-          </div>
 
-          {/* Navigation Sections */}
-          {navigationSections.map((section) => (
-            <div key={section.title}>
-              <h4 className="font-semibold mb-4">{section.title}</h4>
-              <ul className="space-y-2 text-sm">
-                {section.links.map((link) => (
-                  <li key={link.name}>
-                    <button
-                      onClick={() => handleNavClick(link.href)}
-                      className="hover:text-primary transition-colors text-left"
-                    >
-                      {link.name}
-                    </button>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-
-          {/* Contact */}
-          <div>
-            <h4 className="font-semibold mb-4">Contact</h4>
-            <ul className="space-y-3 text-sm">
-              <li className="flex items-center gap-2"><Phone className="h-4 w-4" /> +91 9930609108</li>
-              <li className="flex items-center gap-2"><Mail className="h-4 w-4" /> contact@800sewas.com</li>
-            </ul>
-            <div className="mt-4">
-              <h5 className="font-semibold mb-3">Follow</h5>
-              <div className="flex items-center gap-3">
-                <Link href="#" className="inline-flex h-9 w-9 items-center justify-center rounded-full border hover:bg-muted">
-                  <Facebook className="h-4 w-4" />
-                </Link>
-                <Link href="#" className="inline-flex h-9 w-9 items-center justify-center rounded-full border hover:bg-muted">
-                  <Instagram className="h-4 w-4" />
-                </Link>
-                <Link href="#" className="inline-flex h-9 w-9 items-center justify-center rounded-full border hover:bg-muted">
-                  <Linkedin className="h-4 w-4" />
-                </Link>
+            <div className="space-y-3 pt-2">
+              <div className="flex items-start gap-3 text-sm text-slate-300 hover:text-amber-400 transition-colors">
+                <MapPin className="w-5 h-5 text-amber-500 shrink-0 mt-0.5" />
+                <span>Headquarters: Mumbai, India</span>
+              </div>
+              <div className="flex items-center gap-3 text-sm text-slate-300 hover:text-amber-400 transition-colors">
+                <Phone className="w-5 h-5 text-amber-500 shrink-0" />
+                <span>+91 9930609108</span>
+              </div>
+              <div className="flex items-center gap-3 text-sm text-slate-300 hover:text-amber-400 transition-colors">
+                <Mail className="w-5 h-5 text-amber-500 shrink-0" />
+                <span>contact@800sewas.com</span>
               </div>
             </div>
           </div>
+
+          {/* Links Columns */}
+          <div className="lg:col-span-2">
+            <h4 className="font-serif text-lg font-bold text-white mb-6 flex items-center gap-2">
+              Services
+              <span className="h-px flex-1 bg-slate-800"></span>
+            </h4>
+            <ul className="space-y-3">
+              {footerLinks.services.map((link) => (
+                <li key={link.name}>
+                  <Link href={link.href} className="text-sm hover:text-amber-400 transition-all duration-200 flex items-center gap-2 group">
+                    <span className="w-1 h-1 rounded-full bg-slate-600 group-hover:bg-amber-400 transition-colors"></span>
+                    {link.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="lg:col-span-2">
+            <h4 className="font-serif text-lg font-bold text-white mb-6 flex items-center gap-2">
+              Facilities
+              <span className="h-px flex-1 bg-slate-800"></span>
+            </h4>
+            <ul className="space-y-3">
+              {footerLinks.facilities.map((link) => (
+                <li key={link.name}>
+                  <Link href={link.href} className="text-sm hover:text-amber-400 transition-all duration-200 flex items-center gap-2 group">
+                    <span className="w-1 h-1 rounded-full bg-slate-600 group-hover:bg-amber-400 transition-colors"></span>
+                    {link.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="lg:col-span-3">
+            <h4 className="font-serif text-lg font-bold text-white mb-6 flex items-center gap-2">
+              Real Estate
+              <span className="h-px flex-1 bg-slate-800"></span>
+            </h4>
+            <ul className="space-y-3">
+              {footerLinks.realEstate.map((link) => (
+                <li key={link.name}>
+                  <Link href={link.href} className="text-sm hover:text-amber-400 transition-all duration-200 flex items-center gap-2 group">
+                    <span className="w-1 h-1 rounded-full bg-slate-600 group-hover:bg-amber-400 transition-colors"></span>
+                    {link.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="lg:col-span-2">
+            <h4 className="font-serif text-lg font-bold text-white mb-6 flex items-center gap-2">
+              Company
+              <span className="h-px flex-1 bg-slate-800"></span>
+            </h4>
+            <ul className="space-y-3">
+              {footerLinks.company.map((link) => (
+                <li key={link.name}>
+                  <Link href={link.href} className="text-sm hover:text-amber-400 transition-all duration-200 flex items-center gap-2 group">
+                    <span className="w-1 h-1 rounded-full bg-slate-600 group-hover:bg-amber-400 transition-colors"></span>
+                    {link.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
         </div>
 
-        <div className="mt-10 pt-6 border-t text-xs text-muted-foreground flex flex-col md:flex-row items-center justify-between gap-3">
-          <p>© {new Date().getFullYear()} SEWAS Universal Federation. All rights reserved.</p>
-          <div className="flex items-center gap-4">
-            <Link href="#" className="hover:text-primary">Privacy</Link>
-            <Link href="#" className="hover:text-primary">Terms</Link>
+        {/* Bottom Bar */}
+        <div className="mt-16 pt-8 border-t border-slate-800 flex flex-col md:flex-row items-center justify-between gap-4">
+          <p className="text-xs text-slate-500">
+            © {currentYear} SEWAS Universal Federation. All rights reserved.
+          </p>
+
+          <div className="flex items-center gap-6">
+            <div className="flex items-center gap-3">
+              <Link href="#" className="w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center hover:bg-amber-500 hover:text-white transition-all duration-300 group">
+                <Facebook className="w-4 h-4 group-hover:scale-110 transition-transform" />
+              </Link>
+              <Link href="#" className="w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center hover:bg-amber-500 hover:text-white transition-all duration-300 group">
+                <Instagram className="w-4 h-4 group-hover:scale-110 transition-transform" />
+              </Link>
+              <Link href="#" className="w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center hover:bg-amber-500 hover:text-white transition-all duration-300 group">
+                <Linkedin className="w-4 h-4 group-hover:scale-110 transition-transform" />
+              </Link>
+            </div>
           </div>
         </div>
       </div>
@@ -133,4 +176,3 @@ export function LuxuryFooter() {
 }
 
 export default LuxuryFooter
-

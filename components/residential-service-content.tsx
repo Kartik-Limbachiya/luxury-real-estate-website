@@ -7,7 +7,7 @@ import { ApartmentShowcase } from './apartment-showcase'
 import { ResidentialCustomizationForm } from './residential-customization-form'
 import { BankingPartners } from './banking-partners'
 import { DevelopmentSchedule } from './development-schedule'
-import { Zap, DollarSign, Home, Leaf, Building2, Star, Check, TrendingUp, Shield, Calendar, ShieldCheck, Users } from "lucide-react"
+import { Zap, DollarSign, Home, Leaf, Building2, Star, Check, TrendingUp, Shield, Calendar, ShieldCheck, Users, DoorOpen, Route, Flower, Landmark, ArrowRight, ArrowLeft, Trees, Palette } from "lucide-react"
 
 export function ResidentialServiceContent() {
     const [activeLayout, setActiveLayout] = useState<'2BHK' | '3BHK'>('2BHK');
@@ -206,6 +206,95 @@ export function ResidentialServiceContent() {
                 </div>
             </div>
 
+            {/* 24 Tirthankar Naming System (Moved from Religious) */}
+            <div className="relative rounded-[3rem] overflow-hidden bg-gradient-to-br from-amber-50 via-orange-50 to-amber-100 border border-amber-200 shadow-2xl p-8 md:p-16 mb-20">
+                {/* Decorative Corners */}
+                <div className="absolute top-0 left-0 w-32 h-32 border-l-4 border-t-4 border-amber-400 rounded-tl-3xl opacity-50" />
+                <div className="absolute bottom-0 right-0 w-32 h-32 border-r-4 border-b-4 border-amber-400 rounded-br-3xl opacity-50" />
+
+                <div className="text-center mb-16 relative z-10">
+                    <div className="inline-flex items-center gap-3 bg-white/80 backdrop-blur-sm px-8 py-3 rounded-full border border-amber-200 shadow-lg mb-8">
+                        <span className="text-2xl">🕉️</span>
+                        <span className="font-bold text-lg text-amber-900 tracking-wide uppercase">Divine Heritage</span>
+                        <span className="text-2xl">🕉️</span>
+                    </div>
+
+                    <h2 className="text-4xl md:text-6xl font-bold font-serif text-amber-900 mb-6 drop-shadow-sm">
+                        24 Tirthankar <span className="text-amber-600">Naming System</span>
+                    </h2>
+                    <p className="text-amber-800 text-xl font-medium max-w-4xl mx-auto leading-relaxed font-serif italic">
+                        "A sacred naming convention honoring Tirthankar birthplaces, parents, symbols, and divine life stories."
+                    </p>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-x-12 gap-y-8 max-w-6xl mx-auto relative z-10">
+                    <NamingItem
+                        icon={<DoorOpen className="w-6 h-6 text-amber-700" />}
+                        title="Main Gates"
+                        subtitle="Tirthankar Birthplace"
+                        gradient="from-amber-100 to-amber-200"
+                    />
+                    <NamingItem
+                        icon={<Route className="w-6 h-6 text-green-700" />}
+                        title="Roads"
+                        subtitle="Tirthankars"
+                        gradient="from-green-100 to-green-200"
+                    />
+                    <NamingItem
+                        icon={<Flower className="w-6 h-6 text-pink-600" />}
+                        title="Gardens"
+                        subtitle="Tirthankar Mothers"
+                        gradient="from-pink-100 to-pink-200"
+                    />
+                    <NamingItem
+                        icon={<Landmark className="w-6 h-6 text-orange-600" />}
+                        title="Streets"
+                        subtitle="Tirthankar Fathers"
+                        gradient="from-orange-100 to-orange-200"
+                    />
+                    <NamingItem
+                        icon={<ArrowRight className="w-6 h-6 text-blue-600" />}
+                        title="Incoming Roads"
+                        subtitle="Ganadhar Names"
+                        gradient="from-blue-100 to-blue-200"
+                    />
+                    <NamingItem
+                        icon={<ArrowLeft className="w-6 h-6 text-indigo-600" />}
+                        title="Outgoing Roads"
+                        subtitle="Yaksha Names"
+                        gradient="from-indigo-100 to-indigo-200"
+                    />
+                    <NamingItem
+                        icon={<Trees className="w-6 h-6 text-green-600" />}
+                        title="Trees"
+                        subtitle="Vriksha (Sacred Tree)"
+                        gradient="from-emerald-100 to-emerald-200"
+                    />
+                    <NamingItem
+                        icon={<Palette className="w-6 h-6 text-purple-600" />}
+                        title="Art Galleries"
+                        subtitle="Lanchhan (Symbols)"
+                        gradient="from-purple-100 to-purple-200"
+                    />
+                    <NamingItem
+                        icon={<div className="bg-purple-600 text-white w-6 h-6 flex items-center justify-center text-xs font-bold rounded shadow-sm">35</div>}
+                        title="Jinalaya"
+                        subtitle="Moolnayak Form"
+                        gradient="from-violet-100 to-violet-200"
+                    />
+                    <NamingItem
+                        icon={<Home className="w-6 h-6 text-amber-800" />}
+                        title="Homes"
+                        subtitle="Family Members"
+                        gradient="from-yellow-100 to-yellow-200"
+                    />
+                </div>
+            </div>
+
+            <div className="w-full bg-gradient-to-r from-orange-600 to-red-600 text-white font-bold p-6 rounded-2xl text-center shadow-xl text-xl hover:scale-[1.01] hover:shadow-2xl transition-all cursor-pointer border-2 border-orange-400/50 mb-20">
+                📖 Life stories of each Tirthankar available on website
+            </div>
+
             {/* Premium Feature Cards (The "Ace" Section) */}
             <div className="mt-0">
                 <div className="text-center mb-12">
@@ -351,5 +440,21 @@ export function ResidentialServiceContent() {
             {/* Customization Form */}
             <ResidentialCustomizationForm />
         </div >
+    )
+}
+
+function NamingItem({ icon, title, subtitle, gradient }: { icon: React.ReactNode, title: string, subtitle: string, gradient: string }) {
+    return (
+        <div className="bg-white/90 backdrop-blur-sm rounded-2xl border border-amber-100 p-6 flex items-center gap-6 shadow-md hover:shadow-2xl hover:shadow-amber-100/40 hover:border-amber-400 transition-all duration-300 group hover:-translate-y-1 relative overflow-hidden">
+            <div className={`absolute top-0 left-0 w-2 h-full bg-gradient-to-b ${gradient}`} />
+
+            <div className={`w-16 h-16 bg-gradient-to-br ${gradient} rounded-2xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300 shadow-sm ring-4 ring-white`}>
+                {icon}
+            </div>
+            <div>
+                <h4 className="font-bold font-serif text-slate-900 text-xl leading-tight group-hover:text-amber-700 transition-colors">{title}</h4>
+                <p className="text-amber-900/70 text-sm font-medium mt-1">{subtitle}</p>
+            </div>
+        </div>
     )
 }
