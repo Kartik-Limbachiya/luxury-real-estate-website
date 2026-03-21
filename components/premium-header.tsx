@@ -79,7 +79,7 @@ export function PremiumHeader() {
     >
       <div className="max-w-7xl mx-auto px-3 md:px-6">
         <div className="h-14 md:h-20 flex items-center justify-between">
-          <Link href="#" className="inline-flex items-center gap-2 md:gap-3">
+          <Link href="/" className="inline-flex items-center gap-2 md:gap-3">
             <span className="inline-flex items-center justify-center h-8 w-8 md:h-10 md:w-10 rounded-md bg-white/90 shadow premium-shadow">
               <Image src="/sewas-logo.png" alt="SEWAS Logo" width={32} height={32} className="h-6 w-6 md:h-8 md:w-8" />
             </span>
