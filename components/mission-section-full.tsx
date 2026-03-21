@@ -39,7 +39,7 @@ export function MissionSectionFull() {
                 {/* Description Box */}
                 <div className="bg-white rounded-3xl shadow-[0_0_50px_rgba(0,0,0,0.05)] p-8 md:p-12 mb-20 border border-gray-100/50 w-full">
                     <p className="text-gray-600 leading-relaxed text-lg md:text-xl text-center">
-                        FEDERATION OF SEWAS UNIVERSE is committed to ensuring that no individual, anywhere in the world, is deprived of fundamental human necessities. We dedicate ourselves to tireless efforts in bridging these critical gaps, working across borders and cultures to create a world where basic human rights are not privileges, but guaranteed realities for every person.
+                        Federation of SEWAS Universe is committed to ensuring that no individual, anywhere in the world, is deprived of fundamental human necessities. We dedicate ourselves to tireless efforts in bridging these critical gaps, working across borders and cultures to create a world where basic human rights are not privileges, but guaranteed realities for every person.
                     </p>
                 </div>
 

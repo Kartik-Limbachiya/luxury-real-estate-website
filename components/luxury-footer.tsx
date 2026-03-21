@@ -153,7 +153,7 @@ export function LuxuryFooter() {
         {/* Bottom Bar */}
         <div className="mt-16 pt-8 border-t border-slate-800 flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-xs text-slate-500">
-            © {currentYear} FEDERATION OF SEWAS UNIVERSE. All rights reserved.
+            © {currentYear} Federation of SEWAS Universe. All rights reserved.
           </p>
 
           <div className="flex items-center gap-6">

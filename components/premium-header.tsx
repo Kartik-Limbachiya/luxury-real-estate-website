@@ -88,7 +88,7 @@ export function PremiumHeader() {
                 SEWAS Nagri
               </span>
               <span className="font-medium tracking-tight text-[10px] md:text-xs lg:text-sm text-gray-600">
-                A Project by FEDERATION OF SEWAS UNIVERSE
+                A Project by Federation of SEWAS Universe
               </span>
             </div>
           </Link>

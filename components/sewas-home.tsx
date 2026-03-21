@@ -109,7 +109,7 @@ function PremiumHeroSection() {
                   <div className="text-center sm:text-left">
                     <h1 className="font-black text-3xl sm:text-4xl md:text-5xl lg:text-7xl gradient-text">SEWAS Nagri</h1>
                     <p className="text-xs sm:text-sm md:text-base lg:text-lg font-medium text-amber-900 mt-1">
-                      A Project by FEDERATION OF SEWAS UNIVERSE
+                      A Project by Federation of SEWAS Universe
                     </p>
                     <p className="text-sm sm:text-base md:text-xl lg:text-2xl font-bold text-primary mt-2">
                       {language === "en" ? "THE JAINISM OF UNIVERSE" : "द यूनिवर्स का जैनिज़्म"}

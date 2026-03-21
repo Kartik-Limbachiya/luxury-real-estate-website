@@ -309,7 +309,7 @@ export function NewAboutSection() {
                 customVariants={revealVariants}
                 className="text-gray-600 text-sm mb-8"
               >
-                A Project by FEDERATION OF SEWAS UNIVERSE
+                A Project by Federation of SEWAS Universe
               </TimelineContent>
 
               <TimelineContent

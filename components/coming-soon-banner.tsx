@@ -271,7 +271,7 @@ export function ComingSoonBanner() {
           <p className="text-base sm:text-lg md:text-xl text-gray-300 font-light max-w-2xl mx-auto leading-relaxed mt-4 drop-shadow-md">
             Building <strong>1,024 Homes per City</strong> across India.
             <span className="block mt-2 text-gray-400 text-sm sm:text-base">
-              A Project by FEDERATION OF SEWAS UNIVERSE
+              A Project by Federation of SEWAS Universe
             </span>
           </p>
 

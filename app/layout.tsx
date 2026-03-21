@@ -24,13 +24,13 @@ const sourceSans = Source_Sans_3({
 })
 
 export const metadata: Metadata = {
-  title: "SEWAS Nagri - A Project by FEDERATION OF SEWAS UNIVERSE | THE JAINISM OF UNIVERSE",
+  title: "SEWAS Nagri - A Project by Federation of SEWAS Universe | THE JAINISM OF UNIVERSE",
   description:
-    "SEWAS Nagri - 800 SEWAS Nagri • 29 States • 7 Union Territories. A Project by FEDERATION OF SEWAS UNIVERSE. THE JAINISM OF UNIVERSE - Complete housing solutions for Jain communities with 0% down payment and 100% bank loan.",
+    "SEWAS Nagri - 800 SEWAS Nagri • 29 States • 7 Union Territories. A Project by Federation of SEWAS Universe. THE JAINISM OF UNIVERSE - Complete housing solutions for Jain communities with 0% down payment and 100% bank loan.",
   generator: "v0.app",
   keywords: [
     "SEWAS Nagri",
-    "FEDERATION OF SEWAS UNIVERSE",
+    "Federation of SEWAS Universe",
     "800 SEWAS Cities",
     "Jain Community Housing",
     "800 Cities India",
@@ -40,9 +40,9 @@ export const metadata: Metadata = {
     "Swadeshi Products 50% Discount",
     "Jain Housing Project",
   ],
-  authors: [{ name: "FEDERATION OF SEWAS UNIVERSE" }],
+  authors: [{ name: "Federation of SEWAS Universe" }],
   openGraph: {
-    title: "SEWAS Nagri - A Project by FEDERATION OF SEWAS UNIVERSE",
+    title: "SEWAS Nagri - A Project by Federation of SEWAS Universe",
     description: "800 Cities • 29 States • 7 Union Territories serving Jain communities with complete life facilities",
     type: "website",
   },
