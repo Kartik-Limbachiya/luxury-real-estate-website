@@ -28,7 +28,7 @@ export function FederationDetailsSection() {
                     </div>
 
                     <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-[#E68A00] tracking-tight mb-12">
-                        SEWAS Universal Federation
+                        FEDERATION OF SEWAS UNIVERSE
                     </h1>
 
                     <div className="text-3xl md:text-5xl text-black font-medium leading-relaxed w-full mx-auto text-center px-4 tracking-tight">
@@ -45,7 +45,7 @@ export function FederationDetailsSection() {
                             In today's global landscape, humanity faces unprecedented challenges that threaten the fabric of our collective existence. Terrorism, armed conflicts, economic inflation, rising illiteracy, inadequate healthcare infrastructure, widespread malnutrition, environmental degradation, systemic corruption, escalating violence, and human trafficking have proliferated across all corners of the world.
                         </p>
                         <p>
-                            Amidst these pressing contemporary challenges, SEWAS Universal Federation emerges as a beacon of hope for humanity. Our organization is dedicated to addressing these critical issues and fostering sustainable solutions that restore dignity, security, and prosperity to communities worldwide.
+                            Amidst these pressing contemporary challenges, FEDERATION OF SEWAS UNIVERSE emerges as a beacon of hope for humanity. Our organization is dedicated to addressing these critical issues and fostering sustainable solutions that restore dignity, security, and prosperity to communities worldwide.
                         </p>
                     </div>
                 </div>
@@ -77,7 +77,7 @@ export function FederationDetailsSection() {
                         "Working across borders and cultures to create a world where basic human rights are guaranteed realities for every person."
                     </blockquote>
                     <p className="text-gray-900 font-bold text-sm md:text-base uppercase tracking-wider mt-4">
-                        SEWAS Universal Federation - Restoring dignity, security, and prosperity worldwide
+                        FEDERATION OF SEWAS UNIVERSE - Restoring dignity, security, and prosperity worldwide
                     </p>
                 </div>
 

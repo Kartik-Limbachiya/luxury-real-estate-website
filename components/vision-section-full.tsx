@@ -40,7 +40,7 @@ export function VisionSectionFull() {
                 {/* Description Box */}
                 <div className="bg-white rounded-3xl shadow-[0_0_50px_rgba(0,0,0,0.05)] p-8 md:p-12 mb-20 border border-gray-100/50 w-full">
                     <p className="text-gray-600 leading-relaxed text-lg md:text-xl text-center">
-                        SEWAS Universal Federation envisions a world united in peace and brotherhood. Our vision is to establish global harmony by bringing together influential leaders and change makers from diverse sectors to create a global movement that transcends boundaries, cultivates universal brotherhood, and establishes enduring world peace for present and future generations.
+                        FEDERATION OF SEWAS UNIVERSE envisions a world united in peace and brotherhood. Our vision is to establish global harmony by bringing together influential leaders and change makers from diverse sectors to create a global movement that transcends boundaries, cultivates universal brotherhood, and establishes enduring world peace for present and future generations.
                     </p>
                 </div>
 

@@ -68,7 +68,7 @@ export default function ResidentialPage() {
                                     <div className="text-center sm:text-left">
                                         <h1 className="font-black text-2xl sm:text-3xl md:text-5xl lg:text-7xl gradient-text">SEWAS Nagri</h1>
                                         <p className="text-xs sm:text-sm md:text-base lg:text-lg font-medium text-amber-900 mt-1">
-                                            A Project by SEWAS Universal Federation
+                                            A Project by FEDERATION OF SEWAS UNIVERSE
                                         </p>
                                         <p className="text-sm sm:text-base md:text-xl lg:text-2xl font-bold text-amber-600 mt-2">
                                             THE JAINISM OF UNIVERSE

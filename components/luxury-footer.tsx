@@ -55,7 +55,7 @@ export function LuxuryFooter() {
               </div>
               <div>
                 <div className="font-serif text-2xl font-bold text-white tracking-wide">SEWAS Nagri</div>
-                <div className="text-[10px] uppercase tracking-[0.2em] text-amber-500 font-bold">Universal Federation</div>
+                <div className="text-[10px] uppercase tracking-[0.2em] text-amber-500 font-bold">Federation of SEWAS Universe</div>
               </div>
             </Link>
 
@@ -153,7 +153,7 @@ export function LuxuryFooter() {
         {/* Bottom Bar */}
         <div className="mt-16 pt-8 border-t border-slate-800 flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-xs text-slate-500">
-            © {currentYear} SEWAS Universal Federation. All rights reserved.
+            © {currentYear} FEDERATION OF SEWAS UNIVERSE. All rights reserved.
           </p>
 
           <div className="flex items-center gap-6">

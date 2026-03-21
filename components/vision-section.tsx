@@ -129,7 +129,7 @@ export function VisionSection() {
               <Card className="max-w-5xl mx-auto glass-card shadow-xl">
                 <CardContent className="p-12">
                   <p className="text-lg text-muted-foreground leading-relaxed text-left">
-                    SEWAS Universal Federation envisions a world united in peace and brotherhood. Our vision is to establish global harmony by bringing together influential leaders and change-makers from diverse sectors to create a global movement that transcends boundaries, cultivates universal brotherhood, and establishes enduring world peace for present and future generations.
+                    FEDERATION OF SEWAS UNIVERSE envisions a world united in peace and brotherhood. Our vision is to establish global harmony by bringing together influential leaders and change-makers from diverse sectors to create a global movement that transcends boundaries, cultivates universal brotherhood, and establishes enduring world peace for present and future generations.
                   </p>
                 </CardContent>
               </Card>
@@ -286,7 +286,7 @@ export function MissionSection() {
               <Card className="max-w-5xl mx-auto glass-card shadow-xl">
                 <CardContent className="p-12">
                   <p className="text-lg text-muted-foreground leading-relaxed text-left">
-                    SEWAS Universal Federation is committed to ensuring that no individual, anywhere in the world, is deprived of fundamental human necessities. We dedicate ourselves to tireless efforts in bridging these critical gaps, working across borders and cultures to create a world where basic human rights are not privileges, but guaranteed realities for every person.
+                    FEDERATION OF SEWAS UNIVERSE is committed to ensuring that no individual, anywhere in the world, is deprived of fundamental human necessities. We dedicate ourselves to tireless efforts in bridging these critical gaps, working across borders and cultures to create a world where basic human rights are not privileges, but guaranteed realities for every person.
                   </p>
                 </CardContent>
               </Card>
@@ -391,7 +391,7 @@ export function AboutUsSection() {
               customVariants={revealVariants}
               className="font-serif text-5xl md:text-6xl font-bold gradient-text"
             >
-              SEWAS Universal Federation
+              FEDERATION OF SEWAS UNIVERSE
             </TimelineContent>
           </div>
 
@@ -459,7 +459,7 @@ export function AboutUsSection() {
                     In today's global landscape, humanity faces unprecedented challenges that threaten the fabric of our collective existence. Terrorism, armed conflicts, economic inflation, rising illiteracy, inadequate healthcare infrastructure, widespread malnutrition, environmental degradation, systemic corruption, escalating violence, and human trafficking have proliferated across all corners of the world.
                   </p>
                   <p>
-                    Amidst these pressing contemporary challenges, SEWAS Universal Federation emerges as a beacon of hope for humanity. Our organization is dedicated to addressing these critical issues and fostering sustainable solutions that restore dignity, security, and prosperity to communities worldwide.
+                    Amidst these pressing contemporary challenges, FEDERATION OF SEWAS UNIVERSE emerges as a beacon of hope for humanity. Our organization is dedicated to addressing these critical issues and fostering sustainable solutions that restore dignity, security, and prosperity to communities worldwide.
                   </p>
                 </TimelineContent>
               </CardContent>
@@ -521,7 +521,7 @@ export function AboutUsSection() {
                   "Working across borders and cultures to create a world where basic human rights are guaranteed realities for every person."
                 </blockquote>
                 <p className="text-center text-muted-foreground">
-                  SEWAS Universal Federation - Restoring dignity, security, and prosperity worldwide
+                  FEDERATION OF SEWAS UNIVERSE - Restoring dignity, security, and prosperity worldwide
                 </p>
               </CardContent>
             </Card>
